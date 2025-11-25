@@ -6,7 +6,7 @@ import type {
   StudentsCount,
   ContactPreference,
   Availability,
-} from '@/features/contact/types';
+} from '@/app/contacte/types';
 
 interface Option<T> {
   value: T;

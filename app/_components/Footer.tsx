@@ -5,7 +5,7 @@ interface FooterProps {
 }
 
 const Footer = ({ logoImg }: FooterProps) => (
-  <footer className="bg-[#3D4B7A] py-8 px-4 sm:px-6 md:px-10 overflow-x-hidden">
+  <footer className="bg-jacarta py-8 px-4 sm:px-6 md:px-10 overflow-x-hidden">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
       {/* Logo */}
       <div className="flex items-center">

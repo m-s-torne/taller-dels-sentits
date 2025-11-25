@@ -3,6 +3,11 @@
 /* Configurar colores personalizados */
 @theme {
   --color-shakespeare: #6b8ac6;
+  --color-scampi: #676799;
+  --color-jacarta: #4B3D66;
+  --color-violet-blue: #945696;
+  --color-midnight: #212322;
+  --color-lilac: #fffaf6;
 }
 
 /* Importar fuente The Seasons */
