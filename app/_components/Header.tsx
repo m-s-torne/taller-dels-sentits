@@ -81,7 +81,7 @@ const Header = ({ logoImg }: HeaderProps) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white md:hidden overflow-x-hidden"
+            className="fixed inset-0 z-40 bg-lilac md:hidden overflow-x-hidden"
           >
             <nav className="flex flex-col items-center justify-center h-full gap-8 px-4 sm:px-6 md:px-10">
               <ul className="flex flex-col items-center gap-8 text-lg sm:text-xl font-medium">

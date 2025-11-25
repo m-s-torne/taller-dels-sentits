@@ -10,7 +10,7 @@ export const ArtterapiaContent = () => (
             <img 
                 src={CorazonIcon.src} 
                 alt="Corazón" 
-                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 flex-shrink-0"
+                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0"
             />
             <div className="space-y-4">
                 <p>
@@ -57,7 +57,7 @@ export const ArtterapiaContent = () => (
             <img 
                 src={ManosIcon.src} 
                 alt="Manos" 
-                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 flex-shrink-0"
+                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0"
             />
             <div className="space-y-4">
                 <p className="font-semibold text-base sm:text-xl">
@@ -108,7 +108,7 @@ export const ArtperdinsContent = () => (
             <img 
                 src={PaletaIcon.src} 
                 alt="Paleta" 
-                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 flex-shrink-0"
+                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0"
             />
             <div className="space-y-4">
                 <p>
@@ -133,11 +133,11 @@ export const ArtperdinsContent = () => (
         </p>
 
         <p className="font-semibold">
-            Per fer aquest curs no és necessari ser habilidós ni tenir cap formació artística prèvia. Les places són limitades.
+            Per fer aquest curs no és necessari ser hàbil ni tenir cap formació artística prèvia. Les places són limitades.
         </p>
 
-        <h3 className="text-[#7B8BC7] text-base sm:text-xl lg:text-2xl font-light tracking-wide mt-10 mb-4">
-            Els Monogràfics de l'Artperdins:
+        <h3 className="text-shakespeare text-base sm:text-xl lg:text-2xl font-light tracking-wide mt-10 mb-4">
+            Els Monogràfics de l'<em>Artperdins</em>:
         </h3>
         <p>
             Amb un format més petit, els monogràfics són una bona alternativa per a qui no disposa de molt temps. Són esporàdics i que poden anar des de propostes i seminaris artístics amb una temàtica concreta, experiències artístiques o visites guiades a exposicions.
@@ -152,7 +152,7 @@ export const CentresEducatiusContent = () => (
             <img 
                 src={PlantaIcon.src} 
                 alt="Planta" 
-                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 flex-shrink-0"
+                className="w-36 h-36 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 shrink-0"
             />
             <div className="space-y-4">
                 <p>

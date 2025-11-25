@@ -28,7 +28,7 @@ const StepsNavigation = ({ steps, selectedStep, handleStepChange }: StepsNavigat
                 {steps.map((step, index) => (
                     <div 
                         key={step.key}
-                        className="flex lg:flex-row flex-col items-center gap-1 lg:gap-6 cursor-pointer group relative z-10 flex-shrink lg:flex-none max-w-[30%] lg:max-w-none"
+                        className="flex lg:flex-row flex-col items-center gap-1 lg:gap-6 cursor-pointer group relative z-10 shrink lg:flex-none max-w-[30%] lg:max-w-none"
                         onClick={() => handleStepChange(step.key)}
                         style={{
                             marginTop: index === 0 ? '0' : 'auto',
@@ -36,21 +36,21 @@ const StepsNavigation = ({ steps, selectedStep, handleStepChange }: StepsNavigat
                         }}
                     >
                         {/* Punto indicador */}
-                        <div className={`w-4 h-4 rounded-full border-2 border-white transition-all duration-200 relative z-10 flex-shrink-0 ${
-                            selectedStep === step.key ? 'bg-white' : 'bg-[#7B8BC7]'
+                        <div className={`w-4 h-4 rounded-full border-2 border-white transition-all duration-200 relative z-10 shrink-0 ${
+                            selectedStep === step.key ? 'bg-white' : 'bg-shakespeare'
                         }`}></div>
                         
                         {/* Contenedor de icono y texto en columna para mobile */}
-                        <div className="flex flex-col items-center lg:flex-row lg:gap-6 w-full">
+                        <div className="flex flex-col items-center lg:flex-row lg:gap-0 w-full">
                             {/* Icono */}
-                            <div className={`w-40 max-w-[70vw] sm:w-28 md:w-32 lg:w-70 aspect-square flex items-center justify-center transition-opacity duration-200 flex-shrink-0 ${
+                            <div className={`w-48 max-w-[70vw] sm:w-36 md:w-40 lg:w-70 aspect-square flex items-center justify-center transition-opacity duration-200 shrink-0 -mb-10 lg:mb-0 ${
                                 selectedStep === step.key ? 'opacity-100' : 'opacity-60'
                             } group-hover:opacity-100`}>
                                 <img src={step.icon} alt={step.label} className="w-full h-full object-contain filter "/>
                             </div>
                             
                             {/* Texto del paso */}
-                            <span className={`text-white text-xs sm:text-sm lg:text-base font-medium tracking-wide transition-colors duration-200 whitespace-nowrap ${
+                            <span className={`text-white text-sm sm:text-base lg:text-base font-medium tracking-wide transition-colors duration-200 whitespace-nowrap ${
                                 selectedStep === step.key ? 'text-white' : 'text-white/70'
                             } group-hover:text-white`}>
                                 {step.label}

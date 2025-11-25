@@ -14,13 +14,13 @@ const HeroSection = () => {
       <div className="bg-shakespeare py-4 pt-25 overflow-x-hidden">
         <div className="text-center ">
           <p className="text-white sm:text-xl font-light tracking-wide">
-            centre d'artteràpia i expressió plàstica
+            centre d'<em>artteràpia</em> i expressió plàstica
           </p>
         </div>
       </div>
 
       {/* Hero principal */}
-      <section className="bg-[#F8F6F3] py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden">
+      <section className="bg-lilac py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
           {/* Imagen circular a la izquierda */}
           <div className="shrink-0">

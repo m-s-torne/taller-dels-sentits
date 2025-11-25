@@ -19,7 +19,7 @@ interface ServiceSpecificFieldsProps {
 const ArtterapiaFields = ({ formData, updateField }: ServiceSpecificFieldsProps) => {
   return (
     <div className="space-y-4 border-t pt-6">
-      <h3 className="text-xl font-semibold">Detalls d'Artteràpia</h3>
+      <h3 className="text-xl font-semibold">Detalls d'<em>Artteràpia</em></h3>
       
       <div>
         <label className="block text-sm font-medium mb-2">
@@ -70,7 +70,7 @@ const ArtterapiaFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
 const ArtperdinsFields = ({ formData, updateField }: ServiceSpecificFieldsProps) => {
   return (
     <div className="space-y-4 border-t pt-6">
-      <h3 className="text-xl font-semibold">Detalls d'Artperdins</h3>
+      <h3 className="text-xl font-semibold">Detalls d'<em>Artperdins</em></h3>
       
       <div>
         <label className="block text-sm font-medium mb-2">
