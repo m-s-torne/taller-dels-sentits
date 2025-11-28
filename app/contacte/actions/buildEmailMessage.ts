@@ -5,6 +5,12 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
   let msg = data.message + '\n\n--- DETALLS DE LA CONSULTA ---\n\n';
   
   // Información básica
+  if (data.phone) {
+    msg += `📱 Telèfon: ${data.phone}\n`;
+  }
+
+  msg += `📧 Email: ${data.email}\n`;
+  
   if (data.location) {
     msg += `📍 Població: ${data.location}\n`;
   }
