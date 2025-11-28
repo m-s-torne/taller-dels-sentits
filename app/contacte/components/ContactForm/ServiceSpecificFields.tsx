@@ -5,6 +5,7 @@ import {
   participantAgeOptions,
   educationStageOptions,
   studentsCountOptions,
+  courseGroupOptions,
 } from '@/app/contacte/lib';
 
 interface ServiceSpecificFieldsProps {
@@ -98,6 +99,20 @@ const ArtperdinsFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
 
 // Sub-componente: Campos de Centres Educatius
 const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) => {
+  // Obtener opciones de curso según la etapa educativa seleccionada
+  const getCourseOptions = () => {
+    if (!formData.educationStage || formData.educationStage === '') {
+      return [{ value: '', label: 'Selecciona primer una etapa educativa' }];
+    }
+    return courseGroupOptions[formData.educationStage];
+  };
+
+  // Resetear courseGroup cuando cambia educationStage
+  const handleEducationStageChange = (value: string) => {
+    updateField('educationStage', value as any);
+    updateField('courseGroup', ''); // Reset course selection
+  };
+
   return (
     <div className="space-y-4 border-t pt-6">
       <h3 className="text-xl font-semibold">Detalls del Centre Educatiu</h3>
@@ -122,10 +137,28 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
         </label>
         <select
           value={formData.educationStage}
-          onChange={(e) => updateField('educationStage', e.target.value as any)}
+          onChange={(e) => handleEducationStageChange(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
         >
           {educationStageOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium mb-2">
+          Curs
+        </label>
+        <select
+          value={formData.courseGroup}
+          onChange={(e) => updateField('courseGroup', e.target.value as any)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
+          disabled={!formData.educationStage || formData.educationStage === ''}
+        >
+          {getCourseOptions().map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -148,34 +181,6 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
             </option>
           ))}
         </select>
-      </div>
-
-      <div>
-        <label htmlFor="studentsAge" className="block text-sm font-medium mb-1">
-          Edat dels estudiants
-        </label>
-        <input
-          type="text"
-          id="studentsAge"
-          value={formData.studentsAge}
-          onChange={(e) => updateField('studentsAge', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-          placeholder="Per exemple: 6-8 anys, ESO, etc."
-        />
-      </div>
-
-      <div>
-        <label htmlFor="courseGroup" className="block text-sm font-medium mb-1">
-          Curs o grup
-        </label>
-        <input
-          type="text"
-          id="courseGroup"
-          value={formData.courseGroup}
-          onChange={(e) => updateField('courseGroup', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-          placeholder="Per exemple: 3r de Primària, 1r ESO, etc."
-        />
       </div>
     </div>
   );

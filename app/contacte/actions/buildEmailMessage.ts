@@ -23,7 +23,9 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
     msg += `⏰ Disponibilitat: ${availabilityLabels[data.availability]}\n`;
   }
   
-  msg += '\n--- DETALLS DEL SERVEI ---\n\n';
+  if (data.serviceType !== 'general') {
+    msg += '\n--- DETALLS DEL SERVEI ---\n\n';
+  }
   
   // Artteràpia
   if (data.serviceType === 'artterapia') {
@@ -81,16 +83,12 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
       msg += `Etapa educativa: ${stageLabels[data.educationStage]}\n`;
     }
     
+    if (data.courseGroup) {
+      msg += `Curs: ${data.courseGroup}\n`;
+    }
+    
     if (data.studentsCount) {
       msg += `Nombre aproximat d'alumnes: ${data.studentsCount}\n`;
-    }
-    
-    if (data.studentsAge) {
-      msg += `Edat dels alumnes: ${data.studentsAge}\n`;
-    }
-    
-    if (data.courseGroup) {
-      msg += `Curs/Grup: ${data.courseGroup}\n`;
     }
   }
   

@@ -28,7 +28,6 @@ const initialFormData: ContactFormData = {
   schoolName: '',
   educationStage: '',
   studentsCount: '',
-  studentsAge: '',
   courseGroup: '',
 
   // Optional fields

@@ -8,6 +8,13 @@ export type StudentsCount = '<15' | '15-25' | '25-40' | '40+';
 export type ContactPreference = 'email' | 'phone' | 'whatsapp';
 export type Availability = 'morning' | 'afternoon' | 'anytime';
 
+// Cursos específicos por etapa educativa
+export type InfantilCourse = 'I3' | 'I4' | 'I5';
+export type PrimariaCourse = '1r' | '2n' | '3r' | '4t' | '5è' | '6è';
+export type ESOCourse = '1r ESO' | '2n ESO' | '3r ESO' | '4t ESO';
+export type BatxilleratCourse = '1r Batxillerat' | '2n Batxillerat';
+export type CourseGroup = InfantilCourse | PrimariaCourse | ESOCourse | BatxilleratCourse;
+
 export interface ContactFormData {
   // Información básica
   name: string;
@@ -29,8 +36,7 @@ export interface ContactFormData {
   schoolName: string;
   educationStage: EducationStage | '';
   studentsCount: StudentsCount | '';
-  studentsAge: string;
-  courseGroup: string;
+  courseGroup: CourseGroup | '';
   
   // Común
   message: string;

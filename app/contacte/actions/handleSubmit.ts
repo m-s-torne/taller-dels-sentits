@@ -1,5 +1,5 @@
 "use server"
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData, CourseGroup } from '@/app/contacte/types';
 
 /**
  * Validates email format
@@ -95,8 +95,9 @@ export const validateAndSanitize = async (
       location: formData.location ? sanitizeText(formData.location) : '',
       message: sanitizeText(formData.message),
       schoolName: formData.schoolName ? sanitizeText(formData.schoolName) : '',
-      studentsAge: formData.studentsAge ? sanitizeText(formData.studentsAge) : '',
-      courseGroup: formData.courseGroup ? sanitizeText(formData.courseGroup) : '',
+      courseGroup: formData.courseGroup 
+        ? (sanitizeText(formData.courseGroup) as CourseGroup) 
+        : '',
       // Keep availability as-is since it's a union type
       availability: formData.availability || '',
       // Clear honeypot field
@@ -106,7 +107,7 @@ export const validateAndSanitize = async (
     return { valid: true, data: sanitizedData };
   } catch (error) {
     console.error('Error during validation:', error);
-    return { 
+    return {
       valid: false,
       error: 'Error al processar les dades. Si us plau, torna-ho a intentar.' 
     };
