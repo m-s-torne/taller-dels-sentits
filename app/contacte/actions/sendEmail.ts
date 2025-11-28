@@ -1,7 +1,8 @@
 "use client"
 import emailjs from '@emailjs/browser';
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData, ServiceType } from '@/app/contacte/types';
 import { buildEmailMessage } from './buildEmailMessage';
+import { getServiceLabel } from './getServiceLabel';
 
 /**
  * Sends email using EmailJS from the client side
@@ -26,6 +27,7 @@ export const sendEmail = async (
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const serviceLabel = getServiceLabel(sanitizedData.serviceType) as ServiceType;
 
     // Validate environment variables are present
     if (!serviceId || !templateId || !publicKey) {
@@ -45,6 +47,7 @@ export const sendEmail = async (
       from_name: sanitizedData.name,
       from_email: sanitizedData.email,
       from_phone: sanitizedData.phone || 'No proporcionat',
+      from_service: serviceLabel,
       message: message,
       reply_to: sanitizedData.email,
     };
