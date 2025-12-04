@@ -62,4 +62,12 @@ export interface FormErrors {
   email?: string;
   message?: string;
   privacy?: string;
+  artperdins?: string;
+  artterapia?: {
+    session?: boolean;
+    time?: boolean;
+  };
+  centres: {
+    
+  };
 }

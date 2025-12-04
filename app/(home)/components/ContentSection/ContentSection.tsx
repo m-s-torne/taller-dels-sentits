@@ -21,13 +21,13 @@ export const ContentSection = () => {
     return (
         <motion.section 
             id="essencia" 
-            className="bg-shakespeare py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden"
+            className="bg-shakespeare py-20 px-4 sm:px-6 md:px-10 overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-            <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-0 lg:gap-16">
+            <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-0 lg:gap-8 xl:gap-16">
                 {/* Contenido principal centrado */}
                 <ContentDisplay 
                     currentContent={currentContent}

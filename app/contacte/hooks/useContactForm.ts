@@ -44,7 +44,7 @@ const initialFormData: ContactFormData = {
 export const useContactForm = () => {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [status, setStatus] = useState<FormStatus>('idle');
-  const [errors, setErrors] = useState<FormErrors>({});
+  const [errors, setErrors] = useState<FormErrors | {}>({});
 
   /**
    * Validates email format
@@ -127,7 +127,7 @@ export const useContactForm = () => {
    * Validates complete form before submission
    */
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {};
+    const newErrors: FormErrors = {} as FormErrors;
 
     // Validate required fields
     if (!formData.name) {
@@ -154,6 +154,8 @@ export const useContactForm = () => {
     if (!formData.privacyAccepted) {
       newErrors.privacy = 'Has d\'acceptar la política de privacitat';
     }
+
+    
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

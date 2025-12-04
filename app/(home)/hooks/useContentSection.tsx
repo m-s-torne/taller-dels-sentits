@@ -11,27 +11,13 @@ export const useContentSection = () => {
 
     // Procesar título con palabras en negrita
     const renderTitle = () => {
-        return currentContent.title.split('\n').map((line, index) => (
-            <span key={index}>
-                {line.split('<bold>').map((part, i) => {
-                    if (i === 0) return part;
-                    const [boldText, ...rest] = part.split('</bold>');
-                    return (
-                        <span key={i}>
-                            <span className="font-semibold">{boldText}</span>
-                            {rest.join('</bold>')}
-                        </span>
-                    );
-                })}
-                {index < currentContent.title.split('\n').length - 1 && <br />}
-            </span>
-        ));
+        return currentContent.title;
     };
 
     // Procesar párrafos de texto
     const renderTextParagraphs = () => {
         return currentContent.text.split('\n\n').map((paragraph, index) => (
-            <p key={index} className={index > 0 ? "mt-4" : ""}>
+            <p key={index} className={`${index > 0 ? "mt-4" : ""} text-lilac!`}>
                 {paragraph}
             </p>
         ));

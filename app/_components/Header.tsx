@@ -2,6 +2,7 @@
 import ButtonComponent from './ButtonComponent';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useHeader } from '@/app/_hooks/useHeader';
 
 interface HeaderProps {
@@ -9,12 +10,18 @@ interface HeaderProps {
 }
 
 const Header = ({ logoImg }: HeaderProps) => {
+  const pathname = usePathname();
   const {
     show,
     setIsMenuOpen,
     toggleMenu,
     isMenuOpen,
   } = useHeader();
+
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/';
+    return pathname.startsWith(path);
+  };
 
   return (
     <>
@@ -40,7 +47,9 @@ const Header = ({ logoImg }: HeaderProps) => {
           <ul className="flex gap-8 text-sm font-medium">
             <li>
               <Link 
-                className="hover:text-[#7B8BC7] transition-colors duration-200" 
+                className={`hover:text-shakespeare! transition-colors duration-200 ${
+                  isActive('/') ? 'text-shakespeare! font-bold' : ''
+                }`}
                 href="/"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -48,10 +57,24 @@ const Header = ({ logoImg }: HeaderProps) => {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-[#7B8BC7] transition-colors duration-200" href="/serveis">SERVEIS</Link>
+              <Link 
+                className={`hover:text-shakespeare! transition-colors duration-200 ${
+                  isActive('/serveis') ? 'text-shakespeare! font-bold' : ''
+                }`}
+                href="/serveis"
+              >
+                SERVEIS
+              </Link>
             </li>
             <li>
-              <Link className="hover:text-[#7B8BC7] transition-colors duration-200" href="/qui-som">QUI SOM?</Link>
+              <Link 
+                className={`hover:text-shakespeare! transition-colors duration-200 ${
+                  isActive('/qui-som') ? 'text-shakespeare! font-bold' : ''
+                }`}
+                href="/qui-som"
+              >
+                QUI SOM?
+              </Link>
             </li>
           </ul>
           <Link href="/contacte">
@@ -87,7 +110,9 @@ const Header = ({ logoImg }: HeaderProps) => {
               <ul className="flex flex-col items-center gap-8 text-lg sm:text-xl font-medium">
                 <li>
                   <Link 
-                    className="hover:text-[#7B8BC7] transition-colors duration-200" 
+                    className={`hover:text-shakespeare! transition-colors duration-200 ${
+                      isActive('/') ? 'text-shakespeare' : ''
+                    }`}
                     href="/"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -96,7 +121,9 @@ const Header = ({ logoImg }: HeaderProps) => {
                 </li>
                 <li>
                   <Link 
-                    className="hover:text-[#7B8BC7] transition-colors duration-200" 
+                    className={`hover:text-shakespeare! transition-colors duration-200 ${
+                      isActive('/serveis') ? 'text-shakespeare' : ''
+                    }`}
                     href="/serveis"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -105,7 +132,9 @@ const Header = ({ logoImg }: HeaderProps) => {
                 </li>
                 <li>
                   <Link 
-                    className="hover:text-[#7B8BC7] transition-colors duration-200" 
+                    className={`hover:text-shakespeare! transition-colors duration-200 ${
+                      isActive('/qui-som') ? 'text-shakespeare' : ''
+                    }`}
                     href="/qui-som"
                     onClick={() => setIsMenuOpen(false)}
                   >

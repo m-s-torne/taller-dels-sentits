@@ -10,169 +10,21 @@
   --color-lilac: #fffaf6;
 }
 
-/* Importar fuente The Seasons */
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-reg.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
+/* Playfair Display se carga desde Google Fonts vía Next.js */
 
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-it.otf') format('opentype');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-lt.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-ltit.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-bd.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'The Seasons';
-  src: url('@/app/_assets/fonts/Fontspring-DEMO-theseasons-bdit.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-/* Importar fuente Neue Haas Display */
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayXXThin.ttf') format('truetype');
-  font-weight: 100;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayXXThinItalic.ttf') format('truetype');
-  font-weight: 100;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayXThin.ttf') format('truetype');
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayXThinItalic.ttf') format('truetype');
-  font-weight: 200;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayThin.ttf') format('truetype');
-  font-weight: 250;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayThinItalic.ttf') format('truetype');
-  font-weight: 250;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayLight.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayLightItalic.ttf') format('truetype');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayRoman.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayRomanItalic.ttf') format('truetype');
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayMediu.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayMediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayBold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayBoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayBlack.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Neue Haas Display';
-  src: url('@/app/_assets/fonts/NeueHaasDisplayBlackItalic.ttf') format('truetype');
-  font-weight: 900;
-  font-style: italic;
-}
+/* Inter se carga desde Google Fonts vía Next.js */
 
 /* Aplicar fuentes globalmente */
 body, p, span, div, li, a {
-  font-family: 'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'The Seasons', Georgia, serif;
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+h1, h2, h3, h4, h5, h6, p, a {
+  color: var(--color-midnight);
 }
 
 /* Prevenir overflow horizontal en toda la app */

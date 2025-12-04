@@ -10,12 +10,13 @@ const ButtonComponent = ({
   <button className={`
             cursor-pointer
             rounded-full
-            font-medium
+            font-bold
+            text-[15px]
             px-6
             py-2
-            text-white
-            bg-[#7B8BC7]
-            hover:bg-[#6B7DB8]
+            text-lilac
+            bg-shakespeare
+            hover:bg-shakespeare/70
             transition-colors
             duration-200
             border-none

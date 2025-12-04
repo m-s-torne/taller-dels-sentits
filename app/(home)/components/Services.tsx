@@ -8,13 +8,13 @@ const Services = () => {
 
     return (
         <motion.section 
-            className="bg-[#F5EFE7] py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden"
+            className="bg-lilac py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                 {servicesData.map((service) => (
                     <div
                         key={service.title}
@@ -22,7 +22,7 @@ const Services = () => {
                     >
                         {/* Icono */}
                         {service.icon && (
-                            <div className="mb-6 sm:mb-8">
+                            <div className="mb-0">
                                 <img 
                                     src={service.icon} 
                                     alt={service.title}
@@ -32,17 +32,17 @@ const Services = () => {
                         )}
                         
                         {/* Título */}
-                        <h2 className="text-[#7B8BC7] text-lg sm:text-2xl font-light tracking-[0.2em] mb-6 sm:mb-8">
+                        <h2 className="text-shakespeare! text-lg sm:text-2xl font-light tracking-[0.2em] h-10 mb-6 sm:mb-8">
                             {service.title}
                         </h2>
                         
                         {/* Contenido */}
-                        <p className="text-gray-700 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm px-4 sm:px-0 md:min-h-20 whitespace-pre-line">
+                        <p className="text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-sm px-4 sm:px-0 h-20 whitespace-pre-line">
                             {service.shortDescription}
                         </p>
                         
                         {/* Botón */}
-                        <Link href={`/serveis#${service.id}`}>
+                        <Link href={`/serveis/${service.id}`}>
                             <ButtonComponent text="SABER MÉS" />
                         </Link>
                     </div>

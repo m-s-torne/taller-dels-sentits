@@ -4,7 +4,7 @@ import Services from "@/app/(home)/components/Services";
 
 export default function Home() {
   return (
-        <main>
+        <main className="overflow-x-hidden">
             <HeroSection/>
 
             <ContentSection />
