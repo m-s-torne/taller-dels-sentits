@@ -7,16 +7,18 @@ interface BasicInformationProps {
     field: K,
     value: ContactFormData[K]
   ) => void;
+  markFieldAsTouched: (field: keyof ContactFormData) => void;
 }
 
-export const BasicInformation = ({ formData, updateField, errors }: BasicInformationProps) => {
+export const BasicInformation = ({ formData, updateField, errors, markFieldAsTouched }: BasicInformationProps) => {
+  const isCentresEducatius = formData.serviceType === 'centres-educatius';
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold">Informació de Contacte</h2>
       
       <div>
         <label htmlFor="name" className="block text-sm font-medium mb-1">
-          Nom complet *
+          Nom complet <span className="text-red-500!">*</span>
         </label>
         <input
           type="text"
@@ -36,7 +38,7 @@ export const BasicInformation = ({ formData, updateField, errors }: BasicInforma
 
       <div>
         <label htmlFor="email" className="block text-sm font-medium mb-1">
-          Correu electrònic *
+          Correu electrònic <span className="text-red-500!">*</span>
         </label>
         <input
           type="email"
@@ -54,32 +56,41 @@ export const BasicInformation = ({ formData, updateField, errors }: BasicInforma
         )}
       </div>
 
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium mb-1">
-          Telèfon
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          value={formData.phone}
-          onChange={(e) => updateField('phone', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-          placeholder="+34 600 000 000"
-        />
-      </div>
+      {!isCentresEducatius && (
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium mb-1">
+            Telèfon
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            value={formData.phone}
+            onChange={(e) => updateField('phone', e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
+            placeholder="+34 600 000 000"
+          />
+        </div>
+      )}
 
       <div>
         <label htmlFor="location" className="block text-sm font-medium mb-1">
-          Ubicació
+          {isCentresEducatius ? <>Població <span className="text-red-500!">*</span></> : 'Ubicació'}
         </label>
         <input
           type="text"
           id="location"
+          required={isCentresEducatius}
           value={formData.location}
           onChange={(e) => updateField('location', e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-          placeholder="Ciutat o zona"
+          onBlur={() => markFieldAsTouched('location')}
+          className={`w-full px-4 py-2 border! rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent ${
+            errors.location ? 'border-red-500!' : 'border-gray-300!'
+          }`}
+          placeholder={isCentresEducatius ? "Població del centre" : "Ciutat o zona"}
         />
+        {errors.location && (
+          <p className="text-red-500! text-sm! mt-1">{errors.location}</p>
+        )}
       </div>
     </div>
   );

@@ -9,12 +9,12 @@ import { ContactPreferences } from './ContactPreferences';
 import { MessageField } from './MessageField';
 
 export const ContactForm = () => {
-  const { formData, status, errors, updateField, handleSubmit, isFormValid } = useContactForm();
+  const { formData, status, errors, updateField, handleSubmit, isFormValid, markFieldAsTouched } = useContactForm();
 
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 space-y-6">
       {/* Basic Information Section */}
-      <BasicInformation formData={formData} updateField={updateField} errors={errors} />
+      <BasicInformation formData={formData} updateField={updateField} errors={errors} markFieldAsTouched={markFieldAsTouched} />
 
       {/* 🍯 Honeypot Field - Anti-bot trap */}
       {/* This field is hidden from humans but visible to bots */}

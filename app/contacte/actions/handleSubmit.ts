@@ -85,6 +85,35 @@ export const validateAndSanitize = async (
       };
     }
 
+    // Validate location (obligatory for centres-educatius)
+    if (formData.serviceType === 'centres-educatius') {
+      if (!formData.location?.trim()) {
+        return { 
+          valid: false,
+          error: 'La població és obligatòria per a centres educatius' 
+        };
+      }
+    }
+
+    // Validate studentsCount (if service is centres-educatius)
+    if (formData.serviceType === 'centres-educatius' && formData.studentsCount !== '') {
+      const count = formData.studentsCount;
+      
+      if (typeof count !== 'number' || isNaN(count)) {
+        return { 
+          valid: false,
+          error: 'El nombre d\'estudiants ha de ser un valor numèric' 
+        };
+      }
+      
+      if (count < 1) {
+        return { 
+          valid: false,
+          error: 'El nombre d\'estudiants ha de ser almenys 1' 
+        };
+      }
+    }
+
     // ===== SANITIZE INPUTS =====
     // Clean all text inputs to prevent XSS
     const sanitizedData: ContactFormData = {
@@ -97,6 +126,9 @@ export const validateAndSanitize = async (
       schoolName: formData.schoolName ? sanitizeText(formData.schoolName) : '',
       courseGroup: formData.courseGroup 
         ? (sanitizeText(formData.courseGroup) as CourseGroup) 
+        : '',
+      studentsCount: typeof formData.studentsCount === 'number' 
+        ? Math.floor(Math.max(1, formData.studentsCount))
         : '',
       // Keep availability as-is since it's a union type
       availability: formData.availability || '',

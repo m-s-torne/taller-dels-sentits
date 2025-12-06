@@ -38,13 +38,28 @@ const initialFormData: ContactFormData = {
   website: '',
 };
 
+const initialErrorsData: FormErrors = {
+  name: '',
+  email: '',
+  message: '',
+  privacy: '',
+  location: '',
+  artperdins: '',
+  artterapia: {
+    session: false,
+    time: false,
+  },
+  centres: {},
+}
+
 /**
  * Custom hook for managing contact form state and submission
  */
 export const useContactForm = () => {
   const [formData, setFormData] = useState<ContactFormData>(initialFormData);
   const [status, setStatus] = useState<FormStatus>('idle');
-  const [errors, setErrors] = useState<FormErrors | {}>({});
+  const [errors, setErrors] = useState<FormErrors>(initialErrorsData);
+  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
 
   /**
    * Validates email format
@@ -84,6 +99,33 @@ export const useContactForm = () => {
   };
 
   /**
+   * Validates studentsCount field (for centres-educatius)
+   */
+  const validateStudentsCount = (count: number | ''): string | undefined => {
+    if (count === '') return undefined; // No error if empty
+    
+    if (typeof count !== 'number' || isNaN(count)) {
+      return 'El nombre ha de ser un valor numèric';
+    }
+    
+    if (count < 1) {
+      return 'El nombre d\'estudiants ha de ser almenys 1';
+    }
+    
+    return undefined;
+  };
+
+  /**
+   * Validates location field (obligatory for centres-educatius)
+   */
+  const validateLocation = (location: string, serviceType: string, isTouched: boolean = false): string | undefined => {
+    if (serviceType === 'centres-educatius' && !location.trim() && isTouched) {
+      return 'La població és obligatòria per a centres educatius';
+    }
+    return undefined;
+  };
+
+  /**
    * Updates a specific form field with real-time validation
    */
   const updateField = <K extends keyof ContactFormData>(
@@ -91,27 +133,88 @@ export const useContactForm = () => {
     value: ContactFormData[K]
   ) => {
     // Update field value
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    setFormData((prev) => {
+      const newData = {
+        ...prev,
+        [field]: value,
+      };
 
-    // Validate field in real-time
-    let error: string | undefined;
+      // Validate field in real-time
+      let error: string | undefined;
+      
+      if (field === 'email') {
+        error = validateEmail(value as string);
+      } else if (field === 'name') {
+        error = validateName(value as string);
+      } else if (field === 'message') {
+        error = validateMessage(value as string);
+      } else if (field === 'studentsCount') {
+        error = validateStudentsCount(value as number | '');
+      } else if (field === 'location') {
+        error = validateLocation(value as string, newData.serviceType, touchedFields.has('location'));
+      }
+
+      // Update errors state
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [field]: error,
+      }));
+
+      // If serviceType changes, revalidate location only if it was touched
+      if (field === 'serviceType') {
+        const locationError = validateLocation(newData.location, value as string, touchedFields.has('location'));
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          location: locationError,
+        }));
+
+        // Clear fields that don't apply to centres-educatius
+        if (value === 'centres-educatius') {
+          newData.phone = '';
+          newData.contactPreference = []; // Clear contact preferences (phone, whatsapp, etc.)
+          newData.arttherapyFormat = '';
+          newData.preferredTime = '';
+          newData.participantAge = '';
+        }
+        
+        // Clear centres-educatius specific fields when switching to other services
+        if (value !== 'centres-educatius') {
+          newData.schoolName = '';
+          newData.educationStage = '';
+          newData.studentsCount = '';
+          newData.courseGroup = '';
+        }
+
+        // Clear arttherapy fields when switching away
+        if (value !== 'artterapia') {
+          newData.arttherapyFormat = '';
+          newData.preferredTime = '';
+        }
+
+        // Clear artperdins fields when switching away
+        if (value !== 'artperdins') {
+          newData.participantAge = '';
+        }
+      }
+
+      return newData;
+    });
+  };
+
+  /**
+   * Marks a field as touched (user has interacted with it)
+   */
+  const markFieldAsTouched = (field: keyof ContactFormData) => {
+    setTouchedFields((prev) => new Set(prev).add(field));
     
-    if (field === 'email') {
-      error = validateEmail(value as string);
-    } else if (field === 'name') {
-      error = validateName(value as string);
-    } else if (field === 'message') {
-      error = validateMessage(value as string);
+    // Revalidate the field after marking it as touched
+    if (field === 'location') {
+      const locationError = validateLocation(formData.location, formData.serviceType, true);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        location: locationError,
+      }));
     }
-
-    // Update errors state
-    setErrors((prev) => ({
-      ...prev,
-      [field]: error,
-    }));
   };
 
   /**
@@ -120,7 +223,8 @@ export const useContactForm = () => {
   const resetForm = () => {
     setFormData(initialFormData);
     setStatus('idle');
-    setErrors({});
+    setErrors(initialErrorsData);
+    setTouchedFields(new Set());
   };
 
   /**
@@ -155,7 +259,13 @@ export const useContactForm = () => {
       newErrors.privacy = 'Has d\'acceptar la política de privacitat';
     }
 
-    
+    // Validate location for centres-educatius
+    if (formData.serviceType === 'centres-educatius') {
+      const locationError = validateLocation(formData.location, formData.serviceType);
+      if (locationError) {
+        newErrors.location = locationError;
+      }
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -173,10 +283,13 @@ export const useContactForm = () => {
       formData.privacyAccepted
     );
 
-    // No validation errors
-    const hasNoErrors = Object.values(errors).every((error) => !error);
+    // For centres-educatius, location is also required
+    const hasLocationIfRequired = formData.serviceType !== 'centres-educatius' || !!formData.location.trim();
 
-    return hasRequiredFields && hasNoErrors;
+    // Check only string error fields (not nested objects)
+    const hasNoErrors = !errors.name && !errors.email && !errors.message && !errors.location && !errors.privacy;
+
+    return hasRequiredFields && hasLocationIfRequired && hasNoErrors;
   };
 
   /**
@@ -186,6 +299,16 @@ export const useContactForm = () => {
    */
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Mark all required fields as touched to show validation errors
+    const requiredFields: (keyof ContactFormData)[] = ['name', 'email', 'message'];
+    if (formData.serviceType === 'centres-educatius') {
+      requiredFields.push('location');
+    }
+    
+    requiredFields.forEach(field => {
+      setTouchedFields((prev) => new Set(prev).add(field));
+    });
 
     // Client-side validation for UX (quick feedback)
     if (!validateForm()) {
@@ -265,5 +388,6 @@ export const useContactForm = () => {
     handleSubmit,
     resetForm,
     isFormValid,
+    markFieldAsTouched,
   };
 };

@@ -4,7 +4,6 @@ export type ArttherapyFormat = 'individual' | 'grupal' | 'unsure';
 export type PreferredTime = 'morning' | 'afternoon' | 'weekend' | 'flexible';
 export type ParticipantAge = 'adolescent' | 'young-adult' | 'adult';
 export type EducationStage = 'infantil' | 'primaria' | 'eso' | 'batxillerat';
-export type StudentsCount = '<15' | '15-25' | '25-40' | '40+';
 export type ContactPreference = 'email' | 'phone' | 'whatsapp';
 export type Availability = 'morning' | 'afternoon' | 'anytime';
 
@@ -35,7 +34,7 @@ export interface ContactFormData {
   // Centres Educatius
   schoolName: string;
   educationStage: EducationStage | '';
-  studentsCount: StudentsCount | '';
+  studentsCount: number | '';
   courseGroup: CourseGroup | '';
   
   // Común
@@ -62,6 +61,7 @@ export interface FormErrors {
   email?: string;
   message?: string;
   privacy?: string;
+  location?: string;
   artperdins?: string;
   artterapia?: {
     session?: boolean;

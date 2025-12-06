@@ -21,13 +21,13 @@ export const MessageField = ({ formData, updateField, errors }: MessageFieldProp
         required
         value={formData.message}
         onChange={(e) => updateField('message', e.target.value)}
-        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent resize-none ${
-          errors.message ? 'border-red-500' : 'border-gray-300'
+        className={`w-full px-4 py-2 border! rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent resize-none ${
+          errors.message ? 'focus:ring-red-500!' : 'border-gray-300!'
         }`}
         placeholder="Explica'ns més sobre la teva consulta o necessitats..."
       />
       {errors.message && (
-        <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+        <p className="text-red-500! text-sm mt-1">{errors.message}</p>
       )}
     </div>
   );

@@ -46,7 +46,7 @@ const ContentDisplay = ({
                 {/* Contenedor con gradientes de difuminado */}
                 <div className="relative max-w-md mx-auto">
                     {/* Texto descriptivo con overflow y scroll interno */}
-                    <p 
+                    <div
                         ref={textRef}
                         className="text-lilac! text-sm sm:text-base lg:text-lg leading-relaxed text-left h-52 md:h-56 no-user-scroll relative py-3"
                         style={{
@@ -54,7 +54,7 @@ const ContentDisplay = ({
                         }}
                     >
                         {renderTextParagraphs()}
-                    </p>
+                    </div>
                     
                     {/* Gradiente superior */}
                     <div className="absolute top-0 left-0 right-0 h-6 bg-linear-to-b from-shakespeare to-transparent pointer-events-none"></div>

@@ -4,7 +4,6 @@ import {
   preferredTimeOptions,
   participantAgeOptions,
   educationStageOptions,
-  studentsCountOptions,
   courseGroupOptions,
 } from '@/app/contacte/lib';
 
@@ -101,7 +100,7 @@ const ArtperdinsFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
 const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) => {
   // Obtener opciones de curso según la etapa educativa seleccionada
   const getCourseOptions = () => {
-    if (!formData.educationStage || formData.educationStage === '') {
+    if (!formData.educationStage) {
       return [{ value: '', label: 'Selecciona primer una etapa educativa' }];
     }
     return courseGroupOptions[formData.educationStage];
@@ -156,7 +155,7 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
           value={formData.courseGroup}
           onChange={(e) => updateField('courseGroup', e.target.value as any)}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-          disabled={!formData.educationStage || formData.educationStage === ''}
+          disabled={!formData.educationStage}
         >
           {getCourseOptions().map((option) => (
             <option key={option.value} value={option.value}>
@@ -167,20 +166,18 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">
-          Nombre d'estudiants aproximat
+        <label htmlFor="studentsCount" className="block text-sm font-medium mb-2">
+          Nombre d'estudiants
         </label>
-        <select
+        <input
+          type="number"
+          id="studentsCount"
+          min="1"
           value={formData.studentsCount}
-          onChange={(e) => updateField('studentsCount', e.target.value as any)}
+          onChange={(e) => updateField('studentsCount', e.target.value ? Number(e.target.value) : '')}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
-        >
-          {studentsCountOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+          placeholder="Ex: 25"
+        />
       </div>
     </div>
   );
