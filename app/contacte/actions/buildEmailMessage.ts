@@ -96,6 +96,10 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
     if (data.studentsCount) {
       msg += `Nombre aproximat d'alumnes: ${data.studentsCount}\n`;
     }
+    
+    if (data.courseInterest) {
+      msg += `Curs/Monogràfic d'interès: ${data.courseInterest}\n`;
+    }
   }
   
   return msg;

@@ -35,6 +35,7 @@ const initialFormData: ContactFormData = {
   educationStage: '',
   studentsCount: '',
   courseGroup: '',
+  courseInterest: '',
 
   // Optional fields
   contactPreference: [],
@@ -113,6 +114,7 @@ export const useContactForm = () => {
           newData.educationStage = '';
           newData.studentsCount = '';
           newData.courseGroup = '';
+          newData.courseInterest = '';
         }
 
         // Clear arttherapy fields when switching away

@@ -179,6 +179,20 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
           placeholder="Ex: 25"
         />
       </div>
+
+      <div>
+        <label htmlFor="courseInterest" className="block text-sm font-medium mb-2">
+          Curs o monogràfic d'interès (opcional)
+        </label>
+        <input
+          type="text"
+          id="courseInterest"
+          value={formData.courseInterest}
+          onChange={(e) => updateField('courseInterest', e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
+          placeholder="Ex: Taller d'emocions, Art i literatura..."
+        />
+      </div>
     </div>
   );
 };

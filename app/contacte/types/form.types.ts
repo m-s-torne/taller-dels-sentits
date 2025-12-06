@@ -36,6 +36,7 @@ export interface ContactFormData {
   educationStage: EducationStage | '';
   studentsCount: number | '';
   courseGroup: CourseGroup | '';
+  courseInterest: string; // Curso o monográfico de interés (opcional)
   
   // Común
   message: string;

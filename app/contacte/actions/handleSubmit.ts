@@ -127,6 +127,7 @@ export const validateAndSanitize = async (
       courseGroup: formData.courseGroup 
         ? (sanitizeText(formData.courseGroup) as CourseGroup) 
         : '',
+      courseInterest: formData.courseInterest ? sanitizeText(formData.courseInterest) : '',
       studentsCount: typeof formData.studentsCount === 'number' 
         ? Math.floor(Math.max(1, formData.studentsCount))
         : '',
