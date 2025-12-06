@@ -25,7 +25,6 @@ const initialFormData: ContactFormData = {
 
   // Arttherapy specific fields
   arttherapyFormat: '',
-  preferredTime: '',
 
   // Artperdins specific fields
   participantAge: '',
@@ -104,7 +103,6 @@ export const useContactForm = () => {
           newData.phone = '';
           newData.contactPreference = []; // Clear contact preferences (phone, whatsapp, etc.)
           newData.arttherapyFormat = '';
-          newData.preferredTime = '';
           newData.participantAge = '';
         }
         
@@ -120,7 +118,6 @@ export const useContactForm = () => {
         // Clear arttherapy fields when switching away
         if (value !== 'artterapia') {
           newData.arttherapyFormat = '';
-          newData.preferredTime = '';
         }
 
         // Clear artperdins fields when switching away

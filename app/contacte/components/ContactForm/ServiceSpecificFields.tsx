@@ -1,7 +1,6 @@
 import type { ContactFormData } from '@/app/contacte/types';
 import {
   arttherapyFormatOptions,
-  preferredTimeOptions,
   participantAgeOptions,
   educationStageOptions,
   courseGroupOptions,

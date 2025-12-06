@@ -1,7 +1,6 @@
 export type ServiceType = 'artterapia' | 'artperdins' | 'centres-educatius' | 'general';
 
 export type ArttherapyFormat = 'individual' | 'grupal' | 'unsure';
-export type PreferredTime = 'morning' | 'afternoon' | 'weekend' | 'flexible';
 export type ParticipantAge = 'adolescent' | 'young-adult' | 'adult';
 export type EducationStage = 'infantil' | 'primaria' | 'eso' | 'batxillerat';
 export type ContactPreference = 'email' | 'phone' | 'whatsapp';
@@ -26,7 +25,6 @@ export interface ContactFormData {
   
   // Artteràpia
   arttherapyFormat: ArttherapyFormat | '';
-  preferredTime: PreferredTime | '';
   
   // Artperdins
   participantAge: ParticipantAge | '';

@@ -1,9 +1,7 @@
 import type {
   ArttherapyFormat,
-  PreferredTime,
   ParticipantAge,
   EducationStage,
-  StudentsCount,
   ContactPreference,
   Availability,
 } from '@/app/contacte/types';
@@ -19,13 +17,6 @@ export const arttherapyFormatOptions: Option<ArttherapyFormat>[] = [
   { value: 'unsure', label: 'No estic segur/a' },
 ];
 
-export const preferredTimeOptions: Option<PreferredTime>[] = [
-  { value: 'morning', label: 'Matins' },
-  { value: 'afternoon', label: 'Tardes' },
-  { value: 'weekend', label: 'Caps de setmana' },
-  { value: 'flexible', label: 'Flexible' },
-];
-
 export const participantAgeOptions: Option<ParticipantAge>[] = [
   { value: 'adolescent', label: 'Adolescents (12-15 anys)' },
   { value: 'young-adult', label: 'Joves (15-20 anys)' },
@@ -38,14 +29,6 @@ export const educationStageOptions: Option<EducationStage | ''>[] = [
   { value: 'primaria', label: 'Primària' },
   { value: 'eso', label: 'ESO' },
   { value: 'batxillerat', label: 'Batxillerat' },
-];
-
-export const studentsCountOptions: Option<StudentsCount | ''>[] = [
-  { value: '', label: 'Selecciona un rang' },
-  { value: '<15', label: 'Menys de 15' },
-  { value: '15-25', label: '15-25 estudiants' },
-  { value: '25-40', label: '25-40 estudiants' },
-  { value: '40+', label: 'Més de 40' },
 ];
 
 export const courseGroupOptions = {
