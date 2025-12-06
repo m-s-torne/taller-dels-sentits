@@ -63,9 +63,9 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
     
     if (data.participantAge) {
       const ageLabels = {
-        adolescent: 'Adolescent (12-17 anys)',
-        'young-adult': 'Jove adult (18-30 anys)',
-        adult: 'Adult (30+ anys)'
+        adolescent: 'Adolescents (12-15 anys)',
+        'young-adult': 'Joves (15-20 anys)',
+        adult: 'Adults (20 anys o més)'
       };
       msg += `Edat del participant: ${ageLabels[data.participantAge]}\n`;
     }

@@ -27,9 +27,9 @@ export const preferredTimeOptions: Option<PreferredTime>[] = [
 ];
 
 export const participantAgeOptions: Option<ParticipantAge>[] = [
-  { value: 'adolescent', label: 'Adolescent (12-17 anys)' },
-  { value: 'young-adult', label: 'Jove adult (18-25 anys)' },
-  { value: 'adult', label: 'Adult (25+ anys)' },
+  { value: 'adolescent', label: 'Adolescents (12-15 anys)' },
+  { value: 'young-adult', label: 'Joves (15-20 anys)' },
+  { value: 'adult', label: 'Adults (20 anys o més)' },
 ];
 
 export const educationStageOptions: Option<EducationStage | ''>[] = [
