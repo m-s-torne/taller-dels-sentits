@@ -3,6 +3,12 @@ import toast from 'react-hot-toast';
 import type { ContactFormData, FormStatus, FormErrors } from '@/app/contacte/types';
 import { validateAndSanitize } from '@/app/contacte/actions/handleSubmit';
 import { sendEmail } from '@/app/contacte/actions/sendEmail';
+import {
+  validateLocation,
+  validateField,
+  validateCompleteForm,
+  isFormValid as checkFormValidity,
+} from '@/app/contacte/lib/validations';
 
 /**
  * Initial empty form data
@@ -62,70 +68,6 @@ export const useContactForm = () => {
   const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
 
   /**
-   * Validates email format
-   */
-  const validateEmail = (email: string): string | undefined => {
-    if (!email) return undefined; // No error if empty
-    
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      return 'Correu electrònic no vàlid';
-    }
-    return undefined;
-  };
-
-  /**
-   * Validates name field
-   */
-  const validateName = (name: string): string | undefined => {
-    if (!name) return undefined; // No error if empty
-    
-    if (name.length < 3) {
-      return 'El nom ha de tenir almenys 3 caràcters';
-    }
-    return undefined;
-  };
-
-  /**
-   * Validates message field
-   */
-  const validateMessage = (message: string): string | undefined => {
-    if (!message) return undefined; // No error if empty
-    
-    if (message.length < 10) {
-      return 'El missatge ha de tenir almenys 10 caràcters';
-    }
-    return undefined;
-  };
-
-  /**
-   * Validates studentsCount field (for centres-educatius)
-   */
-  const validateStudentsCount = (count: number | ''): string | undefined => {
-    if (count === '') return undefined; // No error if empty
-    
-    if (typeof count !== 'number' || isNaN(count)) {
-      return 'El nombre ha de ser un valor numèric';
-    }
-    
-    if (count < 1) {
-      return 'El nombre d\'estudiants ha de ser almenys 1';
-    }
-    
-    return undefined;
-  };
-
-  /**
-   * Validates location field (obligatory for centres-educatius)
-   */
-  const validateLocation = (location: string, serviceType: string, isTouched: boolean = false): string | undefined => {
-    if (serviceType === 'centres-educatius' && !location.trim() && isTouched) {
-      return 'La població és obligatòria per a centres educatius';
-    }
-    return undefined;
-  };
-
-  /**
    * Updates a specific form field with real-time validation
    */
   const updateField = <K extends keyof ContactFormData>(
@@ -139,20 +81,8 @@ export const useContactForm = () => {
         [field]: value,
       };
 
-      // Validate field in real-time
-      let error: string | undefined;
-      
-      if (field === 'email') {
-        error = validateEmail(value as string);
-      } else if (field === 'name') {
-        error = validateName(value as string);
-      } else if (field === 'message') {
-        error = validateMessage(value as string);
-      } else if (field === 'studentsCount') {
-        error = validateStudentsCount(value as number | '');
-      } else if (field === 'location') {
-        error = validateLocation(value as string, newData.serviceType, touchedFields.has('location'));
-      }
+      // Validate field in real-time using centralized validation
+      const error = validateField(field, value, newData, touchedFields);
 
       // Update errors state
       setErrors((prevErrors) => ({
@@ -231,43 +161,8 @@ export const useContactForm = () => {
    * Validates complete form before submission
    */
   const validateForm = (): boolean => {
-    const newErrors: FormErrors = {} as FormErrors;
-
-    // Validate required fields
-    if (!formData.name) {
-      newErrors.name = 'El nom és obligatori';
-    } else {
-      const nameError = validateName(formData.name);
-      if (nameError) newErrors.name = nameError;
-    }
-
-    if (!formData.email) {
-      newErrors.email = 'El correu electrònic és obligatori';
-    } else {
-      const emailError = validateEmail(formData.email);
-      if (emailError) newErrors.email = emailError;
-    }
-
-    if (!formData.message) {
-      newErrors.message = 'El missatge és obligatori';
-    } else {
-      const messageError = validateMessage(formData.message);
-      if (messageError) newErrors.message = messageError;
-    }
-
-    if (!formData.privacyAccepted) {
-      newErrors.privacy = 'Has d\'acceptar la política de privacitat';
-    }
-
-    // Validate location for centres-educatius
-    if (formData.serviceType === 'centres-educatius') {
-      const locationError = validateLocation(formData.location, formData.serviceType);
-      if (locationError) {
-        newErrors.location = locationError;
-      }
-    }
-
-    setErrors(newErrors);
+    const newErrors = validateCompleteForm(formData);
+    setErrors(newErrors as FormErrors);
     return Object.keys(newErrors).length === 0;
   };
 
@@ -275,21 +170,7 @@ export const useContactForm = () => {
    * Checks if form is valid (for submit button state)
    */
   const isFormValid = (): boolean => {
-    // Required fields must be filled
-    const hasRequiredFields = !!(
-      formData.name &&
-      formData.email &&
-      formData.message &&
-      formData.privacyAccepted
-    );
-
-    // For centres-educatius, location is also required
-    const hasLocationIfRequired = formData.serviceType !== 'centres-educatius' || !!formData.location.trim();
-
-    // Check only string error fields (not nested objects)
-    const hasNoErrors = !errors.name && !errors.email && !errors.message && !errors.location && !errors.privacy;
-
-    return hasRequiredFields && hasLocationIfRequired && hasNoErrors;
+    return checkFormValidity(formData, errors);
   };
 
   /**
