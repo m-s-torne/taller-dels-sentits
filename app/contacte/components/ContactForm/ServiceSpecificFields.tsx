@@ -41,27 +41,6 @@ const ArtterapiaFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
           ))}
         </div>
       </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Horari preferit
-        </label>
-        <div className="space-y-2">
-          {preferredTimeOptions.map((option) => (
-            <label key={option.value} className="flex items-center space-x-2">
-              <input
-                type="radio"
-                name="preferredTime"
-                value={option.value}
-                checked={formData.preferredTime === option.value}
-                onChange={(e) => updateField('preferredTime', e.target.value as any)}
-                className="text-shakespeare focus:ring-shakespeare"
-              />
-              <span>{option.label}</span>
-            </label>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

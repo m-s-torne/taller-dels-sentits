@@ -22,7 +22,7 @@ export const PrivacyPolicy = ({ formData, updateField, errors }: PrivacyPolicyPr
         />
         <span className="text-sm">
           Accepto la{' '}
-          <a href="/politica-privacitat" className="text-shakespeare hover:underline">
+          <a href="/politica-privacitat" className="text-shakespeare! hover:underline">
             política de privacitat
           </a>{' '}
           i dono el meu consentiment per al tractament de les meves dades personals segons el RGPD. *

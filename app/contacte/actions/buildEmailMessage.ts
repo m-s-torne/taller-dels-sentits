@@ -45,16 +45,6 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
       };
       msg += `Format: ${formatLabels[data.arttherapyFormat]}\n`;
     }
-    
-    if (data.preferredTime) {
-      const timeLabels = {
-        morning: 'Matins',
-        afternoon: 'Tardes',
-        weekend: 'Cap de setmana',
-        flexible: 'Flexible'
-      };
-      msg += `Franja horària preferida: ${timeLabels[data.preferredTime]}\n`;
-    }
   }
   
   // Artperdins
