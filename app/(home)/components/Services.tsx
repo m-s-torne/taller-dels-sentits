@@ -42,7 +42,7 @@ const Services = () => {
                         </p>
                         
                         {/* Botón */}
-                        <Link href={`/serveis/${service.id}`}>
+                        <Link href={`/${service.id === 'centres-educatius' ? 'centres' : service.id}`}>
                             <ButtonComponent text="SABER MÉS" />
                         </Link>
                     </div>

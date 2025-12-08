@@ -5,6 +5,7 @@ export const useHeader = () => {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
     const pathname = usePathname();
 
     useEffect(() => {
@@ -13,6 +14,7 @@ export const useHeader = () => {
             if (currentScrollY > lastScrollY && currentScrollY > 60) {
                 setShow(false); // Oculta al hacer scroll hacia abajo
                 setIsMenuOpen(false); // Cierra el menú al hacer scroll
+                setIsServicesOpen(false); // Cierra el submenu de servicios
             } else {
                 setShow(true); // Muestra al hacer scroll hacia arriba
             }
@@ -24,10 +26,16 @@ export const useHeader = () => {
 
     useEffect(() => {
         setIsMenuOpen(false);
+        setIsServicesOpen(false);
     }, [pathname]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+        setIsServicesOpen(false); // Cierra servicios al abrir/cerrar menu principal
+    };
+
+    const toggleServices = () => {
+        setIsServicesOpen(!isServicesOpen);
     };
 
     return {
@@ -35,5 +43,8 @@ export const useHeader = () => {
         setIsMenuOpen,
         toggleMenu,
         isMenuOpen,
+        isServicesOpen,
+        toggleServices,
+        setIsServicesOpen,
     }
 }
