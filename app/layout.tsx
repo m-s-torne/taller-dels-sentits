@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <Header logoImg={logoImg.src}/>
         {children}
-        <Footer logoImg={logoImg.src}/>
+        <Footer/>
         <Toaster position="top-center" />
       </body>
     </html>
