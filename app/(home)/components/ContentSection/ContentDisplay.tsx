@@ -1,5 +1,6 @@
 import type { RefObject, ReactNode } from 'react';
 import type { ContentData } from '@/app/(home)/types/contentSection.types';
+import { TriangleButton } from '@/app/_components/ui/TriangleButton';
 
 interface ContentDisplayProps {
     currentContent: ContentData;
@@ -65,28 +66,10 @@ const ContentDisplay = ({
 
                 {/* Flecha hacia abajo/arriba clickeable */}
                 <div className="mt-8 text-center">
-                    <button 
+                    <TriangleButton 
+                        triangleRotation={triangleRotation}
                         onClick={handleArrowClick}
-                        className="text-white hover:text-white/70 cursor-pointer"
-                    >
-                        <div 
-                            className="transform transition-all duration-300 ease-out hover:scale-110"
-                            style={{
-                                transform: triangleRotation
-                            }}
-                        >
-                            {/* Triángulo hacia abajo - relleno sólido */}
-                            <svg 
-                                width="40" 
-                                height="16" 
-                                viewBox="0 0 40 16" 
-                                fill="currentColor" 
-                                className="mx-auto"
-                            >
-                                <path d="M20 14L38 2L2 2Z" />
-                            </svg>
-                        </div>
-                    </button>
+                    />
                 </div>
             </div>
             
