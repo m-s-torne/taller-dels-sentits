@@ -8,6 +8,19 @@
   --color-violet-blue: #945696;
   --color-midnight: #212322;
   --color-lilac: #fffaf6;
+  
+  --shadow-thick-shakespeare: 0 10px 0 0 #6b8ac6;
+  --shadow-thick-scampi: 0 10px 0 0 #676799;
+  --shadow-thick-jacarta: 0 10px 0 0 #4B3D66;
+  --shadow-thick-violet-blue: 0 10px 0 0 #945696;
+  --shadow-thick-midnight: 0 10px 0 0 #212322;
+  --shadow-thick-lilac: 0 10px 0 0 #fffaf6;
+  
+  --shadow-thick-shakespeare-border-lilac: 0 10px 0 0 #6b8ac6, 0 10px 0 4px #fffaf6;
+  --shadow-thick-lilac-border-shakespeare: 0 10px 0 0 #fffaf6, 0 10px 0 4px #6b8ac6;
+  --shadow-thick-lilac-border-scampi: 0 10px 0 0 #fffaf6, 0 10px 0 4px #676799;
+  
+  --font-georgia: Georgia, serif;
 }
 
 /* Playfair Display se carga desde Google Fonts vía Next.js */

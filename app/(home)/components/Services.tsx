@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import ButtonComponent from '@/app/_components/ButtonComponent';
+import ButtonComponent from '@/app/_components/ui/ButtonComponent';
 import { servicesData } from '@/app/_lib/servicesData';
 import { motion } from 'motion/react';
 
