@@ -1,17 +1,18 @@
 "use client"
-import ButtonComponent from './ButtonComponent';
+import ButtonComponent from './ui/ButtonComponent';
 import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useHeader } from '@/app/_hooks/useHeader';
+import { useIsActive } from '@/app/_hooks/useIsActive';
 import { useEffect, useRef } from 'react';
+import { DropDown } from './ui/DropDown';
+import { servicesMenu } from '@/app/_lib/servicesMenu';
 
 interface HeaderProps {
   logoImg: string;
 }
 
 const Header = ({ logoImg }: HeaderProps) => {
-  const pathname = usePathname();
   const servicesRef = useRef<HTMLLIElement>(null);
   const {
     show,
@@ -22,19 +23,9 @@ const Header = ({ logoImg }: HeaderProps) => {
     toggleServices,
     setIsServicesOpen,
   } = useHeader();
+  const isActive = useIsActive();
 
-  const isActive = (path: string) => {
-    if (path === '/') return pathname === '/';
-    return pathname.startsWith(path);
-  };
-
-  const services = [
-    { name: 'Artteràpia', href: '/artterapia' },
-    { name: 'Artperdins', href: '/artperdins' },
-    { name: 'Centres Educatius', href: '/centres' },
-  ];
-
-  // Cerrar el menú de servicios al hacer click fuera
+  // Cerrar el menú de servicios al hacer click fuera (solo en desktop)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
@@ -42,14 +33,15 @@ const Header = ({ logoImg }: HeaderProps) => {
       }
     };
 
-    if (isServicesOpen) {
+    // Solo activar el listener si el menú móvil NO está abierto
+    if (isServicesOpen && !isMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isServicesOpen, setIsServicesOpen]);
+  }, [isServicesOpen, isMenuOpen, setIsServicesOpen]);
 
   return (
     <>
@@ -95,29 +87,11 @@ const Header = ({ logoImg }: HeaderProps) => {
               </button>
               <AnimatePresence>
                 {isServicesOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 bg-shakespeare shadow-2xl rounded-lg py-3 px-4 min-w-[200px] z-9999"
-                  >
-                    <ul className="space-y-3">
-                      {services.map((service) => (
-                        <li key={service.href}>
-                          <Link
-                            href={service.href}
-                            onClick={() => setIsServicesOpen(false)}
-                            className={`block text-lilac! hover:text-lilac/50! font-light transition-colors duration-200 ${
-                              isActive(service.href) ? 'font-bold!' : ''
-                            }`}
-                          >
-                            {service.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                  <DropDown 
+                    services={servicesMenu}
+                    setIsServicesOpen={setIsServicesOpen}
+                    isActive={isActive}
+                  />
                 )}
               </AnimatePresence>
             </li>
@@ -174,10 +148,10 @@ const Header = ({ logoImg }: HeaderProps) => {
                     INICI
                   </Link>
                 </li>
-                <li className="flex flex-col items-center hover:cursor-pointer gap-4">
+                <li className="flex flex-col items-center gap-4">
                   <button
                     onClick={toggleServices}
-                    className={`hover:text-shakespeare! transition-colors duration-200 ${
+                    className={`hover:text-shakespeare! transition-colors hover:cursor-pointer duration-200 ${
                       isActive('/artterapia') || isActive('/artperdins') || isActive('/centres') ? 'text-shakespeare' : ''
                     }`}
                   >
@@ -192,12 +166,15 @@ const Header = ({ logoImg }: HeaderProps) => {
                         transition={{ duration: 0.2 }}
                         className="flex flex-col items-center gap-4 text-base"
                       >
-                        {services.map((service) => (
+                        {servicesMenu.map((service) => (
                           <li key={service.href}>
                             <Link
                               href={service.href}
-                              onClick={() => setIsMenuOpen(false)}
-                              className={`hover:text-shakespeare! transition-colors duration-200 ${
+                              onClick={() => {
+                                setIsServicesOpen(false);
+                                setIsMenuOpen(false);
+                              }}
+                              className={`hover:text-shakespeare! hover:cursor-pointer transition-colors duration-200 ${
                                 isActive(service.href) ? 'text-shakespeare font-bold' : ''
                               }`}
                             >
@@ -211,7 +188,7 @@ const Header = ({ logoImg }: HeaderProps) => {
                 </li>
                 <li>
                   <Link 
-                    className={`hover:text-shakespeare! transition-colors duration-200 ${
+                    className={`hover:text-shakespeare! hover:cursor-pointer transition-colors duration-200 ${
                       isActive('/qui-som') ? 'text-shakespeare' : ''
                     }`}
                     href="/qui-som"
