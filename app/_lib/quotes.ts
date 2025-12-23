@@ -1,4 +1,5 @@
-import type { Quote } from '@/shared/types/services.types';
+import { Quote } from "@/app/_types/services.types";
+
 
 export const artterapiaQuotes: Quote[] = [
     {

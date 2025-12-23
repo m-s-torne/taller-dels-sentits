@@ -2,6 +2,11 @@ import { artterapiaQuotes, artperdinsQuotes } from '@/app/_lib/quotes';
 import ArtterapiaIcon from '@/app/_assets/iconos/ESPACIO/NUBES.svg';
 import ArtperdinsIcon from '@/app/_assets/iconos/FLOR/PLANTA.svg';
 import CentresIcon from '@/app/_assets/iconos/ARTE/DIBUJO.svg';
+import PaletaIcon from '@/app/_assets/iconos/ARTE/PALETA.svg';
+import GestoIcon from '@/app/_assets/iconos/CUERPO/GESTO.svg';
+import ArbolIcon from '@/app/_assets/iconos/FLOR/ARBOL.svg';
+import CreatividadIcon from '@/app/_assets/iconos/CUERPO/CREATIVIDAD.svg';
+import PinturasIcon from '@/app/_assets/iconos/ARTE/PINTURAS.svg';
 import type { ServiceSectionType } from '@/app/_types/services.types';
 
 export const servicesData: ServiceSectionType[] = [
@@ -10,21 +15,132 @@ export const servicesData: ServiceSectionType[] = [
         title: 'ARTTERÀPIA',
         subtitle: "Acompanyem les persones en els seus processos vitals a través de les eines de l'Art.",
         shortDescription: "Acompanyem les persones en els seus processos vitals a través de les eines de l' Art.",
+        longDescription: [`
+            Per la meva trajectòria personal i professional he pogut experimentar de l’eficàcia dels llenguatges 
+            artístics per incerir en la qualitat del viure de les persones i també com un acompanyament acurat i 
+            respectuós, pot ajudar a l’ expressió de l’àmbit emocional i al desplegament d’ una simbolització 
+            inherent a la persona que fa que es mobilitzin els propis recursos reguladors i resolutius davant de les 
+            dificultats emocionals, físiques, psicològiques o socials i que poden incidir de forma clara en la salut de 
+            la persona.`,
+
+            `Les meves eines i recursos provenen inicialment dels meus estudis artístics i han estat els post-graus i 
+            màsters en Artteràpia i Acompanyament Creatiu que han configurat el meu marc teòric per vincular-les 
+            a la salut de les persones i aplicar-les de forma terapèutica. Les meves línees de treball es basen en 
+            l’enfoc artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
+            des d’ un enfoc gestàltic de Javier Melguizo
+        `],
         quotes: artterapiaQuotes,
+        questions: [`
+            Necessites un espai per escoltar-te ?`, `Necessites fer un treball acompanyat en el moment vital que travesses?`,
+            `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`, `Tens ganes de fer un treball 
+            d’autoconeixement a través de les eines de l’art?`
+        ],
+        moreContent: {
+            buttonText: `
+                Un viatge cap endins... Un viatge cap en fora... \n 
+                És en aquest vaivé que l’art ens posa en moviment i pot ser transformador
+            `,
+            content: [`
+                L’Art estimula les teves capacitats expressives i creatives. La seva 
+                dimensió dinàmica i simbòlica afaforeix el desbloqueig d’emocions i 
+                pensaments, alhora que obre noves maneres de poguer mirar i 
+                mirar-te.\n L’Artteràpia desplega un espai d’acompanyament terapèutic on els 
+                llenguatges i processos artístics t’ajuden a trobar les estratègies i 
+                recursos propis per elaborar i donar resposta a moments vitals que 
+                puguis travessar.`,
+                `El marc acompanyat de l’ Artteràpia és un espai d’autoconeixement 
+                que facilita:\n-L’Expressió del nostre sentir\n-Desenvolupa l’empatia\n
+                -Potencia la capacitat creativa i per tant resolutiva\n-Millora l’autoestima i activa la nostra part més vital\n
+                -Incrementa l’autonomia\n-Disminueix l’ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present.`
+            ],
+        },
         bgColor: 'bg-lilac',
         contentKey: 'artterapia',
-        delay: 0.2,
-        icon: ArtterapiaIcon.src
+        icon: ArtterapiaIcon.src,
+        disclaimer: `
+            Per fer aquestes sessions no necessito que siguis habilidós ni que tinguis formació artística. Els serveis 
+            d’artteràpia no són sanitaris ni substitueixen tractament mèdics. L’acceptació és voluntària i responsable.`,
+        reviews: [
+            {
+                review: `
+                    L’Artteràpia ens ha ajudat com a 
+                    família a expressar-nos més i 
+                    millor emocionalment i ens ha 
+                    permès crear noves dinàmiques 
+                    familiars.`,
+                author: `Mare d'una família de dos fills adolescents`,
+            },
+            {
+                review: `
+                    És un diàleg interior que et 
+                    connecta profundament amb la 
+                    teva esséncia i et mostra les teves 
+                    virtuts i ferides per poder així 
+                    reconèixer-les i començar a sanar.`,
+                author: `Adulta dins un treball de grup`,
+            },
+            {
+                review: `
+                    Moltes gràcies per la mirada, 
+                    l’acompanyament i la feina feta. 
+                    Han estat uns moments 
+                    privilegiats que l’han ajudat a 
+                    créixer, avançar i a nosaltres a 
+                    comprendre’l.`,
+                author: `Mare d'un nen de 9 anys`,
+            }
+        ],
+        rest: {
+            title: `T'OFEREIXO`,
+            subtitle: `Un acompanyament respectuós i curós per poguer fer un treball sobre tu mateix ja sigui perquè:`,
+            list: [
+                `Tens ganes de fer un treball d’ autoconeixement`,
+                `Voldries reconnectar amb la teva vitalitat i plaer`,
+                `Necessites fer un treball acompanyat en el moment vital que et trobes`,
+                `Perquè la paraula ha quedat limitada per abordar i entendre què t’està passant`,
+                `Perquè necessites connectar amb la teva capacitat creativa per resoldre alguna problemàtica`,
+                `Necessites escoltar què t’ està passant i portar-lo en un espai que ho puguis expressar i et puguis sentir 
+                acompanyat per poguer-ho mirar`
+            ],
+            description: `
+                Per la seva dimensió expressiva i simbólica L’Artteràpia pot ser un bon recurs terapèutic per a joves i 
+                adolescents que necessiten sortir del marc de la paraula així com ho és també, per la seva qualitat 
+                lúdica, de gran valor pels infants.`,
+            sessionTypes: [
+                {
+                    desc: `Sessions individuals amb peridicitat setmanal o quinzenal.`,
+                    icon: GestoIcon.src,
+                },
+                {
+                    desc: `Espai en família: quan és necessari fer un treball compartit.`,
+                    icon: ArbolIcon.src,
+                },
+                {
+                    desc: `Monogràfics amb grup reduït per abordar temes concrets.`,
+                    icon: CreatividadIcon.src,
+                },
+                {
+                    desc: `Sessions externes per a centres educatius, ajuntaments, entitats socials i col.lectius d' empresa.`,
+                    icon: PinturasIcon.src,
+                }
+            ]
+        }
     },
     {
         id: 'artperdins',
         title: 'ARTPERDINS',
         subtitle: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents Joves i Adults. Quan fa que no pintes",
         shortDescription: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents\nJoves i Adults.",
+        longDescription: [''],
         quotes: artperdinsQuotes,
+        questions: [],
+        moreContent: {
+            buttonText: ``,
+            content: [``],
+        },
+        disclaimer: ``,
         bgColor: 'bg-lilac',
         contentKey: 'artperdins',
-        delay: 0.3,
         icon: ArtperdinsIcon.src
     },
     {
@@ -32,10 +148,63 @@ export const servicesData: ServiceSectionType[] = [
         title: 'CENTRES EDUCATIUS',
         subtitle: "Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.",
         shortDescription: "Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.",
+        longDescription: [`
+            Oferim sessions especialitzades per a centres educatius, dissenyades per apropar l’art i la creativitat als 
+            estudiants de diferents edats. Les activitats estan pensades per complementar l’educació formal, 
+            fomentant la creativitat i l’expressió personal.`,
+            
+            `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant dife
+            rentes tècniques artístiques y temàtiques segons les necessitats específiques. Les activitats promouen un 
+            aprenentatge vivencial i significatiu a través de l’experiència artística.
+        `],
         quotes: [],
+        questions: [],
+        moreContent: {
+            buttonText: `Formació per al professorat`,
+            layout: 'text-only',
+            content: [
+                `L’objectiu d’aquest curs de formació i assessorament per a 
+                professors d’infantil i primària, és la de repensar els objectius 
+                propis en l’àrea d’Expressió Plàstica, així com la seva metodologia.`, 
+                `Per iniciar aquest procés de replantejament és molt important començar 
+                atenent quin tipus de relació té el professorat amb l’Art, què es considera 
+                que ho és i què no i com es tradueix en les seves propostes de treball 
+                de cara als alumnes i en la valoració que en fan del resultat.`,
+                `Per tal que la Plàstica tingui contingut en l’àmbit educatiu, serà important 
+                que la proposta plantejada als infants la possibilitat de Significar, és a dir, 
+                que pugui ser suficientment àmplia perquè l’alumne pugui investigar i dotar-la 
+                de sentit personal`,
+                `Amb la finalitat que aquest Significar tingui un sentit ampli, la proposta formativa 
+                tindrà un caràcter transversal, entenent la importància de la multiplicitat de 
+                llenguatges artístics (poesia, música, dansa…) i com aquesta amplitud de llenguatges 
+                ens permet estirar el fil de les propostes i la integració i elaboració d’aprenentatges.`,
+                `Es treballarà sobre paraules clau: la Proposta, la Implicació, el Procés de realització i 
+                de les diferències entre Creació i Expressió.`,
+            ],
+        },
+        disclaimer: ``,
+        rest: {
+            title: "APRENDRE A MIRAR UN QUADRE",
+            icon: PaletaIcon.src,
+            content: [
+                `És realment d'aquesta forma que l'obra d'art pot ser significativa per a cada nen. I és una manera 
+                enriquidora d'acostar-se a ell mateix, tot abordant la creació des de la pròpia sensibilitat, 
+                atenent els sentits, els sentiments i les seves pròpies vivències. Des del Taller dels Sentits, 
+                creiem, doncs, que l'educació de l'art no s'ha de centrar exclusivament en l'habilitat manual o el 
+                coneixement tècnic, ni afavorir un sol gust estètic.`,
+                `L'art és transformador. Sabem que la plàstica és també coneixement i la seva pràctica dóna als 
+                infants més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta. El fet 
+                d'implicar-los en un procés creatiu afavoreix les seves capacitats expressives i de comunicació, fomenta 
+                l'autoestima, tot aprenent a valorar la pròpia mirada de les coses i el respecte per la mirada dels altres.`,
+                `El Taller dels Sentits porta a terme un projecte per a les escoles cada cop més consolidat. El nostre 
+                objectiu és difondre de manera entenedora el motiu pel qual un artista o un moviment artístic busca i 
+                troba les seves "maneres de fer". Les sessions duren aproximadament una hora: després d'una explicació 
+                interactiva amb els alumnes i amb l'us d'imatges, sempre es proposa un treball plàstic, amb prou marge 
+                per tal que l'alumne interioritzi els arguments que han portat l'artista a crear la seva obra i se'ls faci seus.`,
+            ],
+        },
         bgColor: 'bg-lilac',
         contentKey: 'centres-educatius',
-        delay: 0.4,
         icon: CentresIcon.src
     }
 ];
