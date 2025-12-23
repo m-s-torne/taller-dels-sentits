@@ -1,0 +1,38 @@
+"use client"
+import { servicesData } from '@/app/_lib/servicesData';
+import { QuoteCarousel } from '@/app/(serveis)/components/QuoteCarousel';
+import { useServeis } from '@/app/(serveis)/hooks/useServeis';
+import { HeroSection, LongDescription, MoreContentSection } from '@/app/(serveis)/components';
+import {
+    QuestionsSection,
+    RestArtterapia,
+    ReviewsSection,
+    DisclaimerSection
+} from './components';
+
+export default function Artterapia() {
+    const quoteIndices = useServeis();
+    const service = servicesData[0]; // artterapia
+
+    return (
+        <main className={`${service.bgColor} py-20 px-4 sm:px-6 md:px-10 mt-20 min-h-screen`}>
+            <div className="max-w-5xl mx-auto">
+                <HeroSection service={service} />
+
+                <QuoteCarousel quotes={service.quotes} currentIndex={quoteIndices[service.id]} />
+
+                <LongDescription longDescription={service.longDescription} />
+
+                <QuestionsSection questions={service.questions} />
+
+                <MoreContentSection moreContent={service.moreContent} />
+
+                <RestArtterapia rest={service.rest!} />
+
+                <DisclaimerSection disclaimer={service.disclaimer} />
+
+                <ReviewsSection reviews={service.reviews!} />
+            </div>
+        </main>
+    );
+}
