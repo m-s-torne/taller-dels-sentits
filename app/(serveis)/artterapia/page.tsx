@@ -13,6 +13,8 @@ import {
 import {
     RestArtterapia,
 } from './components';
+import { carouselImages } from '@/app/(serveis)/artterapia/lib/carouselImages';
+import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
 
 export default function Artterapia() {
     const quoteIndices = useServeis();
@@ -28,6 +30,8 @@ export default function Artterapia() {
                 <LongDescription longDescription={service.longDescription} />
 
                 <QuestionsSection questions={service.questions} />
+
+                <ImageCarousel images={carouselImages} />
 
                 <MoreContentSection moreContent={service.moreContent} />
 
