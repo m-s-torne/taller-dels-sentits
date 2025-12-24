@@ -12,13 +12,14 @@ export interface ServiceSectionType {
     title: string;
     subtitle: string;
     shortDescription: string;
+    exclamation?: string;
     longDescription: string[];
     quotes: Quote[];
     questions: string[];
     moreContent: {
-        buttonText: string,
-        content: string[],
-        layout?: 'with-images' | 'text-only',
+        buttonText: string;
+        content: string[];
+        layout?: 'with-images' | 'text-only' | 'text-only-not-heading';
     };
     disclaimer: string;
     reviews?: Review[];

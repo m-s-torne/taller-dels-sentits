@@ -129,16 +129,123 @@ export const servicesData: ServiceSectionType[] = [
     {
         id: 'artperdins',
         title: 'ARTPERDINS',
-        subtitle: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents Joves i Adults. Quan fa que no pintes",
+        subtitle: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents Joves i Adults.",
         shortDescription: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents\nJoves i Adults.",
-        longDescription: [''],
+        exclamation: "Et convido a provar els nostres cursos de L’ Artperdins!",
+        longDescription: [
+            `Amb 15 anys de trajectòria de L’Artperdins, hem anat configurant una metodologia pròpia per a 
+            adolescents, joves i adults que integra el coneixement de les eines i tècniques artístiques amb 
+            l’Acompanyament Creatiu i l’Artteràpia.`,
+            `L’Artperdins és un espai per fer-nos espai a nosaltres. Un lloc de permís i de cura, d’ escolta interna i per 
+            tant d’aprenetatge a través del joc de l’Art. La dimensió lúdica de l’Art permet recuperar un tipus 
+            d’aprenentatge des de nosaltres i cap a nosaltres, que sovint podem descuidar. És un tipus 
+            d’aprenentatge que parteix del Sentir i que afavoreix la correlació de l’intel·lecte i les emocions i dona la
+            possibilitat de descobrir aspectes nous de nosaltres estimulant la pròpia capacitat reflexiva i creativa, 
+            imprescindibles davant de qualsevol problemàtica que ens puguem trobar.`,
+        ],
         quotes: artperdinsQuotes,
-        questions: [],
+        questions: [
+            `Necessites un espai per a escoltar-te durant la setmana?`,
+            `T’ agradaria provar d’ expressar-ho tu mateix?`,
+            `Alguna vegada mirant una pintura has sentit que 
+            expressava com cap altra cosa el que tu
+            senties en aquell moment?`,
+        ],
         moreContent: {
-            buttonText: ``,
-            content: [``],
+            buttonText: `Quan fa que no pintes?`,
+            layout: `text-only-not-heading`,
+            content: [
+                `Les nostres eines seran els pinzells, els acrílics, els papers de petit i gran format, les teles, els olis i els 
+                pigments, les aquarel.les, els carbonets i les sanguines, l’argila, els esmalts i els òxids, les fustes, les 
+                gúbies i les tintes… Tot estarà a la nostra disposició per endinsar-nos gradualment en el món del 
+                Dibuix i la Pintura, del coneixement del Color, les Formes i el Traç, l’experiència del treball en Volum i 
+                del Collage…`,
+                `El treball plàstic és sobretot un treball individual, però també hi hauran moltes propostes
+                col.lectives que s’aniran desplegant al llarg del curs. El grup serà important pel clima de treball i el 
+                vincle amb ell ajudarà a sostenir tot allò que vagi sorgint, així com també serà clau per compartir si 
+                es fa necessari i tancar la sessió. `,
+                `No buscarem una manera “correcta” de pintar, ni donarem valor a una idea
+                predeterminada de l’estètica. Partirem del que som i d’ allò que ens configura, fent valer la nostra 
+                mirada de les coses des de les eines que ens proporciona l’Art, tot afavorint un treball personal.`,
+            ],
         },
-        disclaimer: ``,
+        reviews: [
+            {
+                review: `
+                    És un espai viu i cuidat on es 
+                    respira un profund respecte, 
+                    humanitat i professionalitat. Per 
+                    a mi és un temps per estar amb 
+                    mi mateixa i en relació amb 
+                    d’altres persones motivades per 
+                    interessos comuns.`,
+                author: `T.`,
+            },
+            {
+                review: `
+                    Retrobament conscient amb un 
+                    delicat i respectuós acompanya
+                    ment. Una experiència 
+                    alliberadora.`,
+                author: `A.`,
+            },
+            {
+                review: `
+                    L’experiència és profunda i 
+                    intensa, una proposta de valor 
+                    que et permet connectar art i 
+                    vivència personal. Dibuixar el 
+                    nostre paisatge interior.`,
+                author: `M.`,
+            },
+            {
+                review: `
+                    L’experiència és profunda i 
+                    intensa, una proposta de valor 
+                    que et permet connectar art i 
+                    vivència personal. Dibuixar el 
+                    nostre paisatge interior.`,
+                author: `M.`,
+            },
+            {
+                review: `
+                    L’experiència és profunda i 
+                    intensa, una proposta de valor 
+                    que et permet connectar art i 
+                    vivència personal. Dibuixar el 
+                    nostre paisatge interior.`,
+                author: `M.`,
+            },
+            {
+                review: `
+                    L’experiència és profunda i 
+                    intensa, una proposta de valor 
+                    que et permet connectar art i 
+                    vivència personal. Dibuixar el 
+                    nostre paisatge interior.`,
+                author: `M.`,
+            },
+            {
+                review: `
+                    L’experiència és profunda i 
+                    intensa, una proposta de valor 
+                    que et permet connectar art i 
+                    vivència personal. Dibuixar el 
+                    nostre paisatge interior.`,
+                author: `M.`,
+            }
+        ],
+        rest: {
+            title: `Els Monogràcs de l’Artperdins:`,
+            content: [
+                `Amb un format més petit , els monogràfics són una bona alternativa per a qui no disposa de molt 
+                temps. Són esporàdics i que poden anar des de propostes i seminaris artístics amb una temàtica 
+                concreta, experiències artístiques o visites guiades a exposicions.`,
+            ],
+            images: [],
+        },
+        disclaimer: `Per fer aquestes sessions no necessito que siguis habilidós ni que tinguis formació artística. Els serveis 
+                    d’artteràpia no són sanitaris ni substitueixen tractament mèdics. L’acceptació és voluntària i responsable.`,
         bgColor: 'bg-lilac',
         contentKey: 'artperdins',
         icon: ArtperdinsIcon.src
