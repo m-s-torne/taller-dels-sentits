@@ -2,12 +2,16 @@
 import { servicesData } from '@/app/_lib/servicesData';
 import { QuoteCarousel } from '@/app/(serveis)/components/QuoteCarousel';
 import { useServeis } from '@/app/(serveis)/hooks/useServeis';
-import { HeroSection, LongDescription, MoreContentSection } from '@/app/(serveis)/components';
-import {
+import { 
+    HeroSection, 
+    LongDescription, 
+    MoreContentSection, 
     QuestionsSection,
-    RestArtterapia,
+    DisclaimerSection,
     ReviewsSection,
-    DisclaimerSection
+} from '@/app/(serveis)/components';
+import {
+    RestArtterapia,
 } from './components';
 
 export default function Artterapia() {
