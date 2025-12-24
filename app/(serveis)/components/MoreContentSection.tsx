@@ -9,7 +9,7 @@ interface MoreContentSectionProps {
     moreContent: {
         buttonText: string;
         content: string[];
-        layout?: 'with-images' | 'text-only';
+        layout?: 'with-images' | 'text-only' | 'text-only-not-heading';
     };
 }
 
@@ -36,8 +36,10 @@ export const MoreContentSection = ({ moreContent }: MoreContentSectionProps) => 
                         bg-lilac text-shakespeare py-6 rounded-[40px] 
                         border-5 border-shakespeare font-light
                         ${layout === 'with-images' 
-                            ? 'text-sm sm:text-base lg:text-lg px-8' 
-                            : 'text-4xl px-45'
+                            ? 'text-sm sm:text-base lg:text-lg px-8'
+                            : layout === 'text-only-not-heading' 
+                            ? 'text-sm sm:text-base lg:text-lg px-8 sm:px-65 py-10'
+                            : 'text-2xl sm:text-4xl px-8 sm:px-45'
                         }
                         leading-relaxed hover:bg-shakespeare 
                         hover:text-lilac hover:shadow-thick-lilac-border-shakespeare 
