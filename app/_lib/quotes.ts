@@ -18,11 +18,11 @@ export const artperdinsQuotes: Quote[] = [
         author: "Gabriel Celaya. Poeta"
     },
     {
-        text: "Només jugant som creatius i és d'aquesta manera, que arribem a conèixe'ns",
+        text: "Només jugant som creatius, i és d'aquesta manera que ens arribem a conèixer",
         author: "Donald W. Winnicott. Pediatre i psicoanalista."
     },
     {
         text: "L' Art és vida i la vida transformació",
-        author: "Leopoldo Frègoli. Actor, transformista i cantant."
+        author: "Leopoldo Fregoli. Actor, transformista i cantant."
     }
 ];

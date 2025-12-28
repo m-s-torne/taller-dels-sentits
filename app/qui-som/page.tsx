@@ -16,7 +16,7 @@ export default function QuiSom () {
                         <p>
                             Amb el terme Artsalut el poeta Enric Casasses definia en una entrevista una de les seves 
                             "raons" d'escriure i vaig sentir que m'anava com l'anell al dit per explicar el treball que 
-                            hem estat realitzant durant aquests anys i que encara m'anava millor per subratllar aquesta 
+                            hem estat realitzant durant aquests anys, i que encara m'anava millor per subratllar aquesta 
                             nova etapa del Taller dels Sentits centrada en l'Artteràpia i l'Acompanyament Creatiu.
                         </p>
                     </section>
@@ -27,7 +27,7 @@ export default function QuiSom () {
                             D'on venim….
                         </h3>
                         <p>
-                            El Taller dels Sentits va nèixer com un projecte pedagògic per la necessitat de portar a la 
+                            El Taller dels Sentits va néixer com un projecte pedagògic per la necessitat de portar a la 
                             pràctica una metodologia de les arts plàstiques propera, respectuosa i atenta a les 
                             necessitats expressives i creatives dels infants, més enllà de conceptes estètics establerts 
                             i que a poc a poc, amb els anys, acaba configurant un marc propi d'acció i, des d'aquest, 
@@ -37,7 +37,7 @@ export default function QuiSom () {
                         </p>
                         <p>
                             Saber com acompanyar les persones, des del material sensible que es desplega, em 
-                            porta a formar-me durant tots aquets anys en diversos postgraus i màsters d'Artteràpia i, 
+                            porta a formar-me durant tots aquests anys en diversos postgraus i màsters d'Artteràpia i, 
                             des d'ells, s'integren nous recursos i eines a les aules del Taller que fan que, a poc a poc, 
                             la relació entre Art i Salut acabi configurant una línia clara d'actuació dins i fora del nostre 
                             espai portant a terme sessions individuals i grupals, projectes artterapèutics com el del 
@@ -50,7 +50,7 @@ export default function QuiSom () {
                             Durant tots aquests anys, he pogut experimentar l'eficàcia dels llenguatges artístics per 
                             inserir en la qualitat del viure de les persones, i també com un Acompanyament acurat i 
                             respectuós pot ajudar a l'expressió de l'àmbit emocional i al desplegament d'una 
-                            Simbolització inherent a la persona que fa que els propis recursos reguladors i resolutius 
+                            Simbolització inherent a la persona, que fa que els propis recursos reguladors i resolutius 
                             es mobilitzin davant de les dificultats emocionals, físiques, psicològiques o socials i que 
                             poden incidir de forma clara en la salut de la persona.
                         </p>
@@ -62,7 +62,7 @@ export default function QuiSom () {
                             ...i què oferim ara….
                         </h3>
                         <p>
-                            El Taller del Sentits, d'ofereix els seus cursos grupals d'Acompanyament Creatiu a 
+                            El Taller del Sentits ofereix els seus cursos grupals d'Acompanyament Creatiu a 
                             adolescents, joves i adults anomenats L'Artperdins, i per tal d'atendre amb rigor les 
                             necessitats pròpies dels infants fins als adults en el context social actual, ofereix els seus 
                             Serveis Artterapèutics en petit grup i en format individual o—recordant el terme del poeta—
