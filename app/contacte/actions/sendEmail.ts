@@ -5,6 +5,27 @@ import { buildEmailMessage } from './buildEmailMessage';
 import { getServiceLabel } from './getServiceLabel';
 
 /**
+ * Determines which EmailJS configuration to use based on service type
+ * - centres-educatius: Uses dedicated school service
+ * - artterapia, artperdins, general: Uses general service
+ */
+const getEmailJSConfig = (serviceType: ServiceType) => {
+  const isSchool = serviceType === 'centres-educatius';
+  
+  return {
+    serviceId: isSchool 
+      ? process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_SCHOOL
+      : process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+    templateId: isSchool
+      ? process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_SCHOOL
+      : process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+    publicKey: isSchool
+      ? process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY_SCHOOL
+      : process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+  };
+};
+
+/**
  * Sends email using EmailJS from the client side
  * This function should ONLY be called with sanitized data from validateAndSanitize
  * 
@@ -24,14 +45,13 @@ export const sendEmail = async (
   try {
     // Get EmailJS credentials from public environment variables
     // These are safe to expose because EmailJS is designed for client-side use
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    // Uses different credentials for school vs general services
+    const { serviceId, templateId, publicKey } = getEmailJSConfig(sanitizedData.serviceType);
     const serviceLabel = getServiceLabel(sanitizedData.serviceType) as ServiceType;
 
     // Validate environment variables are present
     if (!serviceId || !templateId || !publicKey) {
-      console.error('Missing EmailJS credentials');
+      console.error('Missing EmailJS credentials for service:', sanitizedData.serviceType);
       return { 
         success: false, 
         error: 'Configuració incorrecta. Contacta amb l\'administrador.' 
