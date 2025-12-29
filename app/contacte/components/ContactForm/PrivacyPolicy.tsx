@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import type { ContactFormData, FormErrors } from '@/app/contacte/types';
+import { privacyData } from '@/app/privacitat/lib/privacyData';
 
 interface PrivacyPolicyProps {
   formData: ContactFormData;
@@ -11,7 +13,15 @@ interface PrivacyPolicyProps {
 
 export const PrivacyPolicy = ({ formData, updateField, errors }: PrivacyPolicyProps) => {
   return (
-    <div className="border-t pt-6">
+    <div className="border-t pt-6 space-y-4">
+      {/* Resumen informativo */}
+      <div className="bg-violet-blue/10 p-4 rounded-lg">
+        <p className="text-sm text-midnight">
+          ℹ️ {privacyData.shortSummary}
+        </p>
+      </div>
+
+      {/* Checkbox de aceptación */}
       <label className="flex items-start space-x-3">
         <input
           type="checkbox"
@@ -22,10 +32,15 @@ export const PrivacyPolicy = ({ formData, updateField, errors }: PrivacyPolicyPr
         />
         <span className="text-sm">
           Accepto la{' '}
-          <a href="/politica-privacitat" className="text-shakespeare! hover:underline">
+          <Link 
+            href="/privacitat" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-shakespeare hover:text-violet-blue underline font-medium transition-colors"
+          >
             política de privacitat
-          </a>{' '}
-          i dono el meu consentiment per al tractament de les meves dades personals segons el RGPD. *
+          </Link>{' '}
+          i dono el meu consentiment explícit per al tractament de les meves dades personals segons el RGPD. *
         </span>
       </label>
       {errors.privacy && (
