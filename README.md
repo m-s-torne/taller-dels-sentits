@@ -150,7 +150,7 @@ Este es un proyecto público porque:
 
 ## 📄 Licencia
 
-Este proyecto es propietario del **Taller dels Sentits**.
+Este proyecto es propiedad del **Taller dels Sentits**.
 
 ## 👤 Autor
 
