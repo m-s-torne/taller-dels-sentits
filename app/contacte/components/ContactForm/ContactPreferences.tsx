@@ -1,4 +1,4 @@
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData, ContactPreference, Availability } from '@/app/contacte/types';
 import { contactPreferenceOptions, availabilityOptions } from '@/app/contacte/lib';
 
 interface ContactPreferencesProps {
@@ -27,10 +27,10 @@ export const ContactPreferences = ({ formData, updateField }: ContactPreferences
                 <input
                   type="checkbox"
                   value={option.value}
-                  checked={formData.contactPreference.includes(option.value as any)}
+                  checked={formData.contactPreference.includes(option.value as ContactPreference)}
                   onChange={(e) => {
                     const newPreferences = e.target.checked
-                      ? [...formData.contactPreference, option.value as any]
+                      ? [...formData.contactPreference, option.value as ContactPreference]
                       : formData.contactPreference.filter((p) => p !== option.value);
                     updateField('contactPreference', newPreferences);
                   }}
@@ -55,7 +55,7 @@ export const ContactPreferences = ({ formData, updateField }: ContactPreferences
                 name="availability"
                 value={option.value}
                 checked={formData.availability === option.value}
-                onChange={(e) => updateField('availability', e.target.value as any)}
+                onChange={(e) => updateField('availability', e.target.value as Availability)}
                 className="text-shakespeare focus:ring-shakespeare"
               />
               <span>{option.label}</span>

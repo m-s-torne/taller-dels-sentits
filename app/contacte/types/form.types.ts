@@ -66,7 +66,5 @@ export interface FormErrors {
     session?: boolean;
     time?: boolean;
   };
-  centres: {
-    
-  };
+  centres: Record<string, never>;
 }

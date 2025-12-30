@@ -24,10 +24,11 @@ export const useHeader = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [lastScrollY]);
 
+    // Close menus when route changes
     useEffect(() => {
-        setIsMenuOpen(false);
-        setIsServicesOpen(false);
-    }, [pathname]);
+        if (isMenuOpen) setIsMenuOpen(false);
+        if (isServicesOpen) setIsServicesOpen(false);
+    }, [pathname, isMenuOpen, isServicesOpen]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);

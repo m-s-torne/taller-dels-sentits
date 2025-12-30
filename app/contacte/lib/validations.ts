@@ -79,7 +79,7 @@ export const validateLocation = (
  */
 export const validateField = (
   field: keyof ContactFormData,
-  value: any,
+  value: ContactFormData[keyof ContactFormData],
   formData: ContactFormData,
   touchedFields: Set<string>
 ): string | undefined => {

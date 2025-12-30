@@ -81,7 +81,7 @@ app/
 
 ### Prerequisitos
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm 8+
 
 ### Setup
@@ -148,15 +148,17 @@ Este es un proyecto público porque:
 - ✅ Sin bases de datos expuestas
 - ✅ Sin API keys sensibles en el código
 
-## 📄 Licencia
+## � Información del Proyecto
 
-Este proyecto es propiedad del **Taller dels Sentits**.
+Sitio web desarrollado para **Taller dels Sentits**, centro de arteterapia en Vilanova i la Geltrú.
 
-## 👤 Autor
+Este proyecto forma parte de mi portfolio profesional como desarrollador web.
 
-**Marc Sentís Torné**  
-Desarrollador Full-Stack Junior
+## 👤 Desarrollador
 
----
+**Marc Serra i Torné**  
+Full-Stack Developer
 
-> Migración de React SPA a Next.js 16 con SSR, mejorando SEO, performance y seguridad.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcserraitorne)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mserraitorne@gmail.com)
+

@@ -1,4 +1,4 @@
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData, ArttherapyFormat, ParticipantAge, EducationStage, CourseGroup } from '@/app/contacte/types';
 import {
   arttherapyFormatOptions,
   participantAgeOptions,
@@ -32,7 +32,7 @@ const ArtterapiaFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
                 name="arttherapyFormat"
                 value={option.value}
                 checked={formData.arttherapyFormat === option.value}
-                onChange={(e) => updateField('arttherapyFormat', e.target.value as any)}
+                onChange={(e) => updateField('arttherapyFormat', e.target.value as ArttherapyFormat)}
                 className="text-shakespeare focus:ring-shakespeare"
               />
               <span>{option.label}</span>
@@ -62,7 +62,7 @@ const ArtperdinsFields = ({ formData, updateField }: ServiceSpecificFieldsProps)
                 name="participantAge"
                 value={option.value}
                 checked={formData.participantAge === option.value}
-                onChange={(e) => updateField('participantAge', e.target.value as any)}
+                onChange={(e) => updateField('participantAge', e.target.value as ParticipantAge)}
                 className="text-shakespeare focus:ring-shakespeare"
               />
               <span>{option.label}</span>
@@ -86,7 +86,7 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
 
   // Resetear courseGroup cuando cambia educationStage
   const handleEducationStageChange = (value: string) => {
-    updateField('educationStage', value as any);
+    updateField('educationStage', value as EducationStage);
     updateField('courseGroup', ''); // Reset course selection
   };
 
@@ -131,7 +131,7 @@ const EducationFields = ({ formData, updateField }: ServiceSpecificFieldsProps) 
         </label>
         <select
           value={formData.courseGroup}
-          onChange={(e) => updateField('courseGroup', e.target.value as any)}
+          onChange={(e) => updateField('courseGroup', e.target.value as CourseGroup)}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-shakespeare focus:border-transparent"
           disabled={!formData.educationStage}
         >

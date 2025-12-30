@@ -25,7 +25,7 @@ const StepsNavigation = ({ steps, selectedStep, handleStepChange }: StepsNavigat
                     top: '6px', // Centrada con los puntos (radio 8px / 2 - grosor 4px / 2)
                 }}></div>
                 
-                {steps.map((step, index) => (
+                {steps.map((step, i) => (
                     <div 
                         key={step.key}
                         className="flex lg:flex-row flex-col items-center gap-8 lg:gap-6 group relative z-10 shrink lg:flex-none max-w-[30%] lg:max-w-none cursor-pointer"
