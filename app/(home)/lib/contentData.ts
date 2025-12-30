@@ -6,7 +6,7 @@ export const contentData: ContentSectionData = {
         quote: "\"Tot coneixement comença amb l' experiència sensible...\"",
         author: "Immanuel Kant. Filòsof",
         text: `Sentim, hem de sentir...
-Vivim en un temps que no propicia escoltar-nos, i d'aquesta manera se'ns fa difícil conèixer i aprendre què sentim i, per tant, elaborar les nostres vivències i reflexionar sobre el fet de viure.
+Vivim en un temps que no propicia escoltar-nos, i d'aquesta manera ens és difícil conèixer i aprendre què sentim i, per tant, elaborar les nostres vivències i reflexionar sobre el fet de viure.
 
 El verb sentir ve d'assentar, arrelar, perquè el sentiment, a diferència de l'emoció, necessita espai i temps…
 
