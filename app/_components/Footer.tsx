@@ -23,13 +23,22 @@ const Footer = () => {
   return (
   <footer ref={footerRef} className="bg-jacarta py-8 px-4 sm:px-6 md:px-10 overflow-x-hidden">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-      {/* Logo */}
-      <Link 
-        className="text-lilac! hover:text-shakespeare!"
-        href="/politiques"
-      >
-        POLÍTIQUES DE PRIVACITAT
-      </Link>
+      {/* Legal Links */}
+      <div className="flex gap-4 text-xs">
+        <Link 
+          className="text-lilac! hover:text-shakespeare! transition-colors duration-200"
+          href="/avis-legal"
+        >
+          Avís Legal
+        </Link>
+        <span className="text-lilac/40">|</span>
+        <Link 
+          className="text-lilac! hover:text-shakespeare! transition-colors duration-200"
+          href="/privacitat"
+        >
+          Política de Privacitat
+        </Link>
+      </div>
       
       {/* Navigation Links */}
       <nav>

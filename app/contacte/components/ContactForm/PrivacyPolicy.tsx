@@ -36,7 +36,7 @@ export const PrivacyPolicy = ({ formData, updateField, errors }: PrivacyPolicyPr
             href="/privacitat" 
             target="_blank"
             rel="noopener noreferrer"
-            className="text-shakespeare hover:text-violet-blue underline font-medium transition-colors"
+            className="text-shakespeare! hover:text-violet-blue! underline font-medium transition-colors"
           >
             política de privacitat
           </Link>{' '}
