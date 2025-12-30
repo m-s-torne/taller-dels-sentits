@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import CorazonIcon from '@/app/_assets/iconos/ESPACIO/CORAZÓN.svg';
+import CorazonIcon from '@/app/_assets/iconos/ESPACIO/CORAZON.svg';
 
 interface LongDescriptionProps {
     longDescription: string[];

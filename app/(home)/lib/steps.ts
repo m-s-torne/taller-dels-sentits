@@ -1,5 +1,5 @@
 import type { ContentStep } from '@/app/(home)/types/contentSection.types';
-import SentirIcon from '@/app/_assets/iconos/ESPACIO/CORAZÓN.svg';
+import SentirIcon from '@/app/_assets/iconos/ESPACIO/CORAZON.svg';
 import PermisIcon from '@/app/_assets/iconos/ESPACIO/VENTANA.svg';
 import CrearIcon from '@/app/_assets/iconos/CUERPO/MANOS.svg';
 
