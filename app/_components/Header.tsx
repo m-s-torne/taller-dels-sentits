@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import { useHeader } from '@/app/_hooks/useHeader';
 import { useIsActive } from '@/app/_hooks/useIsActive';
-import { useEffect, useRef } from 'react';
 import { DropDown } from './ui/DropDown';
 import { servicesMenu } from '@/app/_lib/servicesMenu';
 
@@ -13,7 +12,6 @@ interface HeaderProps {
 }
 
 const Header = ({ logoImg }: HeaderProps) => {
-  const servicesRef = useRef<HTMLLIElement>(null);
   const {
     show,
     setIsMenuOpen,
@@ -22,26 +20,9 @@ const Header = ({ logoImg }: HeaderProps) => {
     isServicesOpen,
     toggleServices,
     setIsServicesOpen,
+    servicesRef,
   } = useHeader();
   const isActive = useIsActive();
-
-  // Cerrar el menú de servicios al hacer click fuera (solo en desktop)
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
-        setIsServicesOpen(false);
-      }
-    };
-
-    // Solo activar el listener si el menú móvil NO está abierto
-    if (isServicesOpen && !isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isServicesOpen, isMenuOpen, setIsServicesOpen]);
 
   return (
     <>

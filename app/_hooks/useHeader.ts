@@ -1,11 +1,12 @@
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export const useHeader = () => {
     const [show, setShow] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
+    const servicesRef = useRef<HTMLLIElement>(null);
     const pathname = usePathname();
 
     useEffect(() => {
@@ -26,9 +27,27 @@ export const useHeader = () => {
 
     // Close menus when route changes
     useEffect(() => {
-        if (isMenuOpen) setIsMenuOpen(false);
-        if (isServicesOpen) setIsServicesOpen(false);
-    }, [pathname, isMenuOpen, isServicesOpen]);
+        setIsMenuOpen(false);
+        setIsServicesOpen(false);
+    }, [pathname]);
+
+    // Cerrar el menú de servicios al hacer click fuera (solo en desktop)
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+                setIsServicesOpen(false);
+            }
+        };
+
+        // Solo activar el listener si el menú móvil NO está abierto
+        if (isServicesOpen && !isMenuOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isServicesOpen, isMenuOpen]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -47,5 +66,6 @@ export const useHeader = () => {
         isServicesOpen,
         toggleServices,
         setIsServicesOpen,
+        servicesRef,
     }
 }
