@@ -20,7 +20,7 @@ export const DropDown = ({ services, setIsServicesOpen, isActive, variant = 'hea
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: isFooter ? 10 : -10 }}
             transition={{ duration: 0.2 }}
-            className={`bg-shakespeare shadow-2xl rounded-lg py-3 px-4 min-w-[200px] z-9999 ${
+            className={`bg-shakespeare shadow-2xl rounded-lg py-3 px-4 min-w-50 z-9999 ${
                 isFooter 
                     ? 'fixed bottom-20 right-23' 
                     : 'absolute top-full left-0 mt-2'
