@@ -3,7 +3,6 @@ import { Toaster } from 'react-hot-toast';
 import { Playfair_Display, Inter } from 'next/font/google';
 import "./globals.css";
 import Header from "./_components/Header";
-import logoImg from '@/app/_assets/logo-taller.svg'
 import Footer from "./_components/Footer";
 
 const playfair = Playfair_Display({ 
@@ -21,8 +20,42 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Taller dels Sentits",
-  description: "Centre d'artteràpia a Vilanova i la Geltrú",
+  title: {
+    default: "Taller dels Sentits - Centre d'Artteràpia a Vilanova i la Geltrú",
+    template: "%s | Taller dels Sentits",
+  },
+  description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure.",
+  keywords: [
+    "artteràpia", "Vilanova i la Geltrú", "teràpia art", 
+    "art teràpia", "centre artteràpia", "artteràpia individual", 
+    "artteràpia grupal", "teràpia emocional", "gestalt",
+    "artperdins", "art per dins", ""
+  ],
+  authors: [{ name: "Taller dels Sentits" }],
+  creator: "Taller dels Sentits",
+  publisher: "Taller dels Sentits",
+  openGraph: {
+    type: "website",
+    locale: "ca_ES",
+    url: "https://taller-dels-sentits.vercel.app",
+    siteName: "Taller dels Sentits",
+    title: "Taller dels Sentits - Centre d'Artteràpia a Vilanova i la Geltrú",
+    description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://taller-dels-sentits.vercel.app",
+  },
 };
 
 export default function RootLayout({
@@ -31,11 +64,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ca">
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <Header logoImg={logoImg.src}/>
+        <Header logoImg="/logo-taller.svg"/>
         {children}
         <Footer/>
         <Toaster position="top-center" />
