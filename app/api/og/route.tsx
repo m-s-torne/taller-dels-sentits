@@ -20,8 +20,8 @@ export async function GET() {
         <img
           src="https://taller-dels-sentits.vercel.app/logo-taller.png"
           alt="Taller dels Sentits"
-          width="300"
-          height="300"
+          width="500"
+          height="272"
           style={{ marginBottom: '40px' }}
         />
         <h1
