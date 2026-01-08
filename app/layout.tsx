@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     default: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     template: "%s | Taller dels Sentits",
   },
-  description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
+  description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta, i un acompanyament acurat a través de l'art...",
   keywords: [
     "artteràpia", "Vilanova i la Geltrú", "teràpia art", 
-    "art teràpia", "centre artteràpia", "artteràpia individual", 
+    "art teràpia", "centre artteràpia", "artteràpia individual",
     "artteràpia grupal", "teràpia emocional", "gestalt",
     "artperdins", "art per dins", ""
   ],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     url: "https://taller-dels-sentits.vercel.app",
     siteName: "Taller dels Sentits",
     title: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
-    description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
+    description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta, i un acompanyament acurat a través de l'art...",
     images: [
       {
         url: "/api/og",
