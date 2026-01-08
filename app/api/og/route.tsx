@@ -1,8 +1,11 @@
 import { ImageResponse } from 'next/og';
-// App router includes @vercel/og.
-// No need to install it.
- 
+
 export async function GET() {
+  // Cargar tipografía Playfair Display
+  const playfairFont = fetch(
+    new URL('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300&display=swap')
+  ).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     (
       <div
@@ -15,10 +18,11 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '50px',
+          fontFamily: '"Playfair Display", serif',
         }}
       >
         <img
-          src="https://taller-dels-sentits.vercel.app/logo-taller.png"
+          src="https://taller-dels-sentits.vercel.app/logo-taller-dels-sentits.png"
           alt="Taller dels Sentits"
           width="500"
           height="272"
@@ -26,13 +30,14 @@ export async function GET() {
         />
         <h1
           style={{
-            fontSize: 48,
-            color: '#6b8ac6', // shakespeare
+            fontSize: 52,
+            color: '#6b8ac6', // text-shakespeare
             textAlign: 'center',
             margin: 0,
-            fontWeight: 400,
-            lineHeight: 1.3,
-            maxWidth: '900px',
+            fontWeight: 300, // font-light
+            lineHeight: 1.4,
+            maxWidth: '950px',
+            letterSpacing: '0.05em',
           }}
         >
           Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú
@@ -42,6 +47,14 @@ export async function GET() {
     {
       width: 1200,
       height: 630,
+      fonts: [
+        {
+          name: 'Playfair Display',
+          data: await playfairFont,
+          weight: 300,
+          style: 'normal',
+        },
+      ],
     },
   );
 }

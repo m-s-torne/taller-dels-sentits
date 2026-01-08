@@ -68,7 +68,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <Header logoImg="/logo-taller.svg"/>
+        <Header logoImg="/logo-taller-dels-sentits.svg"/>
         {children}
         <Footer/>
         <Toaster position="top-center" />
