@@ -21,17 +21,20 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Taller dels Sentits - Centre d'Artteràpia a Vilanova i la Geltrú",
+    default: "Taller dels Sentits",
     template: "%s | Taller dels Sentits",
   },
-  description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure.",
+  description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
   keywords: [
     "artteràpia", "Vilanova i la Geltrú", "teràpia art", 
     "art teràpia", "centre artteràpia", "artteràpia individual", 
     "artteràpia grupal", "teràpia emocional", "gestalt",
     "artperdins", "art per dins", ""
   ],
-  authors: [{ name: "Taller dels Sentits" }],
+  authors: [
+    { name: "Taller dels Sentits" }, 
+    { name: "Marc Serra i Torné" }
+  ],
   creator: "Taller dels Sentits",
   publisher: "Taller dels Sentits",
   openGraph: {
@@ -39,8 +42,8 @@ export const metadata: Metadata = {
     locale: "ca_ES",
     url: "https://taller-dels-sentits.vercel.app",
     siteName: "Taller dels Sentits",
-    title: "Taller dels Sentits - Centre d'Artteràpia a Vilanova i la Geltrú",
-    description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure.",
+    title: "Taller dels Sentits",
+    description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
     images: [
       {
         url: "/api/og",
