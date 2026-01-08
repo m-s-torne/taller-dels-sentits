@@ -18,7 +18,7 @@ export async function GET() {
         }}
       >
         <img
-          src="https://taller-dels-sentits.vercel.app/logo-taller.jpg"
+          src="https://taller-dels-sentits.vercel.app/logo-taller.png"
           alt="Taller dels Sentits"
           width="300"
           height="300"
