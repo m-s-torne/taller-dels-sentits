@@ -21,7 +21,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Taller dels Sentits",
+    default: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     template: "%s | Taller dels Sentits",
   },
   description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: "ca_ES",
     url: "https://taller-dels-sentits.vercel.app",
     siteName: "Taller dels Sentits",
-    title: "Taller dels Sentits",
+    title: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta.",
     images: [
       {
