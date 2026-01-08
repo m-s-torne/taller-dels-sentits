@@ -1,9 +1,9 @@
 import { ImageResponse } from 'next/og';
 
 export async function GET() {
-  // Cargar tipografía Playfair Display
+  // Cargar Playfair Display desde Google Fonts (archivo directo .ttf)
   const playfairFont = fetch(
-    new URL('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300&display=swap')
+    new URL('https://fonts.gstatic.com/s/playfairdisplay/v36/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvUDQZNLo_U2r.ttf')
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
