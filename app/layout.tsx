@@ -41,6 +41,14 @@ export const metadata: Metadata = {
     siteName: "Taller dels Sentits",
     title: "Taller dels Sentits - Centre d'Artteràpia a Vilanova i la Geltrú",
     description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure.",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Taller dels Sentits - Centre d'Artteràpia",
+      },
+    ],
   },
   robots: {
     index: true,
