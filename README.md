@@ -8,6 +8,7 @@ Página web moderna del **Taller dels Sentits**, centro de arteterapia en **Vila
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
 ### Stack Detallado
 
@@ -148,11 +149,24 @@ Este es un proyecto público porque:
 - ✅ Sin bases de datos expuestas
 - ✅ Sin API keys sensibles en el código
 
-## � Información del Proyecto
+## ℹ️ Información del Proyecto
 
 Sitio web desarrollado para **Taller dels Sentits**, centro de arteterapia en Vilanova i la Geltrú.
 
 Este proyecto forma parte de mi portfolio profesional como desarrollador web.
+
+## 📄 Derechos y Licencia
+
+**Desarrollo y código:** © 2026 Marc Serra i Torné. Todos los derechos reservados.  
+**Contenido y marca:** © 2026 Taller dels Sentits.
+
+Este repositorio es **público como parte de mi portfolio profesional**. El código fuente está protegido:
+- ❌ **No** puede ser copiado, modificado o redistribuido sin autorización
+- ❌ **No** puede ser usado en proyectos comerciales o personales
+- ✅ **Sí** puede ser visualizado como referencia técnica
+
+El sitio web está desarrollado para **Taller dels Sentits**, quien tiene licencia exclusiva de uso.  
+Para consultas sobre licencias comerciales del código, contactar con el desarrollador.
 
 ## 👤 Desarrollador
 
@@ -161,4 +175,3 @@ Full-Stack Developer
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcserraitorne)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mserraitorne@gmail.com)
-
