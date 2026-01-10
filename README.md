@@ -154,18 +154,41 @@ Sitio web desarrollado para **Taller dels Sentits**, centro de arteterapia en Vi
 
 Este proyecto forma parte de mi portfolio profesional como desarrollador web.
 
-## 📄 Derechos y Licencia
+## 📄 Licencia y Uso
 
-**Desarrollo y código:** © 2026 Marc Serra i Torné. Todos los derechos reservados.  
-**Contenido y marca:** © 2026 Taller dels Sentits.
+**Desarrollo:** © 2026 Marc Serra i Torné  
+**Contenido y marca:** © 2026 Taller dels Sentits
 
-Este repositorio es **público como parte de mi portfolio profesional**. El código fuente está protegido:
-- ❌ **No** puede ser copiado, modificado o redistribuido sin autorización
-- ❌ **No** puede ser usado en proyectos comerciales o personales
-- ✅ **Sí** puede ser visualizado como referencia técnica
+Este repositorio es público como parte de mi portfolio profesional.
 
-El sitio web está desarrollado para **Taller dels Sentits**, quien tiene licencia exclusiva de uso.  
-Para consultas sobre licencias comerciales del código, contactar con el desarrollador.
+### ✅ Puedes libremente:
+- Estudiar y aprender del código
+- Usar componentes, hooks y patrones en tus proyectos
+- Adaptar soluciones para tus clientes
+- Copiar fragmentos sin atribución (es código open source)
+
+### ❌ No puedes:
+- **Vender** el sitio completo como template/producto comercial
+- **Clonar** la identidad visual completa y decir que es tuyo
+- **Redistribuir** el proyecto completo sin mencionar el origen
+
+Sitio desarrollado exclusivamente para **Taller dels Sentits**.
+
+> 💡 **Filosofía:** Comparte código, aprende, mejora. Solo pido que no vendas mi trabajo como tuyo.
+
+### 🙏 Atribución (Opcional pero Apreciada)
+
+Si encuentras útil este código, una mención es bienvenida:
+
+```typescript
+// Inspirado en el trabajo de Marc Serra i Torné
+// https://github.com/m-s-torne/taller-dels-sentits
+```
+
+O en tu README:
+```markdown
+Basado en componentes de [Taller dels Sentits](https://github.com/m-s-torne/taller-dels-sentits) por Marc Serra i Torné
+```
 
 ## 👤 Desarrollador
 
