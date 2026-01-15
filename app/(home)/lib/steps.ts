@@ -5,6 +5,6 @@ import CrearIcon from '@/app/_assets/iconos/CUERPO/MANOS.svg';
 
 export const contentSteps: ContentStep[] = [
     { key: 'sentir', label: 'SENTIR', icon: SentirIcon.src },
-    { key: 'permis', label: 'PERMÍS', icon: PermisIcon.src },
+    { key: 'permis', label: 'EXPRESSAR', icon: PermisIcon.src },
     { key: 'crear', label: 'CREAR', icon: CrearIcon.src }
 ];
