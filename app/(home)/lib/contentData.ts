@@ -2,7 +2,7 @@ import type { ContentSectionData } from '@/app/(home)/types/contentSection.types
 
 export const contentData: ContentSectionData = {
     sentir: {
-        title: "UN ESPAI PER L'ESCOLTA DE SENTIR",
+        title: "UN ESPAI PER L'ESCOLTA DEL SENTIR",
         quote: "\"Tot coneixement comença amb l' experiència sensible...\"",
         author: "Immanuel Kant. Filòsof",
         text: `Sentim, hem de sentir...
