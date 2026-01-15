@@ -34,7 +34,7 @@ const HeroSection = () => {
           {/* Contenido de texto a la derecha */}
           <div className="flex-1 text-center">
             <h1 className="text-2xl font-medium sm:text-4xl md:text-5xl text-gray-800 mb-4 leading-tight">
-              SENTIR, EXPRESSAR  I CREAR
+              SENTIR, EXPRESSAR, CREAR
             </h1>
             <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mx-auto">
               T'oferim un espai de permís i escolta; un acompanyament acurat a través de l'art com a cura del viure
