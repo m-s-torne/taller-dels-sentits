@@ -52,7 +52,7 @@ export const RestArtterapia = ({ rest }: RestSectionProps) => {
                 <div className="space-y-20 my-20">
                     {rest.sessionTypes.map((session, index) => (
                         <div key={index} className="flex items-start gap-6">
-                            <div className="relative w-[130px] h-[130px] flex items-center justify-center shrink-0">
+                            <div className="relative w-32.5 h-32.5 flex items-center justify-center shrink-0">
                                 <div className="absolute inset-0 flex items-center justify-center scale-[2.5]">
                                     <img 
                                         src={session.icon} 

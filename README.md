@@ -56,7 +56,7 @@ Página web moderna del **Taller dels Sentits**, centro de arteterapia en **Vila
 
 ## 📂 Estructura del Proyecto
 
-```
+```PowerShell
 app/
 ├── _components/         # Componentes globales compartidos
 ├── _hooks/             # Custom hooks reutilizables
@@ -142,6 +142,7 @@ pnpm lint         # Verificar código con ESLint
 ## 🔐 Notas de Seguridad
 
 Este es un proyecto público porque:
+
 - ✅ Archivo `.env.local` excluido del repositorio
 - ✅ Credenciales EmailJS protegidas por domain whitelist
 - ✅ Validación server-side para prevenir ataques
@@ -161,13 +162,15 @@ Este proyecto forma parte de mi portfolio profesional como desarrollador web.
 
 Este repositorio es público como parte de mi portfolio profesional.
 
-### ✅ Puedes libremente:
+### ✅ Puedes libremente
+
 - Estudiar y aprender del código
 - Usar componentes, hooks y patrones en tus proyectos
 - Adaptar soluciones para tus clientes
 - Copiar fragmentos sin atribución (es código open source)
 
-### ❌ No puedes:
+### ❌ No puedes
+
 - **Vender** el sitio completo como template/producto comercial
 - **Clonar** la identidad visual completa y decir que es tuyo
 - **Redistribuir** el proyecto completo sin mencionar el origen
@@ -186,6 +189,7 @@ Si encuentras útil este código, una mención es bienvenida:
 ```
 
 O en tu README:
+
 ```markdown
 Basado en componentes de [Taller dels Sentits](https://github.com/m-s-torne/taller-dels-sentits) por Marc Serra i Torné
 ```
