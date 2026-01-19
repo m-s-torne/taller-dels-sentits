@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        sitemap: 'https://taller-dels-sentits.vercel.app/sitemap.xml',
+        sitemap: 'https://tallerdelssentits.vercel.app/sitemap.xml',
     }
 }
