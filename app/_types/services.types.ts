@@ -19,6 +19,7 @@ export interface ServiceSectionType {
     moreContent: {
         buttonText: string;
         content: string[];
+        listItems?: string[];
         layout?: 'with-images' | 'text-only' | 'text-only-not-heading';
     };
     disclaimer: string;

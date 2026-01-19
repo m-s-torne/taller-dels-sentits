@@ -1,14 +1,15 @@
 "use client"
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
-import image1 from '@/app/_assets/images/artterapia/tallerdelssentits_artterapia_servei_1.jpg';
-import image2 from '@/app/_assets/images/artterapia/tallerdelssentits_artterapia_servei_2.jpg';
+import image1 from '../artterapia/assets/images/angel_1.jpg';
+import image2 from '../artterapia/assets/images/angel_2.jpg';
 import { TriangleButton } from '@/app/_components/ui/TriangleButton';
 
 interface MoreContentSectionProps {
     moreContent: {
         buttonText: string;
         content: string[];
+        listItems?: string[];
         layout?: 'with-images' | 'text-only' | 'text-only-not-heading';
     };
 }
@@ -73,17 +74,27 @@ export const MoreContentSection = ({ moreContent }: MoreContentSectionProps) => 
                                 // Layout con imágenes (artterapia)
                                 moreContent.content.map((text, index) => {
                                     const imageSrc = index === 0 ? image1.src : image2.src;
+                                    const isLastItem = index === moreContent.content.length - 1;
                                     return (
-                                        <div key={index} className={`max-w-5xl mx-auto px-4 sm:px-6 md:px-10 py-12 space-y-12`}>
+                                        <div key={index} className={`max-w-5xl mx-auto px-4 md:px-10 py-12 space-y-12`}>
                                             <div className={`flex flex-col ${index === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-8 md:gap-12 items-center`}>
                                                 <img 
                                                     src={imageSrc} 
-                                                    alt={`Artteràpia servei ${index + 1}`} 
+                                                    alt={`àngel ${index + 1}`} 
                                                     className="w-64 h-80 md:w-80 md:h-112 object-cover rounded-[40px] shrink-0" 
                                                 />
-                                                <p className="whitespace-pre-line text-lilac! font-light text-sm sm:text-base lg:text-lg leading-relaxed">
-                                                    {text.trim()}
-                                                </p>
+                                                <div className="space-y-4">
+                                                    <p className="text-lilac! font-light text-sm sm:text-base lg:text-lg leading-relaxed">
+                                                        {text.trim()}
+                                                    </p>
+                                                    {isLastItem && moreContent.listItems && (
+                                                        <ul className="text-lilac! font-light text-sm sm:text-base lg:text-lg leading-relaxed space-y-3 list-disc pl-6">
+                                                            {moreContent.listItems.map((item, idx) => (
+                                                                <li key={idx}>{item}</li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     )
