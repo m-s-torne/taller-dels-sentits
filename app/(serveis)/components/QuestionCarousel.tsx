@@ -41,7 +41,7 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
                         className="absolute w-full text-center px-8"
                     >
                         <p className="text-shakespeare! text-base sm:text-xl font-light italic mb-2 leading-relaxed">
-                            "{questions[currentIndex].text}"
+                            {questions[currentIndex].text}
                         </p>
                     </motion.div>
                 </AnimatePresence>

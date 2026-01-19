@@ -182,6 +182,10 @@ export const servicesData: ServiceSectionType[] = [
             {
                 service: 'artperdins',
                 text: `Alguna vegada mirant una pintura has sentit que expressava com cap altra cosa el que tu senties en aquell moment?`
+            },
+            {
+                service: 'artperdins',
+                text: 'Quant fa que no pintes?'
             }
         ],
         moreContent: {
