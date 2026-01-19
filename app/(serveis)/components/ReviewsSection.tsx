@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
-import { TriangleButton } from '@/app/_components/ui/TriangleButton';
+"use client"
+import { motion } from 'motion/react';
+import { useReviews } from '@/app/(serveis)/hooks/useReviews';
 
 interface ReviewsSectionProps {
     reviews: {
@@ -10,18 +10,16 @@ interface ReviewsSectionProps {
 }
 
 export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    
-    // Filtrar reviews vacíos
-    const validReviews = Array.isArray(reviews) 
-        ? reviews.filter(r => typeof r === 'object' && r.review && r.review.trim())
-        : [];
+    const {
+        validReviews,
+        currentIndex,
+        desktopReviews,
+        mobileReview,
+        handlePrev,
+        handleNext,
+    } = useReviews(reviews);
 
     if (validReviews.length === 0) return null;
-
-    const hasMoreThanThree = validReviews.length > 3;
-    const firstThree = validReviews.slice(0, 3);
-    const remaining = validReviews.slice(3);
 
     return (
         <motion.section
@@ -31,21 +29,20 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             transition={{ duration: 0.6 }}
             className="mb-16"
         >
-            <div className="flex justify-center">
-                <button 
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className="text-lilac text-2xl sm:text-5xl rounded-[100px] shadow-thick-scampi border-lilac border-4 font-georgia py-15 px-10 bg-scampi tracking-wide text-center mb-10 hover:bg-scampi/80 transition-colors cursor-pointer"
-                >
-                    Algunes persones ens han dit:
-                </button>
-            </div>
+            {/* Título */}
+            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-10">
+                Algunes persones ens han dit:
+            </h2>
             
-            {/* Primeras 3 reviews - siempre visibles */}
-            <div className="relative">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {firstThree.map((review, index) => (
-                        <div 
-                            key={index}
+            {/* Carrusel Desktop (3 reviews) */}
+            <div className="hidden md:block relative">
+                <div className="grid grid-cols-3 gap-8">
+                    {desktopReviews.map((review, index) => (
+                        <motion.div 
+                            key={`${currentIndex}-${index}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 2, ease: "easeInOut" }}
                             className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
                         >
                             <p className="text-sm sm:text-base leading-relaxed mb-4 whitespace-pre-line">
@@ -54,61 +51,61 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                             <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
                                 - {review.author.trim()}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-
-                {/* Blur cuando hay más de 3 y no está expandido */}
-                <AnimatePresence>
-                    {hasMoreThanThree && !isExpanded && (
-                        <motion.div 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.6, ease: "easeInOut" }}
-                            className="absolute inset-0 top-1/4 md:top-1/3 bg-linear-to-b from-transparent via-lilac/50 to-lilac h-full pointer-events-none"
-                        />
-                    )}
-                </AnimatePresence>
             </div>
 
-            {/* Reviews adicionales - expandibles */}
-            <AnimatePresence>
-                {isExpanded && hasMoreThanThree && (
-                    <motion.div
-                        initial={{ opacity: 0, maxHeight: 0 }}
-                        animate={{ opacity: 1, maxHeight: 2000 }}
-                        exit={{ opacity: 0, maxHeight: 0 }}
-                        transition={{ duration: 0.6, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                    >
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                            {remaining.map((review, index) => (
-                                <div 
-                                    key={index + 3}
-                                    className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
-                                >
-                                    <p className="text-sm sm:text-base leading-relaxed mb-4 whitespace-pre-line">
-                                        {review.review.trim()}
-                                    </p>
-                                    <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
-                                        - {review.author.trim()}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Carrusel Mobile (1 review) */}
+            <div className="md:hidden">
+                <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 2, ease: "easeInOut" }}
+                    className="h-60 border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
+                >
+                    <p className="text-sm sm:text-base leading-relaxed mb-4 whitespace-pre-line">
+                        {mobileReview.review.trim()}
+                    </p>
+                    <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
+                        - {mobileReview.author.trim()}
+                    </p>
+                </motion.div>
+            </div>
 
-            {/* TriangleButton */}
-            {hasMoreThanThree && (
-                <div className="flex justify-center mt-8">
-                    <TriangleButton 
-                        triangleRotation={isExpanded ? "rotate(0deg)" : "rotate(180deg)"}
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        color="scampi"
-                    />
+            {/* Botones de navegación */}
+            {validReviews.length > 1 && (
+                <div className="flex justify-center gap-4 mt-8">
+                    <button
+                        onClick={handlePrev}
+                        className="text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        aria-label="Review anterior"
+                    >
+                        <div 
+                            className="transform transition-all duration-300 ease-out hover:scale-110"
+                            style={{ transform: 'rotate(-270deg)' }}
+                        >
+                            <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
+                                <path d="M20 14L38 2L2 2Z" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <button
+                        onClick={handleNext}
+                        className="text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        aria-label="Review siguiente"
+                    >
+                        <div 
+                            className="transform transition-all duration-300 ease-out hover:scale-110"
+                            style={{ transform: 'rotate(270deg)' }}
+                        >
+                            <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
+                                <path d="M20 14L38 2L2 2Z" />
+                            </svg>
+                        </div>
+                    </button>
                 </div>
             )}
         </motion.section>
