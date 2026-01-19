@@ -39,8 +39,8 @@ export const servicesData: ServiceSectionType[] = [
                 L'art és un viatge cap endins... Un viatge cap enfora... \n 
                 És en aquest vaivé que ens posa en moviment i pot ser transformador
             `,
-            content: [`
-                L’Art estimula les teves capacitats expressives i creatives. La seva 
+            content: [
+                `L’Art estimula les teves capacitats expressives i creatives. La seva 
                 dimensió dinàmica i simbòlica afaforeix el desbloqueig d’emocions i 
                 pensaments, alhora que obre noves maneres de poder mirar i 
                 mirar-te. L'Artteràpia desplega un espai d'acompanyament terapèutic on els 

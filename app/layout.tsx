@@ -20,6 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://taller-dels-sentits.vercel.app'),
   title: {
     default: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     template: "%s | Taller dels Sentits",
