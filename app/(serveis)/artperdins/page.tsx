@@ -12,7 +12,7 @@ import {
 } from '@/app/(serveis)/components';
 import { RestArtperDins } from './components/RestArtperdins';
 import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
-import { carouselImages } from './lib/carouselImages';
+import { carouselImages1, carouselImages2 } from './lib/carouselImages';
 
 export default function Artperdins() {
     const quoteIndices = useServeis();
@@ -29,7 +29,7 @@ export default function Artperdins() {
 
                 <LongDescription longDescription={service.longDescription} />
 
-                <ImageCarousel images={carouselImages} />
+                <ImageCarousel images={carouselImages1} />
 
                 <QuestionsSection questions={service.questions}/>
 
@@ -37,7 +37,7 @@ export default function Artperdins() {
 
                 <RestArtperDins rest={service.rest}/>
 
-                <ImageCarousel images={carouselImages} />
+                <ImageCarousel images={carouselImages2} />
 
                 <DisclaimerSection disclaimer={service.disclaimer}/>
 
