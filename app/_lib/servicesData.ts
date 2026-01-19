@@ -31,10 +31,23 @@ export const servicesData: ServiceSectionType[] = [
             text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
             author: "Rainer Maria Rilke. Poeta"
         },
-        questions: [`
-            Necessites un espai per escoltar-te ?`, `Necessites fer un treball acompanyat en el moment vital que travesses?`,
-            `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`, `Tens ganes de fer un treball 
-            d’autoconeixement a través de les eines de l’art?`
+        questions: [
+            {
+                service: 'artterapia',
+                text: `Necessites un espai per escoltar-te ?`
+            },
+            {
+                service: 'artterapia',
+                text: `Necessites fer un treball acompanyat en el moment vital que travesses?`
+            },
+            {
+                service: 'artterapia',
+                text: `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`
+            },
+            {
+                service: 'artterapia',
+                text: `Tens ganes de fer un treball d'autoconeixement a través de les eines de l'art?`
+            }
         ],
         moreContent: {
             buttonText: `
@@ -158,11 +171,18 @@ export const servicesData: ServiceSectionType[] = [
             author: "Gabriel Celaya. Poeta"
         },
         questions: [
-            `Necessites un espai per a escoltar-te durant la setmana?`,
-            `T’ agradaria provar d’ expressar-ho tu mateix?`,
-            `Alguna vegada mirant una pintura has sentit que 
-            expressava com cap altra cosa el que tu
-            senties en aquell moment?`,
+            {
+                service: 'artperdins',
+                text: `Necessites un espai per a escoltar-te durant la setmana?`
+            },
+            {
+                service: 'artperdins',
+                text: `T' agradaria provar d' expressar-ho tu mateix?`
+            },
+            {
+                service: 'artperdins',
+                text: `Alguna vegada mirant una pintura has sentit que expressava com cap altra cosa el que tu senties en aquell moment?`
+            }
         ],
         moreContent: {
             buttonText: `Quant fa que no pintes?`,

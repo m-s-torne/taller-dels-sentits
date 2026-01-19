@@ -1,6 +1,13 @@
+type Service = "artterapia" | "artperdins" | "centres-educatius";
+
 export interface Quote {
     text: string;
     author: string;
+}
+
+export type Question = {
+    service: Service;
+    text: string;
 }
 
 type Review = {
@@ -8,14 +15,14 @@ type Review = {
     author: string,
 }
 export interface ServiceSectionType {
-    id: string;
+    id: Service;
     title: string;
     subtitle: string;
     shortDescription: string;
     exclamation?: string;
     longDescription: string[];
     quote?: Quote;
-    questions: string[];
+    questions: Question[];
     moreContent: {
         buttonText: string;
         content: string[];
