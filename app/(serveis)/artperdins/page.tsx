@@ -1,5 +1,6 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
+import headerImg from './assets/images/taller_dels_sentits_capçalera_artperdins.jpg';
 import { 
     HeroSection,
     DisclaimerSection, 
@@ -15,17 +16,21 @@ import { carouselImages1, carouselImages2 } from './lib/carouselImages';
 
 export default function Artperdins() {
     const service = servicesData.find(s => s.id === 'artperdins')!;
-    const celayaQuote = {
-        text: "Perquè la bellesa transforma, és una arma carregada de futur.",
-        author: "Gabriel Celaya. Poeta"
-    };
 
     return (
         <main className={`${service.bgColor} md:py-14 py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen`}>
             <div className="max-w-5xl mx-auto">
                 <HeroSection service={service}/>
 
-                <StaticQuote quote={celayaQuote} />
+                <div className="flex justify-center mb-8">
+                    <img
+                        className="w-50 h-50 sm:w-62 sm:h-62 md:w-85 md:h-85 object-cover rounded-full shadow-lg"
+                        src={headerImg.src}
+                        alt="Artperdins - Taller dels Sentits"
+                    />
+                </div>
+
+                {service.quote && <StaticQuote quote={service.quote} />}
 
                 <p className="font-bold lg:text-lg text-sm">{service.exclamation}</p>
 

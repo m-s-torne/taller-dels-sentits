@@ -1,5 +1,6 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
+import headerImg from './assets/images/taller_dels_sentits_capçalera_artterapia.jpg';
 import { 
     HeroSection, 
     LongDescription, 
@@ -17,17 +18,21 @@ import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
 
 export default function Artterapia() {
     const service = servicesData[0]; // artterapia
-    const rilkeQuote = {
-        text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
-        author: "Rainer Maria Rilke. Poeta"
-    };
 
     return (
         <main className={`${service.bgColor} md:py-14 py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen`}>
             <div className="max-w-5xl mx-auto">
                 <HeroSection service={service} />
 
-                <StaticQuote quote={rilkeQuote} />
+                <div className="flex justify-center mb-8">
+                    <img
+                        className="w-50 h-50 sm:w-62 sm:h-62 md:w-85 md:h-85 object-cover rounded-full shadow-lg"
+                        src={headerImg.src}
+                        alt="Artteràpia - Taller dels Sentits"
+                    />
+                </div>
+
+                {service.quote && <StaticQuote quote={service.quote} />}
 
                 <LongDescription longDescription={service.longDescription} />
 

@@ -1,4 +1,3 @@
-import { artterapiaQuotes, artperdinsQuotes } from '@/app/_lib/quotes';
 import ArtterapiaIcon from '@/app/_assets/iconos/ESPACIO/NUBES.svg';
 import ArtperdinsIcon from '@/app/_assets/iconos/FLOR/PLANTA.svg';
 import CentresIcon from '@/app/_assets/iconos/ARTE/DIBUJO.svg';
@@ -28,7 +27,10 @@ export const servicesData: ServiceSectionType[] = [
             l’enfocament artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
             des d’ un enfocament gestàltic de Javier Melguizo.
         `],
-        quotes: artterapiaQuotes,
+        quote: {
+            text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
+            author: "Rainer Maria Rilke. Poeta"
+        },
         questions: [`
             Necessites un espai per escoltar-te ?`, `Necessites fer un treball acompanyat en el moment vital que travesses?`,
             `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`, `Tens ganes de fer un treball 
@@ -151,7 +153,10 @@ export const servicesData: ServiceSectionType[] = [
             possibilitat de descobrir aspectes nous de nosaltres estimulant la pròpia capacitat reflexiva i creativa, 
             imprescindibles davant de qualsevol problemàtica que ens puguem trobar.`,
         ],
-        quotes: artperdinsQuotes,
+        quote: {
+            text: "Perquè la bellesa transforma, és una arma carregada de futur.",
+            author: "Gabriel Celaya. Poeta"
+        },
         questions: [
             `Necessites un espai per a escoltar-te durant la setmana?`,
             `T’ agradaria provar d’ expressar-ho tu mateix?`,
@@ -271,8 +276,11 @@ export const servicesData: ServiceSectionType[] = [
             `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant diferents 
             tècniques artístiques i temàtiques segons les necessitats específiques. Les activitats promouen un 
             aprenentatge vivencial i significatiu a través de l’experiència artística.
-        `],
-        quotes: [],
+        `],        
+        quote: {
+            text: "Només jugant som creatius, i és d'aquesta manera que ens arribem a conèixer",
+            author: "Donald W. Winnicott. Pediatre i psicoanalista."
+        },
         questions: [],
         moreContent: {
             buttonText: `Formació per al professorat`,

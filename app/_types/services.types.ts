@@ -14,7 +14,7 @@ export interface ServiceSectionType {
     shortDescription: string;
     exclamation?: string;
     longDescription: string[];
-    quotes: Quote[];
+    quote?: Quote;
     questions: string[];
     moreContent: {
         buttonText: string;
