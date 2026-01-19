@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const useImageCarousel = (imagesLength: number) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,19 +17,25 @@ export const useImageCarousel = (imagesLength: number) => {
         setTransitionCount(prev => prev + 1);
     };
 
+    // Auto-play cada 5 segundos
+    useEffect(() => {
+        const interval = setInterval(() => {
+            handleNext();
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [currentIndex, imagesLength]);
+
     const slideVariants = {
-        enter: (direction: number) => ({
-            x: direction > 0 ? 1000 : -1000,
+        enter: {
             opacity: 0
-        }),
+        },
         center: {
-            x: 0,
             opacity: 1
         },
-        exit: (direction: number) => ({
-            x: direction > 0 ? -1000 : 1000,
+        exit: {
             opacity: 0
-        })
+        }
     };
 
     return {

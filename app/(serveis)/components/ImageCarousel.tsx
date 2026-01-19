@@ -35,20 +35,19 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
             </button>
 
             {/* Contenedor de imagen */}
-            <div className="relative w-full max-w-3xl h-96 md:h-[500px] overflow-hidden rounded-[40px]">
+            <div className="relative w-full max-w-3xl h-96 md:h-125 overflow-hidden rounded-[40px]">
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                         key={`${currentIndex}-${transitionCount}`}
                         src={images[currentIndex].src}
                         alt={images[currentIndex].alt}
-                        custom={direction}
                         variants={slideVariants}
                         initial="enter"
                         animate="center"
                         exit="exit"
                         transition={{
-                            x: { type: "spring", stiffness: 300, damping: 50 },
-                            opacity: { duration: 0.3 }
+                            duration: 1,
+                            ease: "easeInOut"
                         }}
                         className="absolute w-full h-full object-cover"
                     />
