@@ -44,14 +44,19 @@ export const servicesData: ServiceSectionType[] = [
                 L’Art estimula les teves capacitats expressives i creatives. La seva 
                 dimensió dinàmica i simbòlica afaforeix el desbloqueig d’emocions i 
                 pensaments, alhora que obre noves maneres de poder mirar i 
-                mirar-te.\n L’Artteràpia desplega un espai d’acompanyament terapèutic on els 
+                mirar-te. L'Artteràpia desplega un espai d'acompanyament terapèutic on els 
                 llenguatges i processos artístics t’ajuden a trobar les estratègies i 
                 recursos propis per elaborar i donar resposta a moments vitals que 
                 puguis travessar.`,
-                `El marc acompanyat de l’ Artteràpia és un espai d’autoconeixement 
-                que facilita:\n-L’Expressió del nostre sentir\n-Desenvolupa l’empatia\n
-                -Potencia la capacitat creativa i per tant resolutiva\n-Millora l’autoestima i activa la nostra part més vital,
-                -Incrementa l’autonomia\n-Disminueix l’ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present.`
+                `El marc acompanyat de l'Artteràpia és un espai d'autoconeixement que facilita:`
+            ],
+            listItems: [
+                `L'Expressió del nostre sentir`,
+                `Desenvolupa l'empatia`,
+                `Potencia la capacitat creativa i per tant resolutiva`,
+                `Millora l'autoestima i activa la nostra part més vital`,
+                `Incrementa l'autonomia`,
+                `Disminueix l'ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present`
             ],
         },
         bgColor: 'bg-lilac',
