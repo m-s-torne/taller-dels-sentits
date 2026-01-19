@@ -5,7 +5,7 @@ import {
     HeroSection, 
     LongDescription, 
     MoreContentSection, 
-    QuestionsSection,
+    QuestionCarousel,
     DisclaimerSection,
     ReviewsSection,
     StaticQuote,
@@ -36,7 +36,7 @@ export default function Artterapia() {
 
                 <LongDescription longDescription={service.longDescription} />
 
-                <QuestionsSection questions={service.questions} />
+                <QuestionCarousel questions={service.questions} />
 
                 <ImageCarousel images={carouselImages} />
 

@@ -6,7 +6,7 @@ import {
     DisclaimerSection, 
     LongDescription, 
     MoreContentSection, 
-    QuestionsSection, 
+    QuestionCarousel, 
     ReviewsSection,
     StaticQuote,
 } from '@/app/(serveis)/components';
@@ -38,7 +38,7 @@ export default function Artperdins() {
 
                 <ImageCarousel images={carouselImages1} />
 
-                <QuestionsSection questions={service.questions}/>
+                <QuestionCarousel questions={service.questions}/>
 
                 <MoreContentSection moreContent={service.moreContent} />
 
