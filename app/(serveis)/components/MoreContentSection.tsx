@@ -27,7 +27,7 @@ export const MoreContentSection = ({ moreContent }: MoreContentSectionProps) => 
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="flex justify-center"
+                className="flex justify-center mb-6"
             >
                 {/* Botón expandible */}
                 <button
@@ -51,10 +51,6 @@ export const MoreContentSection = ({ moreContent }: MoreContentSectionProps) => 
                     {moreContent.buttonText.trim()}
                 </button>
             </motion.div>
-
-            <div className="mb-6">
-                <p className="text-shakespeare! font-bold text-9xl text-center">...</p>
-            </div>
 
             {/* Contenido expandible - Full width */}
             <AnimatePresence>
