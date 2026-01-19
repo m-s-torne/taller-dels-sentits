@@ -185,7 +185,10 @@ export const servicesData: ServiceSectionType[] = [
             }
         ],
         moreContent: {
-            buttonText: `Quant fa que no pintes?`,
+            buttonText: `
+                L'art és un viatge cap endins... Un viatge cap enfora... \n 
+                És en aquest vaivé que ens posa en moviment i pot ser transformador
+            `,
             layout: `text-only-not-heading`,
             content: [
                 `Les nostres eines seran els pinzells, els acrílics, els papers de petit i gran format, les teles, els olis i els 

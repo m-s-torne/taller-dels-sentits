@@ -32,16 +32,10 @@ export const MoreContentSection = ({ moreContent }: MoreContentSectionProps) => 
                 {/* Botón expandible */}
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    style={layout === 'text-only' ? { fontFamily: 'var(--font-playfair), Georgia, serif' } : undefined}
                     className={`
                         bg-lilac text-shakespeare py-6 rounded-[40px] 
                         border-5 border-shakespeare font-light
-                        ${layout === 'with-images' 
-                            ? 'text-sm sm:text-base lg:text-lg px-8'
-                            : layout === 'text-only-not-heading' 
-                            ? 'text-sm sm:text-base lg:text-lg px-8 sm:px-65 py-10'
-                            : 'text-2xl sm:text-4xl px-8 sm:px-45'
-                        }
+                        text-sm sm:text-base lg:text-lg px-8
                         leading-relaxed hover:bg-shakespeare 
                         hover:text-lilac hover:shadow-thick-lilac-border-shakespeare 
                         transition-all duration-300 whitespace-pre-line text-center 

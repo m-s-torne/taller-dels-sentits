@@ -40,15 +40,17 @@ export default function Artperdins() {
 
                 <QuestionCarousel questions={service.questions}/>
 
-                <MoreContentSection moreContent={service.moreContent} />
 
                 <RestArtperDins rest={service.rest}/>
 
                 <ImageCarousel images={carouselImages2} />
 
-                <DisclaimerSection disclaimer={service.disclaimer}/>
+
+                <MoreContentSection moreContent={service.moreContent} />
 
                 <ReviewsSection reviews={service.reviews!}/>
+                
+                <DisclaimerSection disclaimer={service.disclaimer}/>
             </div>
         </main>
     );
