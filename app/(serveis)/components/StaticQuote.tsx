@@ -6,9 +6,9 @@ interface StaticQuoteProps {
 
 export const StaticQuote = ({ quote }: StaticQuoteProps) => {
     return (
-        <div className="h-35 pt-5 mb-4 md:mb-6 flex items-start justify-center">
+        <div className="mb-16 flex items-center justify-center">
             <div className="w-full text-center px-8">
-                <p className="text-shakespeare! text-base sm:text-xl font-light italic mb-2 leading-relaxed">
+                <p className="text-shakespeare! text-base sm:text-xl font-light italic mb-4 leading-relaxed">
                     "{quote.text}"
                 </p>
                 <p className="text-xs sm:text-sm">

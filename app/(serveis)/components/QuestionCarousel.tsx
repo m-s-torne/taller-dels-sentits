@@ -30,7 +30,7 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
             transition={{ duration: 0.6 }}
             className="mb-16"
         >
-            <div className="relative h-35 pt-5 mb-4 md:mb-6 flex items-start justify-center overflow-hidden">
+            <div className="relative flex items-center justify-center overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}

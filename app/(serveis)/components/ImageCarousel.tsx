@@ -17,7 +17,7 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
     } = useImageCarousel(images.length);
 
     return (
-        <div className="relative w-full flex items-center justify-center py-12">
+        <div className="relative w-full flex items-center justify-center mb-16">
             {/* Botón anterior */}
             <button
                 onClick={handlePrev}

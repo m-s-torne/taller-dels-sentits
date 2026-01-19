@@ -24,7 +24,7 @@ export default function Artterapia() {
             <div className="max-w-5xl mx-auto">
                 <HeroSection service={service} />
 
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-center mb-16">
                     <img
                         className="w-50 h-50 sm:w-62 sm:h-62 md:w-85 md:h-85 object-cover rounded-full shadow-lg"
                         src={headerImg.src}
