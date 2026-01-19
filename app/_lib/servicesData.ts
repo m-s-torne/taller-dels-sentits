@@ -17,17 +17,16 @@ export const servicesData: ServiceSectionType[] = [
         shortDescription: "Acompanyem les persones en els seus processos vitals a través de les eines de l' Art.",
         longDescription: [`
             Per la meva trajectòria personal i professional he pogut experimentar l’eficàcia dels llenguatges 
-            artístics per incidir en la qualitat del viure de les persones i també com un acompanyament acurat i 
-            respectuós, pot ajudar a l’ expressió de l’àmbit emocional i al desplegament d’ una simbolització 
-            inherent a la persona, que fa que es mobilitzin els propis recursos reguladors i resolutius davant de les 
-            dificultats emocionals, físiques, psicològiques o socials i que poden influir de forma clara en la salut de 
-            la persona.`,
+            artístics per incidir en la qualitat del viure de les persones, i també com un acompanyament acurat i 
+            respectuós pot ajudar a l’ expressió de l’àmbit emocional i al desplegament d’ una simbolització 
+            inherent, que fa que es mobilitzin els propis recursos reguladors i resolutius davant de les 
+            dificultats emocionals, físiques, psicològiques o socials i que poden influir de forma clara en la nostra salut.`,
 
-            `Les meves eines i recursos provenen inicialment dels meus estudis artístics i han estat els postgraus i 
-            màsters en Artteràpia i Acompanyament Creatiu els que han configurat el meu marc teòric per vincular-les 
-            a la salut de les persones i aplicar-les de forma terapèutica. Les meves línees de treball es basen en 
+            `Les meves eines i recursos provenen inicialment de formació artística i han estat els postgraus i 
+            màsters en Artteràpia i Acompanyament Creatiu els que han configurat el marc teòric per vincular-les 
+            a la salut de les persones i aplicar-les de forma terapèutica. Les nostres línies de treball es basen en 
             l’enfocament artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
-            des d’ un enfocament gestàltic de Javier Melguizo
+            des d’ un enfocament gestàltic de Javier Melguizo.
         `],
         quotes: artterapiaQuotes,
         questions: [`
@@ -37,8 +36,8 @@ export const servicesData: ServiceSectionType[] = [
         ],
         moreContent: {
             buttonText: `
-                Un viatge cap endins... Un viatge cap en fora... \n 
-                És en aquest vaivé que l’art ens posa en moviment i pot ser transformador
+                L'art és un viatge cap endins... Un viatge cap enfora... \n 
+                És en aquest vaivé que ens posa en moviment i pot ser transformador
             `,
             content: [`
                 L’Art estimula les teves capacitats expressives i creatives. La seva 
@@ -48,7 +47,7 @@ export const servicesData: ServiceSectionType[] = [
                 llenguatges i processos artístics t’ajuden a trobar les estratègies i 
                 recursos propis per elaborar i donar resposta a moments vitals que 
                 puguis travessar.`,
-                `El marc acompanyat de l’ Artteràpia és un espai d’autoconeixement 
+                `El marc acompanyant de l’ Artteràpia és un espai d’autoconeixement 
                 que facilita:\n-L’Expressió del nostre sentir\n-Desenvolupa l’empatia\n
                 -Potencia la capacitat creativa i per tant resolutiva\n-Millora l’autoestima i activa la nostra part més vital,
                 -Incrementa l’autonomia\n-Disminueix l’ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present.`
@@ -58,7 +57,7 @@ export const servicesData: ServiceSectionType[] = [
         contentKey: 'artterapia',
         icon: ArtterapiaIcon.src,
         disclaimer: `
-            Per fer aquestes sessions no necessito que siguis habilidós ni que tinguis formació artística. Els serveis 
+            Per fer aquestes sessions no és necessari que siguis habilidós ni tenir formació artística. Els serveis 
             d’artteràpia no són sanitaris ni substitueixen tractament mèdics. L’acceptació és voluntària i responsable.`,
         reviews: [
             {
@@ -108,7 +107,7 @@ export const servicesData: ServiceSectionType[] = [
                 lúdica, de gran valor pels infants.`,
             sessionTypes: [
                 {
-                    desc: `Sessions individuals amb peridicitat setmanal o quinzenal.`,
+                    desc: `Sessions individuals amb periodicitat setmanal o quinzenal.`,
                     icon: GestoIcon.src,
                 },
                 {
@@ -120,7 +119,7 @@ export const servicesData: ServiceSectionType[] = [
                     icon: CreatividadIcon.src,
                 },
                 {
-                    desc: `Sessions externes per a centres educatius, ajuntaments, entitats socials i col.lectius d' empresa.`,
+                    desc: `Sessions externes per a centres educatius, ajuntaments, entitats socials i col·lectius d' empresa.`,
                     icon: PinturasIcon.src,
                 }
             ]
@@ -161,7 +160,7 @@ export const servicesData: ServiceSectionType[] = [
                 Dibuix i la Pintura, del coneixement del Color, les Formes i el Traç, l’experiència del treball en Volum i 
                 del Collage…`,
                 `El treball plàstic és sobretot un treball individual, però també hi hauran moltes propostes
-                col.lectives que s’aniran desplegant al llarg del curs. El grup serà important pel clima de treball i el 
+                col·lectives que s’aniran desplegant al llarg del curs. El grup serà important pel clima de treball i el 
                 vincle amb ell ajudarà a sostenir tot allò que vagi sorgint, així com també serà clau per compartir si 
                 es fa necessari i tancar la sessió. `,
                 `No buscarem una manera “correcta” de pintar, ni donarem valor a una idea
@@ -236,7 +235,7 @@ export const servicesData: ServiceSectionType[] = [
             }
         ],
         rest: {
-            title: `Els Monogràcs de l’Artperdins:`,
+            title: `Els Monogràfics de l’Artperdins:`,
             content: [
                 `En un format més petit , els monogràfics són una bona alternativa per a qui no disposa de molt 
                 de temps. Són esporàdics i que poden anar des de propostes i seminaris artístics amb una temàtica 
@@ -244,7 +243,7 @@ export const servicesData: ServiceSectionType[] = [
             ],
             images: [],
         },
-        disclaimer: `Per fer aquestes sessions no necessito que siguis habilidós ni que tinguis formació artística. Els serveis 
+        disclaimer: `Per fer aquestes sessions no és necessari que siguis habilidós ni tenir formació artística. Els serveis 
                     d’artteràpia no són sanitaris ni substitueixen tractament mèdics. L’acceptació és voluntària i responsable.`,
         bgColor: 'bg-lilac',
         contentKey: 'artperdins',
@@ -260,8 +259,8 @@ export const servicesData: ServiceSectionType[] = [
             estudiants de diferents edats. Les activitats estan pensades per complementar l’educació formal, 
             fomentant la creativitat i l’expressió personal.`,
             
-            `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant dife
-            rentes tècniques artístiques y temàtiques segons les necessitats específiques. Les activitats promouen un 
+            `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant diferents 
+            tècniques artístiques i temàtiques segons les necessitats específiques. Les activitats promouen un 
             aprenentatge vivencial i significatiu a través de l’experiència artística.
         `],
         quotes: [],
