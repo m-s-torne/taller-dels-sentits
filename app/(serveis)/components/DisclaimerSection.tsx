@@ -15,8 +15,8 @@ export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
             transition={{ duration: 0.6 }}
             className="mb-16"
         >
-            <div className="bg-shakespeare/10 border-l-4 border-shakespeare p-6 rounded-r-lg">
-                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed italic whitespace-pre-line">
+            <div className="bg-shakespeare/10 border-l-4 border-shakespeare p-5 rounded-r-lg">
+                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed italic">
                     {disclaimer.trim()}
                 </p>
             </div>
