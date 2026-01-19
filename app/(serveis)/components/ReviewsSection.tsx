@@ -27,7 +27,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="mb-16 pt-10"
         >
             {/* Título */}
             <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-10">

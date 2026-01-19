@@ -35,18 +35,18 @@ export default function Artterapia() {
                 {service.quote && <StaticQuote quote={service.quote} />}
 
                 <LongDescription longDescription={service.longDescription} />
+                
+                <RestArtterapia rest={service.rest!} />
 
                 <QuestionCarousel questions={service.questions} />
 
                 <ImageCarousel images={carouselImages} />
 
                 <MoreContentSection moreContent={service.moreContent} />
-
-                <RestArtterapia rest={service.rest!} />
-
-                <DisclaimerSection disclaimer={service.disclaimer} />
-
+                
                 <ReviewsSection reviews={service.reviews!} />
+                
+                <DisclaimerSection disclaimer={service.disclaimer} />
             </div>
         </main>
     );
