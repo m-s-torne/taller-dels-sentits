@@ -1,6 +1,6 @@
 export { HeroSection } from './HeroSection'
 export { LongDescription } from './LongDescription'
-export { QuoteCarousel } from './QuoteCarousel'
+export { StaticQuote } from './StaticQuote'
 export { MoreContentSection } from './MoreContentSection'
 export { QuestionsSection } from './QuestionsSection'
 export { DisclaimerSection } from './DisclaimerSection'

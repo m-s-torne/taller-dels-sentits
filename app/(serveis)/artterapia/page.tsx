@@ -1,7 +1,5 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
-import { QuoteCarousel } from '@/app/(serveis)/components/QuoteCarousel';
-import { useServeis } from '@/app/(serveis)/hooks/useServeis';
 import { 
     HeroSection, 
     LongDescription, 
@@ -9,6 +7,7 @@ import {
     QuestionsSection,
     DisclaimerSection,
     ReviewsSection,
+    StaticQuote,
 } from '@/app/(serveis)/components';
 import {
     RestArtterapia,
@@ -17,15 +16,18 @@ import { carouselImages } from '@/app/(serveis)/artterapia/lib/carouselImages';
 import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
 
 export default function Artterapia() {
-    const quoteIndices = useServeis();
     const service = servicesData[0]; // artterapia
+    const rilkeQuote = {
+        text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
+        author: "Rainer Maria Rilke. Poeta"
+    };
 
     return (
         <main className={`${service.bgColor} md:py-14 py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen`}>
             <div className="max-w-5xl mx-auto">
                 <HeroSection service={service} />
 
-                <QuoteCarousel quotes={service.quotes} currentIndex={quoteIndices[service.id]} />
+                <StaticQuote quote={rilkeQuote} />
 
                 <LongDescription longDescription={service.longDescription} />
 
