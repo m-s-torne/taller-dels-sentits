@@ -30,7 +30,7 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
             transition={{ duration: 0.6 }}
             className="mb-16"
         >
-            <div className="relative flex items-center justify-center overflow-hidden">
+            <div className="relative min-h-24 flex items-center justify-center">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -38,9 +38,9 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.8, ease: 'easeInOut' }}
-                        className="absolute w-full text-center px-8"
+                        className="w-full text-center px-8"
                     >
-                        <p className="text-shakespeare! text-base sm:text-xl font-light italic mb-2 leading-relaxed">
+                        <p className="text-shakespeare! text-base sm:text-xl font-light italic leading-relaxed">
                             {questions[currentIndex].text}
                         </p>
                     </motion.div>

@@ -39,15 +39,13 @@ export default function Artperdins() {
 
                 <LongDescription longDescription={service.longDescription} />
 
-                <ImageCarousel images={carouselImages1} />
-
                 <QuestionCarousel questions={service.questions}/>
-
+                
+                <ImageCarousel images={carouselImages1} />
 
                 <RestArtperDins rest={service.rest}/>
 
                 <ImageCarousel images={carouselImages2} />
-
 
                 <MoreContentSection moreContent={service.moreContent} />
 
