@@ -71,10 +71,6 @@ export const servicesData: ServiceSectionType[] = [
                 `Millora l'autoestima i activa la nostra part més vital`,
                 `Incrementa l'autonomia`,
                 `Disminueix l'ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present`,
-                `El marc acompanyant de l’ Artteràpia és un espai d’autoconeixement 
-                que facilita:\n-L’Expressió del nostre sentir\n-Desenvolupa l’empatia\n
-                -Potencia la capacitat creativa i per tant resolutiva\n-Millora l’autoestima i activa la nostra part més vital,
-                -Incrementa l’autonomia\n-Disminueix l’ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present.`
             ],
         },
         bgColor: 'bg-lilac',
