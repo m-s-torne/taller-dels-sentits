@@ -79,7 +79,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                 <div className="flex justify-center gap-4 mt-8">
                     <button
                         onClick={handlePrev}
-                        className="text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        className="hover:cursor-pointer text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
                         aria-label="Review anterior"
                     >
                         <div 
@@ -94,7 +94,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
 
                     <button
                         onClick={handleNext}
-                        className="text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        className="hover:cursor-pointer text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
                         aria-label="Review siguiente"
                     >
                         <div 
