@@ -1,4 +1,3 @@
-import { artterapiaQuotes, artperdinsQuotes } from '@/app/_lib/quotes';
 import ArtterapiaIcon from '@/app/_assets/iconos/ESPACIO/NUBES.svg';
 import ArtperdinsIcon from '@/app/_assets/iconos/FLOR/PLANTA.svg';
 import CentresIcon from '@/app/_assets/iconos/ARTE/DIBUJO.svg';
@@ -28,19 +27,35 @@ export const servicesData: ServiceSectionType[] = [
             l’enfocament artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
             des d’ un enfocament gestàltic de Javier Melguizo.
         `],
-        quotes: artterapiaQuotes,
-        questions: [`
-            Necessites un espai per escoltar-te ?`, `Necessites fer un treball acompanyat en el moment vital que travesses?`,
-            `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`, `Tens ganes de fer un treball 
-            d’autoconeixement a través de les eines de l’art?`
+        quote: {
+            text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
+            author: "Rainer Maria Rilke. Poeta"
+        },
+        questions: [
+            {
+                service: 'artterapia',
+                text: `Necessites un espai per escoltar-te ?`
+            },
+            {
+                service: 'artterapia',
+                text: `Necessites fer un treball acompanyat en el moment vital que travesses?`
+            },
+            {
+                service: 'artterapia',
+                text: `Voldries connectar amb la teva capacitat creativa per resoldre alguna problemàtica?`
+            },
+            {
+                service: 'artterapia',
+                text: `Tens ganes de fer un treball d'autoconeixement a través de les eines de l'art?`
+            }
         ],
         moreContent: {
             buttonText: `
                 L'art és un viatge cap endins... Un viatge cap enfora... \n 
                 És en aquest vaivé que ens posa en moviment i pot ser transformador
             `,
-            content: [`
-                L’Art estimula les teves capacitats expressives i creatives. La seva 
+            content: [
+                `L’Art estimula les teves capacitats expressives i creatives. La seva 
                 dimensió dinàmica i simbòlica afaforeix el desbloqueig d’emocions i 
                 pensaments, alhora que obre noves maneres de poder mirar i 
                 mirar-te. L'Artteràpia desplega un espai d'acompanyament terapèutic on els 
@@ -56,10 +71,6 @@ export const servicesData: ServiceSectionType[] = [
                 `Millora l'autoestima i activa la nostra part més vital`,
                 `Incrementa l'autonomia`,
                 `Disminueix l'ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present`,
-                `El marc acompanyant de l’ Artteràpia és un espai d’autoconeixement 
-                que facilita:\n-L’Expressió del nostre sentir\n-Desenvolupa l’empatia\n
-                -Potencia la capacitat creativa i per tant resolutiva\n-Millora l’autoestima i activa la nostra part més vital,
-                -Incrementa l’autonomia\n-Disminueix l’ansietat i pot ser una eina de gran valor per elaborar experiències traumàtiques o dificultats passades o del present.`
             ],
         },
         bgColor: 'bg-lilac',
@@ -76,7 +87,7 @@ export const servicesData: ServiceSectionType[] = [
                     millor emocionalment i ens ha 
                     permès crear noves dinàmiques 
                     familiars.`,
-                author: `Mare d'una família de dos fills adolescents`,
+                author: `Mare de dos fills adolescents`,
             },
             {
                 review: `
@@ -151,16 +162,33 @@ export const servicesData: ServiceSectionType[] = [
             possibilitat de descobrir aspectes nous de nosaltres estimulant la pròpia capacitat reflexiva i creativa, 
             imprescindibles davant de qualsevol problemàtica que ens puguem trobar.`,
         ],
-        quotes: artperdinsQuotes,
+        quote: {
+            text: "Perquè la bellesa transforma, és una arma carregada de futur.",
+            author: "Gabriel Celaya. Poeta"
+        },
         questions: [
-            `Necessites un espai per a escoltar-te durant la setmana?`,
-            `T’ agradaria provar d’ expressar-ho tu mateix?`,
-            `Alguna vegada mirant una pintura has sentit que 
-            expressava com cap altra cosa el que tu
-            senties en aquell moment?`,
+            {
+                service: 'artperdins',
+                text: `Necessites un espai per a escoltar-te durant la setmana?`
+            },
+            {
+                service: 'artperdins',
+                text: `T' agradaria provar d' expressar-ho tu mateix?`
+            },
+            {
+                service: 'artperdins',
+                text: `Alguna vegada mirant una pintura has sentit que expressava com cap altra cosa el que tu senties en aquell moment?`
+            },
+            {
+                service: 'artperdins',
+                text: 'Quant fa que no pintes?'
+            }
         ],
         moreContent: {
-            buttonText: `Quant fa que no pintes?`,
+            buttonText: `
+                L'art és un viatge cap endins... Un viatge cap enfora... \n 
+                És en aquest vaivé que ens posa en moviment i pot ser transformador
+            `,
             layout: `text-only-not-heading`,
             content: [
                 `Les nostres eines seran els pinzells, els acrílics, els papers de petit i gran format, les teles, els olis i els 
@@ -271,8 +299,11 @@ export const servicesData: ServiceSectionType[] = [
             `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant diferents 
             tècniques artístiques i temàtiques segons les necessitats específiques. Les activitats promouen un 
             aprenentatge vivencial i significatiu a través de l’experiència artística.
-        `],
-        quotes: [],
+        `],        
+        quote: {
+            text: "Només jugant som creatius, i és d'aquesta manera que ens arribem a conèixer",
+            author: "Donald W. Winnicott. Pediatre i psicoanalista."
+        },
         questions: [],
         moreContent: {
             buttonText: `Formació per al professorat`,

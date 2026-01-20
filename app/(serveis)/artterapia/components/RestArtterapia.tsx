@@ -22,7 +22,7 @@ export const RestArtterapia = ({ rest }: RestSectionProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="pt-10"
+            className="mb-16"
         >
             <div className="text-center mb-12 space-y-7">
                 <h2 className="text-shakespeare! text-2xl sm:text-5xl font-light tracking-wide">
