@@ -87,7 +87,7 @@ export const servicesData: ServiceSectionType[] = [
                     millor emocionalment i ens ha 
                     permès crear noves dinàmiques 
                     familiars.`,
-                author: `Mare d'una família de dos fills adolescents`,
+                author: `Mare de dos fills adolescents`,
             },
             {
                 review: `
