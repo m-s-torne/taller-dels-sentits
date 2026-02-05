@@ -48,6 +48,10 @@ export interface ContactFormData {
   // This field should ALWAYS be empty if filled by a human
   // Bots will fill it automatically, allowing us to detect them
   website?: string;
+  
+  // 🔒 reCAPTCHA Enterprise token
+  // Generated client-side and verified server-side
+  recaptchaToken?: string;
 }
 
 export type FormStatus = 'idle' | 'sending' | 'success' | 'error';

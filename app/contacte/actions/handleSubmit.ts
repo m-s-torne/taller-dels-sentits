@@ -1,5 +1,6 @@
 "use server"
 import type { ContactFormData, CourseGroup } from '@/app/contacte/types';
+import { verifyRecaptcha } from './verifyRecaptcha';
 
 /**
  * Validates email format
@@ -30,6 +31,28 @@ export const validateAndSanitize = async (
   formData: ContactFormData
 ): Promise<{ valid: boolean; data?: ContactFormData; error?: string }> => {
   try {
+    // ===== reCAPTCHA ENTERPRISE VERIFICATION =====
+    // Verify the token on the server with Google's API
+    // This prevents bots from bypassing client-side validation
+    if (!formData.recaptchaToken) {
+      console.log('🚨 No reCAPTCHA token provided');
+      return {
+        valid: false,
+        error: 'Verificació de seguretat fallida. Si us plau, recarrega la pàgina.'
+      };
+    }
+
+    const recaptchaResult = await verifyRecaptcha(formData.recaptchaToken);
+    if (!recaptchaResult.success) {
+      console.log('🚨 reCAPTCHA verification failed:', recaptchaResult.error);
+      return {
+        valid: false,
+        error: recaptchaResult.error || 'Verificació de seguretat fallida. Si us plau, torna-ho a intentar.'
+      };
+    }
+
+    console.log(`✅ reCAPTCHA verified - Score: ${recaptchaResult.score}`);
+
     // ===== HONEYPOT VALIDATION =====
     // Silent rejection if honeypot field is filled (indicates bot)
     if (formData.website && formData.website.trim() !== '') {

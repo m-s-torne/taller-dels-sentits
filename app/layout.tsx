@@ -75,8 +75,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  
   return (
     <html lang="ca">
+      <head>
+        {/* Load reCAPTCHA Enterprise script */}
+        {recaptchaSiteKey && (
+          <script
+            src={`https://www.google.com/recaptcha/enterprise.js?render=${recaptchaSiteKey}`}
+            async
+            defer
+          />
+        )}
+      </head>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >

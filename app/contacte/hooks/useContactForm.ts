@@ -41,7 +41,7 @@ const initialFormData: ContactFormData = {
   availability: '',
   
   // Honeypot field (anti-bot)
-  website: '',
+  website: 'TEST_BOT',
 };
 
 const initialErrorsData: FormErrors = {
@@ -200,9 +200,41 @@ export const useContactForm = () => {
     const loadingToast = toast.loading('Enviant el teu missatge...');
 
     try {
-      // STEP 1: Validate and sanitize on server (Server Action)
+      // STEP 1: Execute reCAPTCHA Enterprise (client-side)
+      // This generates a token that proves the user interacted with the form
+      let recaptchaToken: string;
+      try {
+        // Wait for grecaptcha enterprise to be available
+        if (typeof window.grecaptcha === 'undefined' || !window.grecaptcha.enterprise) {
+          throw new Error('reCAPTCHA Enterprise not loaded');
+        }
+
+        const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+        if (!siteKey) {
+          throw new Error('reCAPTCHA site key not configured');
+        }
+
+        // Execute reCAPTCHA Enterprise with custom action
+        recaptchaToken = await window.grecaptcha.enterprise.execute(siteKey, { 
+          action: 'SUBMIT_CONTACT_FORM' 
+        });
+        
+        console.log('✅ reCAPTCHA token generated');
+      } catch (recaptchaError) {
+        console.error('❌ reCAPTCHA execution error:', recaptchaError);
+        toast.dismiss(loadingToast);
+        toast.error('Error de verificació de seguretat. Si us plau, recarrega la pàgina i torna-ho a intentar.');
+        setStatus('error');
+        return;
+      }
+
+      // STEP 2: Validate and sanitize on server (Server Action)
+      // This includes reCAPTCHA token verification
       // This cannot be bypassed by malicious clients
-      const validation = await validateAndSanitize(formData);
+      const validation = await validateAndSanitize({
+        ...formData,
+        recaptchaToken
+      });
 
       // Check for honeypot detection
       if (!validation.valid && validation.error === 'invalid_honeypot') {
@@ -226,7 +258,7 @@ export const useContactForm = () => {
         return;
       }
 
-      // STEP 2: Send email from client with sanitized data
+      // STEP 3: Send email from client with sanitized data
       // Data is already validated and sanitized by the server
       const result = await sendEmail(validation.data!);
 
