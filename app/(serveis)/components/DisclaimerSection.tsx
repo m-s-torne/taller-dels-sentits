@@ -1,11 +1,13 @@
 import { motion } from 'motion/react';
 
 interface DisclaimerSectionProps {
-    disclaimer: string;
+    disclaimer: string[];
 }
 
 export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
-    if (!disclaimer || !disclaimer.trim()) return null;
+    if (!disclaimer || disclaimer.length === 0) return null;
+
+    const [firstSentence, ...restSentences] = disclaimer;
 
     return (
         <motion.section
@@ -15,11 +17,21 @@ export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
             transition={{ duration: 0.6 }}
             className="mb-16"
         >
-            <div className="bg-shakespeare/10 border-l-4 border-shakespeare p-5 rounded-r-lg">
-                <p className="text-gray-700 text-xs sm:text-sm leading-relaxed italic">
-                    {disclaimer.trim()}
-                </p>
-            </div>
+            {/* Primera frase fuera del container */}
+            <p className="text-shakespeare! text-xs sm:text-sm leading-relaxed mb-4">
+                {firstSentence.trim()}
+            </p>
+            
+            {/* Resto de frases dentro del container */}
+            {restSentences.length > 0 && (
+                <div className="bg-shakespeare/10 border-l-4 border-shakespeare p-5 rounded-r-lg">
+                    {restSentences.map((sentence, index) => (
+                        <p key={index} className="text-gray-700 text-xs sm:text-sm leading-relaxed italic">
+                            {sentence.trim()}
+                        </p>
+                    ))}
+                </div>
+            )}
         </motion.section>
     );
 };
