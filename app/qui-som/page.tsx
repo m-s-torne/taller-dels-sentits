@@ -9,9 +9,9 @@ export default function QuiSom () {
     ];
 
     return (
-        <main className="min-h-screen bg-white">
-            <div className="container mx-auto mt-5 sm:mt-15 px-6 sm:px-8 lg:px-12 py-22 sm:py-16 lg:py-30">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light text-shakespeare text-center mb-10 md:mb-15">
+        <main className="py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen">
+            <div className="max-w-5xl mx-auto">
+                <h1 className="text-center text-shakespeare! text-3xl sm:text-4xl lg:text-6xl font-light tracking-[0.2em] mb-6">
                     {quiSomData.mainTitle}
                 </h1>
                 
@@ -25,11 +25,14 @@ export default function QuiSom () {
                                 headingLevel={section.headingLevel}
                                 title={section.title}
                             />
-                            {section.paragraphs.map((paragraph, paragraphIndex) => (
-                                <p key={paragraphIndex}>
-                                    {paragraph}
-                                </p>
-                            ))}
+                            {section.paragraphs.map((paragraph, paragraphIndex) => {
+                                const isHighlightedParagraph = paragraph.includes("El Taller dels Sentits és un espai respectuós");
+                                return (
+                                    <p key={paragraphIndex} className={isHighlightedParagraph ? 'font-bold' : ''}>
+                                        {paragraph}
+                                    </p>
+                                );
+                            })}
                         </section>
                     ))}
 
