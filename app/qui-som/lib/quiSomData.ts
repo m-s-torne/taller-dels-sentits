@@ -3,7 +3,7 @@ import victorImage from '../assets/victor.jpg';
 import marionaImage from '../assets/mariona.jpg';
 
 export const quiSomData = {
-  mainTitle: "Qui Som?",
+  mainTitle: "QUI SOM?",
   introduction: {
     title: "El Taller dels Sentits: 30 anys de trajectòria fent ArtSalut",
     paragraphs: [
