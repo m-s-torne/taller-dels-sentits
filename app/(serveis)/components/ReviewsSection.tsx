@@ -13,7 +13,6 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
     const {
         validReviews,
         currentIndex,
-        desktopReviews,
         mobileReview,
         handlePrev,
         handleNext,
@@ -34,25 +33,23 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                 Algunes persones ens han dit:
             </h2>
             
-            {/* Carrusel Desktop (3 reviews) */}
+            {/* Carrusel Desktop (1 review) */}
             <div className="hidden md:block relative">
-                <div className="grid grid-cols-3 gap-8">
-                    {desktopReviews.map((review, index) => (
-                        <motion.div 
-                            key={`${currentIndex}-${index}`}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 2, ease: "easeInOut" }}
-                            className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
-                        >
-                            <p className="text-sm sm:text-base leading-relaxed mb-4 whitespace-pre-line">
-                                {review.review.trim()}
-                            </p>
-                            <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
-                                - {review.author.trim()}
-                            </p>
-                        </motion.div>
-                    ))}
+                <div className="max-w-3xl mx-auto min-h-90 flex justify-center items-center">
+                    <motion.div 
+                        key={currentIndex}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 2, ease: "easeInOut" }}
+                        className="w-full border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
+                    >
+                        <p className="text-sm sm:text-base leading-relaxed mb-4">
+                            {mobileReview.review.trim()}
+                        </p>
+                        <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
+                            - {mobileReview.author.trim()}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 
@@ -63,9 +60,9 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2, ease: "easeInOut" }}
-                    className="h-60 border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
+                    className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
                 >
-                    <p className="text-sm sm:text-base leading-relaxed mb-4 whitespace-pre-line">
+                    <p className="text-sm sm:text-base leading-relaxed mb-4">
                         {mobileReview.review.trim()}
                     </p>
                     <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
