@@ -1,6 +1,8 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
 import headerImg from './assets/images/taller_dels_sentits_capçalera_artperdins.jpg';
+import angel1 from '../artterapia/assets/images/angel_1.jpg';
+import angel2 from '../artterapia/assets/images/angel_2.jpg';
 import { 
     HeroSection,
     DisclaimerSection, 
@@ -47,7 +49,13 @@ export default function Artperdins() {
 
                 <ImageCarousel images={carouselImages2} />
 
-                <MoreContentSection moreContent={service.moreContent} />
+                <MoreContentSection 
+                    moreContent={service.moreContent}
+                    images={[
+                        { src: angel1.src, alt: 'Àngel 1' },
+                        { src: angel2.src, alt: 'Àngel 2' }
+                    ]}
+                />
 
                 <ReviewsSection reviews={service.reviews!}/>
                 
