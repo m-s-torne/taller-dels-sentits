@@ -21,7 +21,7 @@ export const ContentSection = () => {
     return (
         <motion.section 
             id="essencia" 
-            className="bg-shakespeare py-20 px-4 sm:px-6 md:px-10 overflow-hidden"
+            className="bg-shakespeare sm:py-20 py-10 px-4 sm:px-6 md:px-10 overflow-hidden"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
