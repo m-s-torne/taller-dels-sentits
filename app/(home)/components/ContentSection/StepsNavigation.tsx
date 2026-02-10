@@ -50,7 +50,7 @@ const StepsNavigation = ({ steps, selectedStep, handleStepChange }: StepsNavigat
                         </div>
                         
                         {/* Texto del paso - área clickeable ceñida al texto */}
-                        <span className={`text-white text-2xl sm:text-3xl font-light tracking-wide transition-colors duration-200 whitespace-nowrap ${
+                        <span className={`text-white text-xl sm:text-3xl font-light tracking-wide transition-colors duration-200 whitespace-nowrap ${
                             selectedStep === step.key ? 'text-white' : 'text-white/70'
                         } group-hover:text-white`}>
                             {step.label}
