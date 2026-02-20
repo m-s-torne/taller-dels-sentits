@@ -105,7 +105,7 @@ export const servicesData: ServiceSectionType[] = [
             },*/
             {
                 review: `
-                    Éstic molt contenta. M'has ajudat molt. Va ser una experiència inoblidable. 
+                    Estic molt contenta. M'has ajudat molt. Va ser una experiència inoblidable. 
                     Esto lo dice una niña de 11 años... importante edad de la reseña. Con las clases 
                     de arteterapia, mi hijo consiguió entender lo que sentía y aprendió a expresarlo, 
                     sin palabras con sus "pequeñas obras". Míriam consiguió entrar en su mundo... y 

@@ -1,5 +1,5 @@
 "use client"
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useReviews } from '@/app/(serveis)/hooks/useReviews';
 
 interface ReviewsSectionProps {
@@ -13,9 +13,12 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
     const {
         validReviews,
         currentIndex,
+        direction,
+        transitionCount,
         mobileReview,
         handlePrev,
         handleNext,
+        slideVariants,
     } = useReviews(reviews);
 
     if (validReviews.length === 0) return null;
@@ -36,12 +39,44 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             {/* Carrusel Desktop (1 review) */}
             <div className="hidden md:block relative">
                 <div className="max-w-3xl mx-auto min-h-90 flex justify-center items-center">
-                    <motion.div 
-                        key={currentIndex}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                        className="w-full border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
+                    <AnimatePresence initial={false} custom={direction}>
+                        <motion.div 
+                            key={`${currentIndex}-${transitionCount}`}
+                            variants={slideVariants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                duration: 1,
+                                ease: "easeInOut"
+                            }}
+                            className="w-full border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute top-1/2 -translate-y-1/2"
+                        >
+                            <p className="text-sm sm:text-base leading-relaxed mb-4">
+                                {mobileReview.review.trim()}
+                            </p>
+                            <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
+                                - {mobileReview.author.trim()}
+                            </p>
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </div>
+
+            {/* Carrusel Mobile (1 review) */}
+            <div className="md:hidden relative min-h-90">
+                <AnimatePresence initial={false} custom={direction}>
+                    <motion.div
+                        key={`${currentIndex}-${transitionCount}`}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            duration: 1,
+                            ease: "easeInOut"
+                        }}
+                        className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute w-full top-1/2 -translate-y-1/2"
                     >
                         <p className="text-sm sm:text-base leading-relaxed mb-4">
                             {mobileReview.review.trim()}
@@ -50,25 +85,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                             - {mobileReview.author.trim()}
                         </p>
                     </motion.div>
-                </div>
-            </div>
-
-            {/* Carrusel Mobile (1 review) */}
-            <div className="md:hidden">
-                <motion.div
-                    key={currentIndex}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
-                    className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col"
-                >
-                    <p className="text-sm sm:text-base leading-relaxed mb-4">
-                        {mobileReview.review.trim()}
-                    </p>
-                    <p className="text-shakespeare! text-xs sm:text-sm font-medium whitespace-pre-line mt-auto">
-                        - {mobileReview.author.trim()}
-                    </p>
-                </motion.div>
+                </AnimatePresence>
             </div>
 
             {/* Botones de navegación */}
