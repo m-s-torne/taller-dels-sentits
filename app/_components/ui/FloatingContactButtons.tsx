@@ -20,7 +20,7 @@ export default function FloatingContactButtons() {
           aria-label="Contactar per WhatsApp"
         >
           <svg
-            className="h-7 w-7 text-white"
+            className="h-7 w-7 text-lilac"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -38,11 +38,12 @@ export default function FloatingContactButtons() {
       >
         <Link
           href="mailto:tallerdelssentits@gmail.com"
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-shakespeare shadow-lg transition-transform hover:scale-110 hover:shadow-xl"
+          target="_blank"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform hover:scale-110 hover:shadow-xl"
           aria-label="Enviar correu electrònic"
         >
           <svg
-            className="h-7 w-7 text-white"
+            className="h-7 w-7 text-shakespeare"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
