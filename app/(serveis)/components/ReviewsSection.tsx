@@ -32,7 +32,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             className="mb-16 pt-20"
         >
             {/* Título */}
-            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-10">
+            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-3">
                 Algunes persones ens han dit:
             </h2>
             
@@ -50,7 +50,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                                 duration: 1,
                                 ease: "easeInOut"
                             }}
-                            className="w-full border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute top-1/2 -translate-y-1/2"
+                            className="max-w-xl mx-auto border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute top-1/2 -translate-y-1/2 left-0 right-0"
                         >
                             <p className="text-sm sm:text-base leading-relaxed mb-4">
                                 {mobileReview.review.trim()}
@@ -76,7 +76,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                             duration: 1,
                             ease: "easeInOut"
                         }}
-                        className="border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute w-full top-1/2 -translate-y-1/2"
+                        className="max-w-xl mx-auto border-3 border-shakespeare p-6 rounded-[30px] flex flex-col absolute top-1/2 -translate-y-1/2 left-0 right-0"
                     >
                         <p className="text-sm sm:text-base leading-relaxed mb-4">
                             {mobileReview.review.trim()}
@@ -90,7 +90,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
 
             {/* Botones de navegación */}
             {validReviews.length > 1 && (
-                <div className="flex justify-center gap-4 mt-8">
+                <div className="flex justify-center gap-4 mt-5">
                     <button
                         onClick={handlePrev}
                         className="hover:cursor-pointer text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
