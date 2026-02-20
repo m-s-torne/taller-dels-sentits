@@ -32,7 +32,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             className="mb-16 pt-20"
         >
             {/* Título */}
-            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-3">
+            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-5">
                 Algunes persones ens han dit:
             </h2>
             
