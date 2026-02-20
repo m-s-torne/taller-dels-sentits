@@ -20,7 +20,7 @@ const ButtonComponent = ({
             duration-200
             border-none
             shadow-sm
-            font-light
+            font-semibold
             `}
           onClick = { () => passingFunction?.()}
   >

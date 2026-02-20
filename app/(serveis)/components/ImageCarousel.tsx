@@ -17,25 +17,9 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
     } = useImageCarousel(images.length);
 
     return (
-        <div className="relative w-full flex items-center justify-center mb-16">
-            {/* Botón anterior */}
-            <button
-                onClick={handlePrev}
-                className="absolute hover:cursor-pointer left-4 md:left-12 z-10 text-shakespeare hover:text-shakespeare/70 transition-colors cursor-pointer bg-black/60 md:bg-transparent rounded-lg md:rounded-none py-4 px-3 md:p-0"
-                aria-label="Imagen anterior"
-            >
-                <div 
-                    className="transform transition-all duration-300 ease-out hover:scale-110"
-                    style={{ transform: 'rotate(-270deg)' }}
-                >
-                    <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
-                        <path d="M20 14L38 2L2 2Z" />
-                    </svg>
-                </div>
-            </button>
-
+        <div className="mb-16">
             {/* Contenedor de imagen */}
-            <div className="relative w-full max-w-3xl h-96 md:h-125 overflow-hidden rounded-[40px]">
+            <div className="relative w-full max-w-3xl mx-auto h-96 md:h-125 overflow-hidden rounded-[40px]">
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                         key={`${currentIndex}-${transitionCount}`}
@@ -54,21 +38,40 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
                 </AnimatePresence>
             </div>
 
-            {/* Botón siguiente */}
-            <button
-                onClick={handleNext}
-                className="absolute hover:cursor-pointer right-4 md:right-12 z-10 text-shakespeare hover:text-shakespeare/70 transition-colors cursor-pointer bg-black/60 md:bg-transparent rounded-lg md:rounded-none py-4 px-3 md:p-0"
-                aria-label="Imagen siguiente"
-            >
-                <div 
-                    className="transform transition-all duration-300 ease-out hover:scale-110"
-                    style={{ transform: 'rotate(270deg)' }}
-                >
-                    <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
-                        <path d="M20 14L38 2L2 2Z" />
-                    </svg>
+            {/* Botones de navegación */}
+            {images.length > 1 && (
+                <div className="flex justify-center gap-4 mt-8">
+                    <button
+                        onClick={handlePrev}
+                        className="hover:cursor-pointer text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        aria-label="Imagen anterior"
+                    >
+                        <div 
+                            className="transform transition-all duration-300 ease-out hover:scale-110"
+                            style={{ transform: 'rotate(-270deg)' }}
+                        >
+                            <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
+                                <path d="M20 14L38 2L2 2Z" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <button
+                        onClick={handleNext}
+                        className="hover:cursor-pointer text-shakespeare hover:text-shakespeare/70 transition-colors focus:outline-none active:outline-none [-webkit-tap-highlight-color:transparent]"
+                        aria-label="Imagen siguiente"
+                    >
+                        <div 
+                            className="transform transition-all duration-300 ease-out hover:scale-110"
+                            style={{ transform: 'rotate(270deg)' }}
+                        >
+                            <svg width="40" height="16" viewBox="0 0 40 16" fill="currentColor" className="mx-auto">
+                                <path d="M20 14L38 2L2 2Z" />
+                            </svg>
+                        </div>
+                    </button>
                 </div>
-            </button>
+            )}
         </div>
     );
 };
