@@ -4,6 +4,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
+import FloatingContactButtons from "./_components/ui/FloatingContactButtons";
 
 const playfair = Playfair_Display({ 
   subsets: ['latin'],
@@ -83,6 +84,7 @@ export default function RootLayout({
         <Header logoImg="/logo-taller-dels-sentits.svg"/>
         {children}
         <Footer/>
+        <FloatingContactButtons />
         <Toaster position="top-center" />
       </body>
     </html>
