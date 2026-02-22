@@ -1,6 +1,6 @@
 "use client"
 import emailjs from '@emailjs/browser';
-import type { ContactFormData, ServiceType } from '@/app/contacte/types';
+import type { ContactFormData, ServiceType } from '@/app/contacte/types/form.types';
 import { buildEmailMessage } from './buildEmailMessage';
 import { getServiceLabel } from './getServiceLabel';
 

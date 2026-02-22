@@ -1,4 +1,4 @@
-import type { FormStatus } from '@/app/contacte/types';
+import type { FormStatus } from '@/app/contacte/types/form.types';
 
 interface SubmitButtonProps {
   status: FormStatus;

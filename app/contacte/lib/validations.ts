@@ -1,4 +1,4 @@
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData } from '@/app/contacte/types/form.types';
 
 /**
  * Client-side form field validation functions

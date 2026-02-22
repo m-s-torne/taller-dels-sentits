@@ -4,7 +4,7 @@ import type {
   EducationStage,
   ContactPreference,
   Availability,
-} from '@/app/contacte/types';
+} from '@/app/contacte/types/form.types';
 
 interface Option<T> {
   value: T;

@@ -29,7 +29,7 @@ Next.js 16 art therapy center website with TypeScript, Tailwind CSS v4, and Moti
 Always use `@/app` alias (configured in tsconfig.json):
 ```typescript
 import { servicesData } from '@/app/_lib/servicesData';
-import type { ContactFormData } from '@/app/contacte/types';
+import type { ContactFormData } from '@/app/contacte/types/form.types';
 import ButtonComponent from '@/app/_components/ButtonComponent';
 ```
 

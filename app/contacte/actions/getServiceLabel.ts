@@ -1,4 +1,4 @@
-import type { ServiceType } from '@/app/contacte/types';
+import type { ServiceType } from '@/app/contacte/types/form.types';
 
 /**
  * Returns labels for all service types

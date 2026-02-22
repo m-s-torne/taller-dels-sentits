@@ -1,5 +1,5 @@
 "use server"
-import type { ContactFormData, CourseGroup } from '@/app/contacte/types';
+import type { ContactFormData, CourseGroup } from '@/app/contacte/types/form.types';
 
 /**
  * Validates email format
