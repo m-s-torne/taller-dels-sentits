@@ -21,20 +21,20 @@ const Contact = () => {
                 {/* This field is hidden from humans but visible to bots */}
                 {/* If filled, the form will be rejected on the server */}
                 <input
-                type="text"
-                name="website"
-                value={formData.website || ''}
-                onChange={(e) => updateField('website', e.target.value)}
-                style={{ display: 'none' }}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
+                    type="text"
+                    name="website"
+                    value={formData.website || ''}
+                    onChange={(e) => updateField('website', e.target.value)}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
                 />
         
                 {/* Service Type Selection */}
                 <ServiceTypeSelector
-                formData={formData} 
-                updateField={updateField}
+                    formData={formData} 
+                    updateField={updateField}
                 />
         
                 {/* Service-Specific Conditional Fields */}
