@@ -12,7 +12,7 @@ export const ContactForm = () => {
   const { formData, status, errors, updateField, handleSubmit, isFormValid, markFieldAsTouched } = useContactForm();
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 space-y-6">
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto pt-25 p-6 space-y-6">
       {/* Basic Information Section */}
       <BasicInformation formData={formData} updateField={updateField} errors={errors} markFieldAsTouched={markFieldAsTouched} />
 
