@@ -1,1 +1,0 @@
-export { RestArtterapia } from './RestArtterapia';

@@ -14,7 +14,7 @@ import {
 } from '@/app/(serveis)/components';
 import {
     RestArtterapia,
-} from './components';
+} from './components/RestArtterapia';
 import { carouselImages } from '@/app/(serveis)/artterapia/lib/carouselImages';
 import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
 import { useScrollToTop } from '@/app/_hooks/useScrollToTop';
