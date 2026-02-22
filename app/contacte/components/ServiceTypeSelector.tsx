@@ -1,4 +1,4 @@
-import type { ContactFormData, ServiceType } from '@/app/contacte/types';
+import type { ContactFormData, ServiceType } from '@/app/contacte/types/form.types';
 import { serviceIcons } from '@/app/contacte/lib';
 import { getServiceLabels } from '@/app/contacte/actions';
 

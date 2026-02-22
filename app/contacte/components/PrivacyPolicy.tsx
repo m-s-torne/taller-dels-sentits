@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { ContactFormData, FormErrors } from '@/app/contacte/types';
+import type { ContactFormData, FormErrors } from '@/app/contacte/types/form.types';
 import { privacyData } from '@/app/privacitat/lib/privacyData';
 
 interface PrivacyPolicyProps {

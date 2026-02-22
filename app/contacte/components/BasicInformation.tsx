@@ -1,4 +1,4 @@
-import type { ContactFormData, FormErrors } from '@/app/contacte/types';
+import type { ContactFormData, FormErrors } from '@/app/contacte/types/form.types';
 
 interface BasicInformationProps {
   formData: ContactFormData;

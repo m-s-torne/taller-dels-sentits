@@ -1,4 +1,4 @@
-import type { ContactFormData, ContactPreference, Availability } from '@/app/contacte/types';
+import type { ContactFormData, ContactPreference, Availability } from '@/app/contacte/types/form.types';
 import { contactPreferenceOptions, availabilityOptions } from '@/app/contacte/lib';
 
 interface ContactPreferencesProps {

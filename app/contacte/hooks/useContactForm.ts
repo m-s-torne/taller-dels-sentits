@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import toast from 'react-hot-toast';
-import type { ContactFormData, FormStatus, FormErrors } from '@/app/contacte/types';
+import type { ContactFormData, FormStatus, FormErrors } from '@/app/contacte/types/form.types';
 import { validateAndSanitize } from '@/app/contacte/actions/handleSubmit';
 import { sendEmail } from '@/app/contacte/actions/sendEmail';
 import {

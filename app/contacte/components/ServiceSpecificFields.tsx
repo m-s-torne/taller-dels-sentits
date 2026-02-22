@@ -1,4 +1,4 @@
-import type { ContactFormData, ArttherapyFormat, ParticipantAge, EducationStage, CourseGroup } from '@/app/contacte/types';
+import type { ContactFormData, ArttherapyFormat, ParticipantAge, EducationStage, CourseGroup } from '@/app/contacte/types/form.types';
 import {
   arttherapyFormatOptions,
   participantAgeOptions,
