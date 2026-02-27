@@ -1,11 +1,11 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
-import headerImg from './assets/images/taller_dels_sentits_capçalera_artterapia.jpg';
+import headerImg from './assets/images/taller_dels_sentits_artterapia.jpg';
 import angel1 from './assets/images/angel_1.jpg';
 import angel2 from './assets/images/angel_2.jpg';
 import { 
     HeroSection, 
-    LongDescription, 
+    LongDescription,
     MoreContentSection, 
     QuestionCarousel,
     DisclaimerSection,

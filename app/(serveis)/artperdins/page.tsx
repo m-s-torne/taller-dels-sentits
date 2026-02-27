@@ -1,6 +1,6 @@
 "use client"
 import { servicesData } from '@/app/_lib/servicesData';
-import headerImg from './assets/images/taller_dels_sentits_capçalera_artperdins.jpg';
+import headerImg from './assets/images/taller_dels_sentits_artperdins.jpg';
 import arbre from './assets/images/arbre.jpg';
 import escultura from './assets/images/escultura.jpg';
 import { 
