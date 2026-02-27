@@ -21,7 +21,7 @@ export const RestCentres = ({ rest }: RestSectionProps) => {
             className="pt-10"
         >
             <div className="mb-12 space-y-12">
-                <SectionHeading headingLevel="h2" title={rest.title} className="text-center mb-0!" />
+                <SectionHeading headingLevel="h2" title={rest.title} className="text-center mb-15" />
                 <div className="w-50 h-50 mx-auto flex items-center justify-center">
                     <div className="scale-[2.5]">
                         <img 
