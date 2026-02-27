@@ -61,7 +61,7 @@ const Header = ({ logoImg }: HeaderProps) => {
               <button
                 onClick={toggleServices}
                 className={`hover:text-shakespeare! hover:cursor-pointer transition-colors duration-200 ${
-                  isActive('/artterapia') || isActive('/artperdins') || isActive('/centres') ? 'text-shakespeare! font-bold' : ''
+                  isActive('/artterapia') || isActive('/artperdins') || isActive('/serveis-externs') ? 'text-shakespeare! font-bold' : ''
                 }`}
               >
                 SERVEIS
@@ -133,7 +133,7 @@ const Header = ({ logoImg }: HeaderProps) => {
                   <button
                     onClick={toggleServices}
                     className={`hover:text-shakespeare! transition-colors hover:cursor-pointer duration-200 ${
-                      isActive('/artterapia') || isActive('/artperdins') || isActive('/centres') ? 'text-shakespeare' : ''
+                      isActive('/artterapia') || isActive('/artperdins') || isActive('/serveis-externs') ? 'text-shakespeare' : ''
                     }`}
                   >
                     SERVEIS

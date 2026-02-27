@@ -56,7 +56,7 @@ const Footer = () => {
           <li ref={servicesRef} className="relative hover:cursor-pointer">
             <button 
               className={`hover:text-shakespeare! text-lilac! transition-colors duration-200 ${
-                isActive('/artterapia') || isActive('/artperdins') || isActive('/centres') ? 'text-shakespeare' : ''
+                isActive('/artterapia') || isActive('/artperdins') || isActive('/serveis-externs') ? 'text-shakespeare' : ''
               }`}
               onClick={() => setIsFooterMenuOpen(prev => !prev)}
             >
