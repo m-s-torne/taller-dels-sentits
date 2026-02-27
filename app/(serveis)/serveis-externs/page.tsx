@@ -31,7 +31,7 @@ export default function ServeisExterns() {
                         className="py-10 space-y-6"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.2 }}
+                        viewport={{ once: true, amount: 0.08 }}
                         transition={{ duration: 0.6 }}
                     >
                         <SectionHeading headingLevel="h2" title={section.title} className="text-center mb-4" />
