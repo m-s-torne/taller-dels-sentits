@@ -3,7 +3,6 @@ import ArtperdinsIcon from '@/app/_assets/iconos/FLOR/PLANTA.svg';
 import CentresIcon from '@/app/_assets/iconos/ARTE/DIBUJO.svg';
 import PaletaIcon from '@/app/_assets/iconos/ARTE/PALETA.svg';
 import GestoIcon from '@/app/_assets/iconos/CUERPO/GESTO.svg';
-import ArbolIcon from '@/app/_assets/iconos/FLOR/ARBOL.svg';
 import CreatividadIcon from '@/app/_assets/iconos/CUERPO/CREATIVIDAD.svg';
 import PinturasIcon from '@/app/_assets/iconos/ARTE/PINTURAS.svg';
 import type { ServiceSectionType } from '@/app/_types/services.types';
@@ -14,19 +13,35 @@ export const servicesData: ServiceSectionType[] = [
         title: 'ARTTERÀPIA',
         subtitle: "Acompanyem les persones en els seus processos vitals a través de les eines de l'Art.",
         shortDescription: "Acompanyem les persones en els seus processos vitals a través de les eines de l' Art.",
-        longDescription: [`
-            Per la meva trajectòria personal i professional he pogut experimentar l’eficàcia dels llenguatges 
+        longDescription: [
+            `Per la meva trajectòria personal i professional he pogut experimentar l’eficàcia dels llenguatges 
             artístics per incidir en la qualitat del viure de les persones, i també com un acompanyament acurat i 
             respectuós pot ajudar a l’ expressió de l’àmbit emocional i al desplegament d’ una simbolització 
             inherent, que fa que es mobilitzin els propis recursos reguladors i resolutius davant de les 
-            dificultats emocionals, físiques, psicològiques o socials i que poden influir de forma clara en la nostra salut.`,
+            dificultats emocionals, físiques, psicològiques o socials i que poden influir de forma clara 
+            en la nostra salut.`,
 
             `Les meves eines i recursos provenen inicialment de formació artística i han estat els postgraus i 
-            màsters en Artteràpia i Acompanyament Creatiu els que han configurat el marc teòric per vincular-les 
-            a la salut de les persones i aplicar-les de forma terapèutica. Les nostres línies de treball es basen en 
+            màsters en artteràpia i Acompanyament Creatiu els que han configurat el marc teòric per vincular-les 
+            a la salut de les persones i aplicar-les de forma terapèutica. Les línies de treball es basen en 
             l’enfocament artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
-            des d’ un enfocament gestàltic de Javier Melguizo.
-        `],
+            des d’ un enfocament gestàltic de Javier Melguizo.`,
+
+            `En els darrers anys, la nostra experiència professional s’ha anat centrant en l’àmbit
+            artterapèutic, tant en dispositius individuals com en grups reduïts, atenent infants,
+            adolescents, joves i adults.`,
+
+            `Des del Taller dels Sentits, hem configurat i realitzat projectes artterapèutics a persones
+            cuidadores de familiars amb Alzheimer dins el projecte “Cuidem-nos per Cuidar” del CAP
+            Les Roquetes; el projecte “Guardar la Vida” de l’Ajuntament de Vilanova i la Geltrú per a
+            Centres de dia i Residències; el projecte per a persones cuidadores a càrrec de persones
+            amb diagnòstic TEA dels Serveis Socials del Consell Comarcal del Garraf i el Projecte
+            Envelliment Km 0; grups de dones en el servei d’atenció a la dona,SIAD de Vilafranca del
+            Penedès. També hem configurat i realitzat el projecte “Tots els colors de l’aire” per a les
+            escoles de primària de Vilanova i la Geltrú arran del confinament, així com sessions a
+            empreses com el col.lectiu de professionals de l’Institut Psicològic Arrels de Vilanova i la
+            Geltrú.`,
+        ],
         quote: {
             text: "Tingueu paciència amb tot allò que no està resolt en el vostre cor i intenteu estimar-ne les preguntes",
             author: "Rainer Maria Rilke. Poeta"
@@ -60,11 +75,11 @@ export const servicesData: ServiceSectionType[] = [
                 pensaments, alhora que obre noves maneres de poder mirar i 
                 mirar-te.
 
-                L'Artteràpia desplega un espai d'acompanyament terapèutic on els 
+                L'artteràpia desplega un espai d'acompanyament terapèutic on els 
                 llenguatges i processos artístics t’ajuden a trobar les estratègies i 
                 recursos propis per elaborar i donar resposta a moments vitals que 
                 puguis travessar.`,
-                `El marc acompanyant de l'Artteràpia és un espai d'autoconeixement que facilita:`
+                `El marc acompanyant de l'artteràpia és un espai d'autoconeixement que facilita:`
             ],
             listItems: [
                 `L'Expressió del nostre sentir`,
@@ -83,7 +98,7 @@ export const servicesData: ServiceSectionType[] = [
             `Els serveis d'artteràpia no són sanitaris ni substitueixen tractament mèdics. L'acceptació és voluntària i responsable.`
         ],
         reviews: [
-           /* {
+            {
                 review: `
                     Mai hauria imaginat el poder que pot
                     tenir l’ expressió artística en la 
@@ -101,8 +116,8 @@ export const servicesData: ServiceSectionType[] = [
                     tot plegat es converteixi en una experiència 
                     única on expressar lliurement idees i emocions 
                     a través de l’art.`,
-                author: `M`,
-            },*/
+                author: `M.`,
+            },
             {
                 review: `
                     Estic molt contenta. M'has ajudat molt. Va ser una experiència inoblidable. 
@@ -110,7 +125,7 @@ export const servicesData: ServiceSectionType[] = [
                     de arteterapia, mi hijo consiguió entender lo que sentía y aprendió a expresarlo, 
                     sin palabras con sus "pequeñas obras". Míriam consiguió entrar en su mundo... y 
                     abrir puertas... Estaremos eternamente agradecidos...`,
-                author: `Mare d'una nena d'11 anys`,
+                author: `Mare d'una nena d'11 anys.`,
             },
             {
                 review: `
@@ -121,7 +136,7 @@ export const servicesData: ServiceSectionType[] = [
                     juzgada, simplemente me dejé llevar por mi mente y mi corazón. El arte y la pintura 
                     me guiaron a un mayor autoconocimiento y me hicieron sentir cada vez más liberada 
                     de mis preocupaciones interiores.`,
-                author: `Jove de 15 anys`,
+                author: `Jove de 15 anys.`,
             },
             {
                 review: `
@@ -134,7 +149,7 @@ export const servicesData: ServiceSectionType[] = [
                     viscut li havia donat eines per expressar els seus neguits i per fer servir les 
                     emocions per crear i per descobrir una mena de fortalesa personal que l'ajudi a 
                     viure les experiències de vida.`,
-                author: `Mare d'un adolescent de 12 anys`,
+                author: `Mare d'un adolescent de 12 anys.`,
             },
             {
                 review: `
@@ -143,7 +158,7 @@ export const servicesData: ServiceSectionType[] = [
                     teva esséncia i et mostra les teves 
                     virtuts i ferides per poder així 
                     reconèixer-les i començar a sanar.`,
-                author: `Adulta dins un treball de grup`,
+                author: `Adulta dins un treball de grup.`,
             },
             {
                 review: `
@@ -153,7 +168,50 @@ export const servicesData: ServiceSectionType[] = [
                     privilegiats que l’han ajudat a 
                     créixer, avançar i a nosaltres a 
                     comprendre’l.`,
-                author: `Mare d'un nen de 9 anys`,
+                author: `Mare d'un nen de 9 anys.`,
+            },
+            {
+                review: `
+                    Vaig fer Artteràpia amb el Víctor per 
+                    tal de continuar amb el meu procés terapèutic 
+                    des d’una perspectiva diferent: utilitzant menys 
+                    la racionalitat de les paraules i més de les 
+                    emocions dels sentits. A través de diverses 
+                    peces i processos vaig anar construïnt des de 
+                    la cura, els detalls, el repòs, la serenor. El 
+                    Víctor em va ajudar a veure que, de vegades, una 
+                    tortuga a mig fer pot ser un dofí, una onada o 
+                    quelcom altre encara per imaginar; que els que ens 
+                    passa dins passa també fora; i que l’art, com el dia 
+                    a dia, es transforma amb la mirada.`,
+                author: `Jove de 19 anys.`,
+            },
+            {
+                review: `
+                    Trabajar en sesiones idividuales con Miriam es laborioso
+                    y por ello, muy enriquecedor. Sabe guiarte y, sobretodo,
+                    acompañarte amorosamente en el camino que emprendes para
+                    mejorar o para solventar esa encrucijada que se te presenta.
+                    Con múltiples recursos, no solo plásticos o de materiales, 
+                    sino también de espacio, de música, de palabras dichas o escritas,
+                    de hacer partícipe a todo el cuerpo, todo colabora para cambiar
+                    el punto de vista, para escucharse de verdad, para dejar fuera el
+                    juicio y avanzar a una nueva perspectiva. Sus sesiones son una
+                    formidable herramienta de autoconocimiento para quien esté
+                    dispuesto a trabajarse.
+                `,
+                author: `Alumna de les sessions per a adults.`,
+            },
+            {
+                review: `
+                    Las sesiones de Arteterapia con Miriam me han ayudado a transitar
+                    momentos vitales de alta intensidad emocional. En cada sesión Miriam
+                    me ha guiado con exquisita delicadeza a conectar con mi interior,
+                    a dar forma o expresión a aquello que sentía. Han sido una llave de entrada
+                    a una parte de mí que tenía algo olvidada, esa parte más intuitiva, creadora
+                    y sanadora que todas llevamos dentro. Ha sido un trabajo altamente terapéutico
+                    que recomiendo a cualquiera. Gracias de todo corazón, Miriam.`,
+                author: `Raquel.`,
             }
         ],
         rest: {
@@ -169,7 +227,7 @@ export const servicesData: ServiceSectionType[] = [
                 acompanyat per poder-ho mirar`
             ],
             description: `
-                Per la seva dimensió expressiva i simbólica L’Artteràpia pot ser un bon recurs terapèutic per a joves i 
+                Per la seva dimensió expressiva i simbólica l’artteràpia pot ser un bon recurs terapèutic per a adults, joves i 
                 adolescents que necessiten sortir del marc de la paraula, així com ho és també, per la seva qualitat 
                 lúdica, de gran valor pels infants.`,
             sessionTypes: [
@@ -264,11 +322,11 @@ export const servicesData: ServiceSectionType[] = [
             },
             {
                 review: `
-                    Retrobament conscient amb un 
-                    delicat i respectuós acompanya
-                    ment. Una experiència 
-                    alliberadora.`,
-                author: `A.`,
+                    La meva experiència ha sigut un gran viatge de transformació interior,
+                    molt intens i enriquidor. Gràcies Míriam, pel teu delicat i respectuós
+                    acompanyament i suport, des de la foscor, al retrobament conscient
+                    de la meva llum.`,
+                author: `A.`
             },
             {
                 review: `
@@ -281,40 +339,14 @@ export const servicesData: ServiceSectionType[] = [
             },
             {
                 review: `
-                    L’experiència és profunda i 
-                    intensa, una proposta de valor 
-                    que et permet connectar art i 
-                    vivència personal. Dibuixar el 
-                    nostre paisatge interior.`,
-                author: `M.`,
+                    He estat un any en aquest viatge. Ha estat un viatge al meu interior.
+                    Ha estat un viatge de la meva història. M'he explicat la meva història
+                    sense judicis, creant, expressant, sortint el que sortia. Aquestes
+                    creacions han estat un mirall de què he viscut, de què sóc, de què sento.
+                    Ha estat un viatge conegut, però sortia l'expressió tan clara que les ferides
+                    sanaven. Un trajecte petit però immens, acompanyada per la Míriam.`,
+                author: `Anònima.`,
             },
-            {
-                review: `
-                    L’experiència és profunda i 
-                    intensa, una proposta de valor 
-                    que et permet connectar art i 
-                    vivència personal. Dibuixar el 
-                    nostre paisatge interior.`,
-                author: `M.`,
-            },
-            {
-                review: `
-                    L’experiència és profunda i 
-                    intensa, una proposta de valor 
-                    que et permet connectar art i 
-                    vivència personal. Dibuixar el 
-                    nostre paisatge interior.`,
-                author: `M.`,
-            },
-            {
-                review: `
-                    L’experiència és profunda i 
-                    intensa, una proposta de valor 
-                    que et permet connectar art i 
-                    vivència personal. Dibuixar el 
-                    nostre paisatge interior.`,
-                author: `M.`,
-            }
         ],
         rest: {
             title: `Els Monogràfics de l’Artperdins:`,
