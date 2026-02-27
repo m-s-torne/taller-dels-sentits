@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import type { ServiceSectionType } from '@/app/_types/services.types';
+import { SectionHeading } from '@/app/_components/SectionHeading';
 
 interface HeroSectionProps {
     service: ServiceSectionType;
@@ -13,9 +14,7 @@ export const HeroSection = ({ service }: HeroSectionProps) => {
             transition={{ duration: 0.7, ease: 'easeOut' }}
             className="text-center md:mb-5 mb-10"
         >
-            <h1 className="text-shakespeare! text-3xl sm:text-4xl lg:text-6xl font-light tracking-[0.2em] mb-6">
-                {service.title}
-            </h1>
+            <SectionHeading headingLevel="h1" title={service.title} />
             
             <p className="text-base sm:text-[15px] lg:text-[20px] font-light mx-auto">
                 {service.subtitle}

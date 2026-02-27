@@ -1,4 +1,5 @@
-import { motion } from 'motion/react'
+import { motion } from 'motion/react';
+import { SectionHeading } from '@/app/_components/SectionHeading';
 
 interface RestSectionProps {
     rest: {
@@ -20,9 +21,7 @@ export const RestCentres = ({ rest }: RestSectionProps) => {
             className="pt-10"
         >
             <div className="mb-12 space-y-12">
-                <h2 className="text-shakespeare! text-2xl sm:text-4xl font-light tracking-wide text-center">
-                    {rest.title}
-                </h2>
+                <SectionHeading headingLevel="h2" title={rest.title} className="text-center mb-0!" />
                 <div className="w-50 h-50 mx-auto flex items-center justify-center">
                     <div className="scale-[2.5]">
                         <img 

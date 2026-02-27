@@ -1,6 +1,7 @@
 "use client"
 import { motion, AnimatePresence } from 'motion/react';
 import { useReviews } from '@/app/(serveis)/hooks/useReviews';
+import { SectionHeading } from '@/app/_components/SectionHeading';
 
 interface ReviewsSectionProps {
     reviews: {
@@ -32,9 +33,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             className="mb-16 pt-20"
         >
             {/* Título */}
-            <h2 className="text-shakespeare! text-2xl sm:text-3xl lg:text-4xl font-light text-center mb-5">
-                Algunes persones ens han dit:
-            </h2>
+            <SectionHeading headingLevel="h2" title="Algunes persones ens han dit:" className="text-center sm:text-3xl! lg:text-4xl! mb-5!" />
             
             {/* Carrusel Desktop (1 review) */}
             <div className="hidden md:block relative">

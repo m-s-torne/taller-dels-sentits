@@ -1,5 +1,5 @@
 import { quiSomData } from './lib/quiSomData';
-import { SectionHeading } from './components/SectionHeading';
+import { SectionHeading } from '@/app/_components/SectionHeading';
 
 export default function QuiSom () {
     const sections = [
@@ -11,9 +11,7 @@ export default function QuiSom () {
     return (
         <main className="py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen">
             <div className="max-w-5xl mx-auto">
-                <h1 className="text-center text-shakespeare! text-3xl sm:text-4xl lg:text-6xl font-light tracking-[0.2em] mb-6">
-                    {quiSomData.mainTitle}
-                </h1>
+                <SectionHeading headingLevel="h1" title={quiSomData.mainTitle} />
                 
                 <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed">
                     {sections.map((section, sectionIndex) => (

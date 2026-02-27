@@ -1,4 +1,5 @@
-import { motion } from 'motion/react'
+import { motion } from 'motion/react';
+import { SectionHeading } from '@/app/_components/SectionHeading';
 
 interface RestArtperDinsProps {
     rest: {
@@ -18,9 +19,7 @@ export const RestArtperDins = ({ rest }: RestArtperDinsProps) => {
             className="py-10"
         >
             <div className="text-center space-y-7">
-                <h2 className="text-shakespeare! text-2xl sm:text-5xl  font-light tracking-wide">
-                    {rest.title}
-                </h2>
+                <SectionHeading headingLevel="h2" title={rest.title} className="sm:text-5xl! lg:text-5xl! mb-0!" />
 
                 {rest.content.map((p, i) => {
                     return <p key={i} className="text-left text-sm sm:text-base lg:text-lg ml-6 sm:ml-0">{p}</p>
