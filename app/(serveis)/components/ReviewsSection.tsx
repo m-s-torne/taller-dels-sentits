@@ -63,7 +63,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
             </div>
 
             {/* Carrusel Mobile (1 review) */}
-            <div className="md:hidden relative min-h-90">
+            <div className="md:hidden relative min-h-115">
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                         key={`${currentIndex}-${transitionCount}`}
