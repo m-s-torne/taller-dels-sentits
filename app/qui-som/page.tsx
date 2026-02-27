@@ -9,7 +9,7 @@ export default function QuiSom () {
     ];
 
     return (
-        <main className="py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen">
+        <main className="py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen bg-lilac">
             <div className="max-w-5xl mx-auto">
                 <SectionHeading headingLevel="h1" title={quiSomData.mainTitle} />
                 
