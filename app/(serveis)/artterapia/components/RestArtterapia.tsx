@@ -26,7 +26,7 @@ export const RestArtterapia = ({ rest }: RestSectionProps) => {
             className="mb-16"
         >
             <div className="text-center mb-12 space-y-7">
-                <SectionHeading headingLevel="h2" title={rest.title} className="sm:text-5xl! lg:text-5xl! mb-0!" />
+                <SectionHeading headingLevel="h2" title={rest.title} className="sm:text-5xl! lg:text-5xl!" />
                 <p className="text-shakespeare! text-sm sm:text-base lg:text-lg leading-relaxed">
                     {rest.subtitle}
                 </p>
