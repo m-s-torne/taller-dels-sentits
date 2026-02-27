@@ -24,7 +24,7 @@ export const MoreContentSection = ({ moreContent, images }: MoreContentSectionPr
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6 }}
-                className="flex justify-center mb-6"
+                className="flex justify-center pb-6"
             >
                 {/* Botón expandible */}
                 <button
@@ -55,7 +55,7 @@ export const MoreContentSection = ({ moreContent, images }: MoreContentSectionPr
                             opacity: { duration: 0.5, ease: "easeInOut" },
                             marginBottom: { duration: 0.7, ease: "easeInOut" }
                         }}
-                        className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-shakespeare overflow-hidden py-10"
+                        className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-shakespeare overflow-hidden"
                     >
                             {moreContent.content.map((text, index) => {
                                 const image = images?.[index];
