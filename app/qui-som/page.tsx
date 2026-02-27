@@ -1,19 +1,30 @@
+"use client"
+import { RoundHeaderImage } from '../_components/RoundHeaderImage';
 import { quiSomData } from './lib/quiSomData';
 import { SectionHeading } from '@/app/_components/SectionHeading';
+import { HeroSection } from '@/app/(serveis)/components';
+import headerImage from './assets/inici.jpg'
 
 export default function QuiSom () {
     const sections = [
-        { ...quiSomData.introduction, headingLevel: 'h2' as const },
         { ...quiSomData.history, headingLevel: 'h3' as const },
         { ...quiSomData.current, headingLevel: 'h3' as const }
     ];
 
     return (
         <main className="py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen bg-lilac">
-            <div className="max-w-5xl mx-auto">
-                <SectionHeading headingLevel="h1" title={quiSomData.mainTitle} />
+            <div className="max-w-5xl mx-auto space-y-7">
+                <HeroSection title={quiSomData.mainTitle} subtitle={quiSomData.subtitle} />
                 
+                <RoundHeaderImage src={headerImage.src} alt="header image"/>
+
                 <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed">
+                    {quiSomData.introduction.paragraphs.map((paragraph, i) => (
+                        <p key={i}>{paragraph}</p>
+                    ))}
+                </div>
+
+                <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed mt-8">
                     {sections.map((section, sectionIndex) => (
                         <section 
                             key={sectionIndex} 
@@ -21,7 +32,7 @@ export default function QuiSom () {
                         >
                             <SectionHeading 
                                 headingLevel={section.headingLevel}
-                                title={section.title}
+                                title={section.title ?? 'no title provided'}
                             />
                             {section.paragraphs.map((paragraph, paragraphIndex) => {
                                 const isHighlightedParagraph = paragraph.includes("El Taller dels Sentits és un espai respectuós");
