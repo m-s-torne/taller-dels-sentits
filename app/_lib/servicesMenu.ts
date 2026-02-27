@@ -1,5 +1,5 @@
 export const servicesMenu = [
   { name: 'Artteràpia', href: '/artterapia' },
   { name: 'Artperdins', href: '/artperdins' },
-  { name: 'Centres Educatius', href: '/centres' },
+  { name: 'Serveis Externs', href: '/serveis-externs' },
 ];

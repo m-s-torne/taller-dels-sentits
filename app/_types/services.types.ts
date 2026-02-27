@@ -1,4 +1,4 @@
-type Service = "artterapia" | "artperdins" | "centres-educatius";
+type Service = "artterapia" | "artperdins" | "serveis-externs";
 
 export interface Quote {
     text: string;
@@ -14,6 +14,23 @@ type Review = {
     review: string,
     author: string,
 }
+
+export interface ServicePageSubsection {
+    title: string;
+    subtitle?: string;
+    paragraphs: string[];
+    subheading?: string;
+    list?: string[];
+}
+
+export interface ServicePageSection {
+    title: string;
+    paragraphs: string[];
+    subheading?: string;
+    list?: string[];
+    subsections?: ServicePageSubsection[];
+}
+
 export interface ServiceSectionType {
     id: Service;
     title: string;
@@ -31,6 +48,7 @@ export interface ServiceSectionType {
     disclaimer: string[];
     reviews?: Review[];
     rest?: any;
+    sections?: ServicePageSection[];
     bgColor: string;
     contentKey: string;
     icon?: string;

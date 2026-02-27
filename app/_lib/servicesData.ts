@@ -1,7 +1,6 @@
-import ArtterapiaIcon from '@/app/_assets/iconos/ESPACIO/NUBES.svg';
+﻿import ArtterapiaIcon from '@/app/_assets/iconos/ESPACIO/NUBES.svg';
 import ArtperdinsIcon from '@/app/_assets/iconos/FLOR/PLANTA.svg';
 import CentresIcon from '@/app/_assets/iconos/ARTE/DIBUJO.svg';
-import PaletaIcon from '@/app/_assets/iconos/ARTE/PALETA.svg';
 import GestoIcon from '@/app/_assets/iconos/CUERPO/GESTO.svg';
 import CreatividadIcon from '@/app/_assets/iconos/CUERPO/CREATIVIDAD.svg';
 import PinturasIcon from '@/app/_assets/iconos/ARTE/PINTURAS.svg';
@@ -366,72 +365,99 @@ export const servicesData: ServiceSectionType[] = [
         icon: ArtperdinsIcon.src
     },
     {
-        id: 'centres-educatius',
-        title: 'CENTRES EDUCATIUS',
-        subtitle: "Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.",
-        shortDescription: "Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.",
-        longDescription: [`
-            Oferim sessions especialitzades per a centres educatius, dissenyades per apropar l’art i la creativitat als 
-            estudiants de diferents edats. Les activitats estan pensades per complementar l’educació formal, 
-            fomentant la creativitat i l’expressió personal.`,
-            
-            `Les sessions poden adaptar-se als objectius pedagògics de cada centre i grups d’edats, treballant diferents 
-            tècniques artístiques i temàtiques segons les necessitats específiques. Les activitats promouen un 
-            aprenentatge vivencial i significatiu a través de l’experiència artística.
-        `],        
+        id: 'serveis-externs',
+        title: 'SERVEIS EXTERNS',
+        subtitle: "Sessions d'artteràpia i monogràfics d'arts plàstiques.",
+        shortDescription: "Sessions d'artteràpia i monogràfics d'arts plàstiques.",
+        longDescription: [],
         quote: {
-            text: "Només jugant som creatius, i és d'aquesta manera que ens arribem a conèixer",
-            author: "Donald W. Winnicott. Pediatre i psicoanalista."
+            text: "l'objectiu de l'art és propiciar la construcció gradual, al llarg de la vida, d'un estat d'encís i serenitat",
+            author: "Glenn Gould. Músic"
         },
         questions: [],
         moreContent: {
-            buttonText: `Formació per al professorat`,
-            content: [
-                `L'objectiu d'aquest curs de formació i assessorament per a 
-                professors d'infantil i primària, és la de repensar els objectius 
-                propis en l'àrea d'Expressió Plàstica, així com la seva metodologia.
-                
-                Per iniciar aquest procés de replantejament és molt important començar 
-                atenent quin tipus de relació té el professorat amb l’Art, què es considera 
-                que ho és i què no i com es tradueix en les seves propostes de treball 
-                de cara als alumnes i en la valoració que en fan del resultat.`,
-                `Per tal que la Plàstica tingui contingut en l’àmbit educatiu, serà important 
-                que la proposta plantejada als infants la possibilitat de Significar, és a dir, 
-                que pugui ser suficientment àmplia perquè l’alumne pugui investigar i dotar-la 
-                de sentit personal.
-                
-                Amb la finalitat que aquest Significar tingui un sentit ampli, la proposta formativa 
-                tindrà un caràcter transversal, entenent la importància de la multiplicitat de 
-                llenguatges artístics (poesia, música, dansa…) i com aquesta amplitud de llenguatges 
-                ens permet estirar el fil de les propostes i la integració i elaboració d'aprenentatges.
-                
-                Es treballarà sobre paraules clau: la Proposta, la Implicació, el Procés de realització i 
-                de les diferències entre Creació i Expressió.`,
-            ],
+            buttonText: '',
+            content: [],
         },
         disclaimer: [],
-        rest: {
-            title: "APRENDRE A MIRAR UN QUADRE",
-            icon: PaletaIcon.src,
-            content: [
-                `És realment d'aquesta forma que l'obra d'art pot ser significativa per a cada nen. I és una manera 
-                enriquidora d'acostar-se a ell mateix, tot abordant la creació des de la pròpia sensibilitat, 
-                atenent els sentits, els sentiments i les seves pròpies vivències. Des del Taller dels Sentits, 
-                creiem, doncs, que l'educació de l'art no s'ha de centrar exclusivament en l'habilitat manual o el 
-                coneixement tècnic, ni afavorir un sol gust estètic.`,
-                `L'art és transformador. Sabem que la plàstica és també coneixement i la seva pràctica dóna als 
-                infants més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta. El fet 
-                d'implicar-los en un procés creatiu afavoreix les seves capacitats expressives i de comunicació, fomenta 
-                l'autoestima, tot aprenent a valorar la pròpia mirada de les coses i el respecte per la mirada dels altres.`,
-                `El Taller dels Sentits porta a terme un projecte per a les escoles cada cop més consolidat. El nostre 
-                objectiu és difondre de manera entenedora el motiu pel qual un artista o un moviment artístic busca i 
-                troba les seves "maneres de fer". Les sessions duren aproximadament una hora: després d'una explicació 
-                interactiva amb els alumnes i amb l'us d'imatges, sempre es proposa un treball plàstic, amb prou marge 
-                per tal que l'alumne interioritzi els arguments que han portat l'artista a crear la seva obra i se'ls faci seus.`,
-            ],
-        },
         bgColor: 'bg-lilac',
-        contentKey: 'centres-educatius',
-        icon: CentresIcon.src
+        contentKey: 'serveis-externs',
+        icon: CentresIcon.src,
+        sections: [
+            {
+                title: 'Centres educatius',
+                paragraphs: [
+                    `L'expressió i creació artístiques són eines de coneixement i la seva pràctica dóna als infants i adolescents més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta.`,
+                    `Oferim sessions especialitzades per a centres educatius de primària i secundària afavorint la mirada introspectiva de l'experiència creativa mitjançant el coneixement d'un artista, moviment artístic tot integrant les eines de l'artteràpia.`,
+                ],
+                subsections: [
+                    {
+                        title: `Monogràfics d'artistes i moviments artístics`,
+                        subtitle: `Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.`,
+                        paragraphs: [
+                            `És realment d'aquesta forma que l'obra d'art pot ser significativa per a cada nen. I és una manera enriquidora d'acostar-se a ell mateix, tot abordant la creació des de la pròpia sensibilitat, atenent els sentits, els sentiments i les seves pròpies vivències. Des del Taller dels Sentits, creiem, doncs, que l'educació de l'art no s'ha de centrar exclusivament en l'habilitat manual o el coneixement tècnic, ni afavorir un sol gust estètic.`,
+                            `L'art és transformador. Sabem que la plàstica és també coneixement i la seva pràctica dóna als infants més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta. El fet d'implicar-los en un procés creatiu afavoreix les seves capacitats expressives i de comunicació, fomenta l'autoestima, tot aprenent a valorar la pròpia mirada de les coses i el respecte per la mirada dels altres.`,
+                            `El Taller dels Sentits porta a terme un projecte per a les escoles cada cop més consolidat. El nostre objectiu és difondre de manera entenedora el motiu pel qual un artista o un moviment artístic busca i troba les seves "maneres de fer". Les sessions duren aproximadament una hora: després d'una explicació interactiva amb els alumnes i amb l'us d'imatges, sempre es proposa un treball plàstic, amb prou marge per tal que l'alumne interioritzi els arguments que han portat l'artista a crear la seva obra i se'ls faci seus.`,
+                        ],
+                        subheading: `Des del Taller dels Sentits, hem configurat i realitzat projectes de divulgació de les arts plàstiques i projectes d'artteràpia a:`,
+                        list: [
+                            `Escola El Cim, de Vilanova i la Geltrú`,
+                            `CEIP Arjau, de Vilanova i la Geltrú`,
+                            `Escola PIA, de Vilanova i la Geltrú`,
+                            `CEIP Itaca, de Vilanova i la Geltrú`,
+                            `CEIP Sant Jordi, de Vilanova i la Geltrú`,
+                            `CEIP Mar i Cel, de Cubelles`,
+                            `Escola Isabel de Villena, d'Esplugues de llobregat`,
+                            `Escola Voramar, de Cubelles`,
+                            `CEIP Ginesta, de Matadepera`,
+                            `CEIP Llebetx, de Vilanova i la Geltrú`,
+                            `CEIP Els Horts, de Barcelona`,
+                            `CEIP El Morsell, d'Olivella`,
+                            `Escola Santa Teresa de Jesús, de Vilanova i la Geltrú`,
+                            `CEIP El Margalló, de Vilanova i la Geltrú`,
+                            `CEIP Benviure, de Castellbisbal`,
+                            `IES Can Vilumara, de l'Hospitalet de Llobregat`,
+                            `Col·legi Sant Bonaventura, de Vilanova i la Geltrú`,
+                            `CEIP La Torreta, de La Roca del Vallès`,
+                            `Escola Costarets, de St Pere de Ribes`,
+                            `Escola PIA de Sitges`,
+                        ],
+                    },
+                    {
+                        title: `Formació al professorat`,
+                        subtitle: `Eines per a repensar l'àrea d'expressió artística a infantil i primària.`,
+                        paragraphs: [
+                            `Amb l'objectiu de formar i assessorar al professorat hem configurat projectes amb una mirada multidisciplinar que comença escoltant la relació de cada docent amb l'art i des d'aquesta, ampliar la significació d'una àrea educativa vinculada a l'escolta personal, el permís expressiu i la cura emocional.`,
+                        ],
+                        subheading: `Des del Taller dels Sentits, hem configurat i realitzat formació al professorat a:`,
+                        list: [
+                            `Escola Pia, de Sitges`,
+                            `CEIP Maria d'Osó, de Sitges`,
+                            `CEIP Itaca, de Vilanova i la Geltrú: La mirada de l'Expressió Plàstica. Eines per a repensar l'àrea d'expressió plàstica a infantil i primària.`,
+                            `CEIP Arjau, de Vilanova i la Geltrú`,
+                            `CEIP Cossetània, de Vilanova i la Geltrú`,
+                            `Escola d'Estiu del Penedès, Saifores: Breu viatge de l'Expressió a la Creació`,
+                            `Escola d'Estiu del Penedès, Saifores: Sobre la creativitat`,
+                            `CEIP Maria d'Osó, de Sitges: La mirada de la paraula — curs sobre poesia visual`,
+                        ],
+                    },
+                ],
+            },
+            {
+                title: `Ajuntaments, hospitals, residències, centres culturals, col.lectius d'empresa i entitats socials.`,
+                paragraphs: [
+                    `L'art estimula les nostres capacitats expressives i creatives. La seva dimensió dinàmica i simbòlica afavoreix el desbloqueig d'emocions i pensaments, alhora que obre noves maneres de poder mirar i mirar-nos. Des de la base del joc artístic i les eines de l'artteràpia, oferim propostes acompanyades que afavoreixin un treball emocional curós i respectuós amb un mateix així com estratègies i recursos propis d'escolta i vincle amb un col.lectiu.`,
+                ],
+                subheading: `Des del Taller dels Sentits, hem configurat i realitzat projectes d'artteràpia a:`,
+                list: [
+                    `El CAP les Roquetes`,
+                    `Centres de dia i residències per a la tercera edat a través de l'Ajuntament de Vilanova i la Geltrú i la Diputació de Barcelona`,
+                    `Serveis Socials del Consell Comarcal del Garraf`,
+                    `Servei d'atenció a la dona de l'Ajuntament de Vilafranca del Penedès`,
+                    `El Centre d'Art Contemporani La Sala de Vilanova i la Geltrú`,
+                    `L'Institut Psicològic Arrels de Vilanova i la Geltrú, entre d'altres`,
+                ],
+            },
+        ],
     }
 ];
