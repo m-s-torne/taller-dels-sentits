@@ -2,14 +2,15 @@
 import { RoundHeaderImage } from '../_components/RoundHeaderImage';
 import { quiSomData } from './lib/quiSomData';
 import { SectionHeading } from '@/app/_components/SectionHeading';
+import { ParagraphList } from '@/app/_components/ParagraphList';
 import { HeroSection } from '@/app/(serveis)/components';
 import headerImage from './assets/inici.jpg'
 import { MemberCard } from './components/MemberCard';
 
 export default function QuiSom () {
     const sections = [
-        { ...quiSomData.history, headingLevel: 'h3' as const },
-        { ...quiSomData.current, headingLevel: 'h3' as const }
+        { ...quiSomData.history, headingLevel: 'h3' as const, boldIndex: undefined },
+        { ...quiSomData.current, headingLevel: 'h3' as const, boldIndex: 1 },
     ];
 
     return (
@@ -20,9 +21,7 @@ export default function QuiSom () {
                 <RoundHeaderImage src={headerImage.src} alt="header image"/>
 
                 <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed">
-                    {quiSomData.introduction.paragraphs.map((paragraph, i) => (
-                        <p key={i}>{paragraph}</p>
-                    ))}
+                    <ParagraphList paragraphs={quiSomData.introduction.paragraphs} />
                 </div>
 
                 <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed mt-8">
@@ -35,20 +34,13 @@ export default function QuiSom () {
                                 headingLevel={section.headingLevel}
                                 title={section.title ?? 'no title provided'}
                             />
-                            {section.paragraphs.map((paragraph, paragraphIndex) => {
-                                const isHighlightedParagraph = paragraph.includes("El Taller dels Sentits és un espai respectuós");
-                                return (
-                                    <p key={paragraphIndex} className={isHighlightedParagraph ? 'font-bold' : ''}>
-                                        {paragraph}
-                                    </p>
-                                );
-                            })}
+                            <ParagraphList paragraphs={section.paragraphs} boldIndex={section.boldIndex} />
                         </section>
                     ))}
 
                     {/* Team Section - CONEIX-NOS */}
                     <section className="space-y-6 mt-12">
-                        <SectionHeading headingLevel="h2" title={quiSomData.team.title} />
+                        <SectionHeading headingLevel="h2" title={quiSomData.team.title} className="text-center"/>
                         {quiSomData.team.members.map((member, i) => (
                             <MemberCard key={i} member={member} />
                         ))}
@@ -56,7 +48,7 @@ export default function QuiSom () {
 
                     {/* Collaborators Section - COL.LABORADORS */}
                     <section className="space-y-6 mt-12">
-                        <SectionHeading headingLevel="h2" title={quiSomData.collaborators.title} />
+                        <SectionHeading headingLevel="h2" title={quiSomData.collaborators.title} className="text-center"/>
                         <p className="italic text-gray-700 text-sm sm:text-lg leading-relaxed">
                             {quiSomData.collaborators.intro}
                         </p>
