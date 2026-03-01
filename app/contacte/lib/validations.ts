@@ -43,7 +43,7 @@ export const validateMessage = (message: string): string | undefined => {
 };
 
 /**
- * Validates studentsCount field (for centres-educatius)
+ * Validates studentsCount field (for centre-educatiu / alumnes)
  */
 export const validateStudentsCount = (count: number | ''): string | undefined => {
   if (count === '') return undefined; // No error if empty
@@ -60,6 +60,42 @@ export const validateStudentsCount = (count: number | ''): string | undefined =>
 };
 
 /**
+ * Validates teachersCount field (for centre-educatiu / professorat)
+ */
+export const validateTeachersCount = (count: number | ''): string | undefined => {
+  if (count === '') return undefined;
+  if (typeof count !== 'number' || isNaN(count)) {
+    return 'El nombre ha de ser un valor numèric';
+  }
+  if (count < 1) {
+    return 'El nombre de professors ha de ser almenys 1';
+  }
+  return undefined;
+};
+
+/**
+ * Validates participantsCount field (for altres-entitats)
+ */
+export const validateParticipantsCount = (count: number | ''): string | undefined => {
+  if (count === '') return undefined;
+  if (typeof count !== 'number' || isNaN(count)) {
+    return 'El nombre ha de ser un valor numèric';
+  }
+  if (count < 1) {
+    return 'El nombre de participants ha de ser almenys 1';
+  }
+  return undefined;
+};
+
+/**
+ * Validates a required string field (non-empty)
+ */
+const validateRequired = (value: string, errorMsg: string): string | undefined => {
+  if (!value?.trim()) return errorMsg;
+  return undefined;
+};
+
+/**
  * Validates location field (obligatory for centres-educatius)
  */
 export const validateLocation = (
@@ -67,8 +103,8 @@ export const validateLocation = (
   serviceType: string, 
   isTouched: boolean = false
 ): string | undefined => {
-  if (serviceType === 'centres-educatius' && !location.trim() && isTouched) {
-    return 'La població és obligatòria per a centres educatius';
+  if (serviceType === 'serveis-externs' && !location.trim() && isTouched) {
+    return 'La població és obligatòria per a serveis externs';
   }
   return undefined;
 };
@@ -92,8 +128,60 @@ export const validateField = (
       return validateMessage(value as string);
     case 'studentsCount':
       return validateStudentsCount(value as number | '');
+    case 'teachersCount':
+      return validateTeachersCount(value as number | '');
+    case 'participantsCount':
+      return validateParticipantsCount(value as number | '');
     case 'location':
       return validateLocation(value as string, formData.serviceType, touchedFields.has('location'));
+    case 'externsSubtype':
+      if (formData.serviceType === 'serveis-externs' && touchedFields.has('externsSubtype'))
+        return validateRequired(value as string, 'Has de seleccionar el tipus de col·lectiu');
+      return undefined;
+    case 'centreSubtype':
+      if (
+        formData.serviceType === 'serveis-externs' &&
+        formData.externsSubtype === 'centre-educatiu' &&
+        touchedFields.has('centreSubtype')
+      )
+        return validateRequired(value as string, 'Has de seleccionar el destinatari de la formació');
+      return undefined;
+    case 'schoolName':
+      if (
+        formData.serviceType === 'serveis-externs' &&
+        formData.externsSubtype === 'centre-educatiu' &&
+        formData.centreSubtype === 'professorat' &&
+        touchedFields.has('schoolName')
+      )
+        return validateRequired(value as string, 'El nom del centre és obligatori');
+      return undefined;
+    case 'entityType':
+      if (
+        formData.serviceType === 'serveis-externs' &&
+        formData.externsSubtype === 'altres-entitats' &&
+        touchedFields.has('entityType')
+      )
+        return validateRequired(value as string, 'Has de seleccionar el tipus d\'entitat');
+      return undefined;
+    case 'entityName':
+      if (
+        formData.serviceType === 'serveis-externs' &&
+        formData.externsSubtype === 'altres-entitats' &&
+        touchedFields.has('entityName')
+      )
+        return validateRequired(value as string, 'El nom de l\'entitat és obligatori');
+      return undefined;
+    case 'participantsCount':
+      if (
+        formData.serviceType === 'serveis-externs' &&
+        formData.externsSubtype === 'altres-entitats' &&
+        touchedFields.has('participantsCount')
+      ) {
+        if (value === '' || value === null || value === undefined)
+          return 'El nombre de participants és obligatori';
+        return validateParticipantsCount(value as number | '');
+      }
+      return undefined;
     default:
       return undefined;
   }
@@ -105,8 +193,8 @@ export const validateField = (
  */
 export const validateCompleteForm = (
   formData: ContactFormData
-): { name?: string; email?: string; message?: string; location?: string; privacy?: string } => {
-  const newErrors: { name?: string; email?: string; message?: string; location?: string; privacy?: string } = {};
+): { name?: string; email?: string; message?: string; location?: string; privacy?: string; externsSubtype?: string; centreSubtype?: string; schoolName?: string; entityType?: string; entityName?: string; participantsCount?: string } => {
+  const newErrors: { name?: string; email?: string; message?: string; location?: string; privacy?: string; externsSubtype?: string; centreSubtype?: string; schoolName?: string; entityType?: string; entityName?: string; participantsCount?: string } = {};
 
   // Validate required fields
   if (!formData.name) {
@@ -134,11 +222,36 @@ export const validateCompleteForm = (
     newErrors.privacy = 'Has d\'acceptar la política de privacitat';
   }
 
-  // Validate location for centres-educatius
-  if (formData.serviceType === 'centres-educatius') {
-    const locationError = validateLocation(formData.location, formData.serviceType);
-    if (locationError) {
-      newErrors.location = locationError;
+  // Serveis Externs specific required fields
+  if (formData.serviceType === 'serveis-externs') {
+    // location always required
+    const locationError = validateLocation(formData.location, formData.serviceType, true);
+    if (locationError) newErrors.location = locationError;
+
+    // externsSubtype required
+    if (!formData.externsSubtype) {
+      newErrors.externsSubtype = 'Has de seleccionar el tipus de col·lectiu';
+    }
+
+    if (formData.externsSubtype === 'centre-educatiu') {
+      if (!formData.centreSubtype) {
+        newErrors.centreSubtype = 'Has de seleccionar el destinatari de la formació';
+      }
+      if (formData.centreSubtype === 'professorat' && !formData.schoolName?.trim()) {
+        newErrors.schoolName = 'El nom del centre és obligatori';
+      }
+    }
+
+    if (formData.externsSubtype === 'altres-entitats') {
+      if (!formData.entityType) {
+        newErrors.entityType = 'Has de seleccionar el tipus d\'entitat';
+      }
+      if (!formData.entityName?.trim()) {
+        newErrors.entityName = 'El nom de l\'entitat és obligatori';
+      }
+      if (formData.participantsCount === '' || formData.participantsCount === null || formData.participantsCount === undefined) {
+        newErrors.participantsCount = 'El nombre de participants és obligatori';
+      }
     }
   }
 
@@ -151,7 +264,7 @@ export const validateCompleteForm = (
  */
 export const isFormValid = (
   formData: ContactFormData,
-  errors: { name?: string; email?: string; message?: string; location?: string; privacy?: string }
+  errors: { name?: string; email?: string; message?: string; location?: string; privacy?: string; externsSubtype?: string; centreSubtype?: string; schoolName?: string; entityType?: string; entityName?: string; participantsCount?: string }
 ): boolean => {
   // Required fields must be filled
   const hasRequiredFields = !!(
@@ -161,11 +274,26 @@ export const isFormValid = (
     formData.privacyAccepted
   );
 
-  // For centres-educatius, location is also required
-  const hasLocationIfRequired = formData.serviceType !== 'centres-educatius' || !!formData.location.trim();
+  // For serveis-externs, location + subtype required fields
+  let hasServeisExternsFields = true;
+  if (formData.serviceType === 'serveis-externs') {
+    if (!formData.location?.trim()) hasServeisExternsFields = false;
+    if (!formData.externsSubtype) hasServeisExternsFields = false;
+    if (formData.externsSubtype === 'centre-educatiu' && !formData.centreSubtype) hasServeisExternsFields = false;
+    if (
+      formData.externsSubtype === 'centre-educatiu' &&
+      formData.centreSubtype === 'professorat' &&
+      !formData.schoolName?.trim()
+    ) hasServeisExternsFields = false;
+    if (formData.externsSubtype === 'altres-entitats' && !formData.entityType) hasServeisExternsFields = false;
+    if (formData.externsSubtype === 'altres-entitats' && !formData.entityName?.trim()) hasServeisExternsFields = false;
+    if (formData.externsSubtype === 'altres-entitats' && (formData.participantsCount === '' || formData.participantsCount === null || formData.participantsCount === undefined)) hasServeisExternsFields = false;
+  }
 
-  // Check only string error fields (not nested objects)
-  const hasNoErrors = !errors.name && !errors.email && !errors.message && !errors.location && !errors.privacy;
+  // Check all error fields
+  const hasNoErrors = !errors.name && !errors.email && !errors.message && !errors.location &&
+    !errors.privacy && !errors.externsSubtype && !errors.centreSubtype &&
+    !errors.schoolName && !errors.entityType && !errors.entityName && !errors.participantsCount;
 
-  return hasRequiredFields && hasLocationIfRequired && hasNoErrors;
+  return hasRequiredFields && hasServeisExternsFields && hasNoErrors;
 };
