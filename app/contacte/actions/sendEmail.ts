@@ -5,12 +5,14 @@ import { buildEmailMessage } from './buildEmailMessage';
 import { getServiceLabel } from './getServiceLabel';
 
 /**
- * Determines which EmailJS configuration to use based on service type
- * - centres-educatius: Uses dedicated school service
- * - artterapia, artperdins, general: Uses general service
+ * Determines which EmailJS configuration to use based on service type and subtype.
+ * - serveis-externs + centre-educatiu: Uses dedicated school service (_SCHOOL vars)
+ * - Everything else (artterapia, artperdins, general, serveis-externs altres-entitats): Uses general service
  */
-const getEmailJSConfig = (serviceType: ServiceType) => {
-  const isSchool = serviceType === 'centres-educatius';
+const getEmailJSConfig = (data: ContactFormData) => {
+  const isSchool =
+    data.serviceType === 'serveis-externs' &&
+    data.externsSubtype === 'centre-educatiu';
   
   return {
     serviceId: isSchool 
@@ -46,7 +48,7 @@ export const sendEmail = async (
     // Get EmailJS credentials from public environment variables
     // These are safe to expose because EmailJS is designed for client-side use
     // Uses different credentials for school vs general services
-    const { serviceId, templateId, publicKey } = getEmailJSConfig(sanitizedData.serviceType);
+    const { serviceId, templateId, publicKey } = getEmailJSConfig(sanitizedData);
     const serviceLabel = getServiceLabel(sanitizedData.serviceType) as ServiceType;
 
     // Validate environment variables are present
