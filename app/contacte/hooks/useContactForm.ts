@@ -36,6 +36,21 @@ const initialFormData: ContactFormData = {
   courseGroup: '',
   courseInterest: '',
 
+  // Serveis Externs - subtipus
+  externsSubtype: '',
+  centreSubtype: '',
+
+  // Formació al professorat
+  teachersCount: '',
+  trainingInterest: '',
+
+  // Altres entitats
+  entityType: '',
+  entityName: '',
+  entityDescription: '',
+  participantsCount: '',
+  projectDescription: '',
+
   // Optional fields
   contactPreference: [],
   availability: '',
@@ -55,7 +70,12 @@ const initialErrorsData: FormErrors = {
     session: false,
     time: false,
   },
-  centres: {},
+  externsSubtype: '',
+  centreSubtype: '',
+  schoolName: '',
+  entityType: '',
+  entityName: '',
+  participantsCount: '',
 }
 
 /**
@@ -98,21 +118,30 @@ export const useContactForm = () => {
           location: locationError,
         }));
 
-        // Clear fields that don't apply to centres-educatius
-        if (value === 'centres-educatius') {
+        // Clear fields that don't apply to serveis-externs
+        if (value === 'serveis-externs') {
           newData.phone = '';
           newData.contactPreference = []; // Clear contact preferences (phone, whatsapp, etc.)
           newData.arttherapyFormat = '';
           newData.participantAge = '';
         }
         
-        // Clear centres-educatius specific fields when switching to other services
-        if (value !== 'centres-educatius') {
+        // Clear serveis-externs specific fields when switching to other services
+        if (value !== 'serveis-externs') {
           newData.schoolName = '';
           newData.educationStage = '';
           newData.studentsCount = '';
           newData.courseGroup = '';
           newData.courseInterest = '';
+          newData.externsSubtype = '';
+          newData.centreSubtype = '';
+          newData.teachersCount = '';
+          newData.trainingInterest = '';
+          newData.entityType = '';
+          newData.entityName = '';
+          newData.entityDescription = '';
+          newData.participantsCount = '';
+          newData.projectDescription = '';
         }
 
         // Clear arttherapy fields when switching away
@@ -124,6 +153,37 @@ export const useContactForm = () => {
         if (value !== 'artperdins') {
           newData.participantAge = '';
         }
+
+        // Clear all serveis-externs sub-errors when switching service type
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          externsSubtype: '',
+          centreSubtype: '',
+          schoolName: '',
+          entityType: '',
+          entityName: '',
+          participantsCount: '',
+        }));
+      }
+
+      // When externsSubtype changes, clear downstream errors
+      if (field === 'externsSubtype') {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          centreSubtype: '',
+          schoolName: '',
+          entityType: '',
+          entityName: '',
+          participantsCount: '',
+        }));
+      }
+
+      // When centreSubtype changes away from professorat, clear schoolName error
+      if (field === 'centreSubtype' && value !== 'professorat') {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          schoolName: '',
+        }));
       }
 
       return newData;
@@ -182,8 +242,17 @@ export const useContactForm = () => {
 
     // Mark all required fields as touched to show validation errors
     const requiredFields: (keyof ContactFormData)[] = ['name', 'email', 'message'];
-    if (formData.serviceType === 'centres-educatius') {
-      requiredFields.push('location');
+    if (formData.serviceType === 'serveis-externs') {
+      requiredFields.push('location', 'externsSubtype');
+      if (formData.externsSubtype === 'centre-educatiu') {
+        requiredFields.push('centreSubtype');
+        if (formData.centreSubtype === 'professorat') {
+          requiredFields.push('schoolName');
+        }
+      }
+      if (formData.externsSubtype === 'altres-entitats') {
+        requiredFields.push('entityType', 'entityName', 'participantsCount');
+      }
     }
     
     requiredFields.forEach(field => {
