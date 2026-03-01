@@ -38,7 +38,7 @@ const Contact = () => {
                 />
         
                 {/* Service-Specific Conditional Fields */}
-                <ServiceSpecificFields formData={formData} updateField={updateField} />
+                <ServiceSpecificFields formData={formData} updateField={updateField} errors={errors} />
         
                 {/* Message Field */}
                 <MessageField formData={formData} updateField={updateField} errors={errors} />
