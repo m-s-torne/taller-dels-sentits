@@ -85,32 +85,75 @@ export const validateAndSanitize = async (
       };
     }
 
-    // Validate location (obligatory for centres-educatius)
-    if (formData.serviceType === 'centres-educatius') {
+    // Validate location (obligatory for serveis-externs)
+    if (formData.serviceType === 'serveis-externs') {
       if (!formData.location?.trim()) {
         return { 
           valid: false,
-          error: 'La població és obligatòria per a centres educatius' 
+          error: 'La població és obligatòria per a serveis externs' 
         };
       }
     }
 
-    // Validate studentsCount (if service is centres-educatius)
-    if (formData.serviceType === 'centres-educatius' && formData.studentsCount !== '') {
-      const count = formData.studentsCount;
-      
-      if (typeof count !== 'number' || isNaN(count)) {
-        return { 
-          valid: false,
-          error: 'El nombre d\'estudiants ha de ser un valor numèric' 
-        };
+    // Validate serveis-externs subtype fields
+    if (formData.serviceType === 'serveis-externs') {
+      // externsSubtype required
+      if (!formData.externsSubtype) {
+        return { valid: false, error: 'Has de seleccionar el tipus de col·lectiu' };
       }
-      
-      if (count < 1) {
-        return { 
-          valid: false,
-          error: 'El nombre d\'estudiants ha de ser almenys 1' 
-        };
+
+      // centre-educatiu required: centreSubtype
+      if (formData.externsSubtype === 'centre-educatiu') {
+        if (!formData.centreSubtype) {
+          return { valid: false, error: 'Has de seleccionar el destinatari de la formació' };
+        }
+        // schoolName required for professorat
+        if (formData.centreSubtype === 'professorat' && !formData.schoolName?.trim()) {
+          return { valid: false, error: 'El nom del centre és obligatori per a la formació al professorat' };
+        }
+      }
+
+      // altres-entitats required: entityType + entityName
+      if (formData.externsSubtype === 'altres-entitats') {
+        if (!formData.entityType) {
+          return { valid: false, error: 'Has de seleccionar el tipus d\'entitat' };
+        }
+        if (!formData.entityName?.trim()) {
+          return { valid: false, error: 'El nom de l\'entitat és obligatori' };
+        }
+      }
+
+      // Validate numeric counts (if filled)
+      if (
+        formData.externsSubtype === 'centre-educatiu' &&
+        formData.centreSubtype === 'alumnes' &&
+        formData.studentsCount !== ''
+      ) {
+        const count = formData.studentsCount;
+        if (typeof count !== 'number' || isNaN(count) || count < 1) {
+          return { valid: false, error: 'El nombre d\'estudiants ha de ser almenys 1' };
+        }
+      }
+
+      if (
+        formData.externsSubtype === 'centre-educatiu' &&
+        formData.centreSubtype === 'professorat' &&
+        formData.teachersCount !== ''
+      ) {
+        const count = formData.teachersCount;
+        if (typeof count !== 'number' || isNaN(count) || count < 1) {
+          return { valid: false, error: 'El nombre de professors ha de ser almenys 1' };
+        }
+      }
+
+      if (formData.externsSubtype === 'altres-entitats') {
+        if (formData.participantsCount === '' || formData.participantsCount === null || formData.participantsCount === undefined) {
+          return { valid: false, error: 'El nombre de participants és obligatori' };
+        }
+        const count = formData.participantsCount;
+        if (typeof count !== 'number' || isNaN(count) || count < 1) {
+          return { valid: false, error: 'El nombre de participants ha de ser almenys 1' };
+        }
       }
     }
 
@@ -131,6 +174,16 @@ export const validateAndSanitize = async (
       studentsCount: typeof formData.studentsCount === 'number' 
         ? Math.floor(Math.max(1, formData.studentsCount))
         : '',
+      teachersCount: typeof formData.teachersCount === 'number'
+        ? Math.floor(Math.max(1, formData.teachersCount))
+        : '',
+      trainingInterest: formData.trainingInterest ? sanitizeText(formData.trainingInterest) : '',
+      entityName: formData.entityName ? sanitizeText(formData.entityName) : '',
+      entityDescription: formData.entityDescription ? sanitizeText(formData.entityDescription) : '',
+      participantsCount: typeof formData.participantsCount === 'number'
+        ? Math.floor(Math.max(1, formData.participantsCount))
+        : '',
+      projectDescription: formData.projectDescription ? sanitizeText(formData.projectDescription) : '',
       // Keep availability as-is since it's a union type
       availability: formData.availability || '',
       // Clear honeypot field
