@@ -7,7 +7,7 @@ export const getServiceLabels = (): Record<ServiceType, string> => {
   return {
     'artterapia': 'Artteràpia',
     'artperdins': 'Artperdins',
-    'centres-educatius': 'Centres Educatius',
+    'serveis-externs': 'Serveis Externs',
     'general': 'Consulta General'
   };
 };
