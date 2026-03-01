@@ -4,6 +4,9 @@ import type {
   EducationStage,
   ContactPreference,
   Availability,
+  ExternsSubtype,
+  CentreSubtype,
+  EntityType,
 } from '@/app/contacte/types/form.types';
 
 interface Option<T> {
@@ -71,4 +74,27 @@ export const availabilityOptions: Option<Availability>[] = [
   { value: 'morning', label: 'Matins' },
   { value: 'afternoon', label: 'Tardes' },
   { value: 'anytime', label: 'Qualsevol moment' },
+];
+
+export const externsSubtypeOptions: Option<ExternsSubtype | ''>[] = [
+  { value: '', label: 'Selecciona el tipus de servei' },
+  { value: 'centre-educatiu', label: 'Centre Educatiu' },
+  { value: 'altres-entitats', label: 'Altres entitats' },
+];
+
+export const centreSubtypeOptions: Option<CentreSubtype | ''>[] = [
+  { value: '', label: 'Selecciona el destinatari' },
+  { value: 'alumnes', label: 'Formació per a alumnes' },
+  { value: 'professorat', label: 'Formació al professorat' },
+];
+
+export const entityTypeOptions: Option<EntityType | ''>[] = [
+  { value: '', label: 'Selecciona el tipus d\'entitat' },
+  { value: 'ajuntament', label: 'Ajuntament' },
+  { value: 'hospital', label: 'Hospital' },
+  { value: 'residencia', label: 'Residència' },
+  { value: 'centre-cultural', label: 'Centre Cultural' },
+  { value: 'col-lectiu-empresa', label: 'Col·lectiu d\'empresa' },
+  { value: 'entitat-social', label: 'Entitat Social' },
+  { value: 'altres', label: 'Altres' },
 ];
