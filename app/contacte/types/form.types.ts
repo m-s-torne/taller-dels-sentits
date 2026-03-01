@@ -1,4 +1,4 @@
-export type ServiceType = 'artterapia' | 'artperdins' | 'centres-educatius' | 'general';
+export type ServiceType = 'artterapia' | 'artperdins' | 'serveis-externs' | 'general';
 
 export type ArttherapyFormat = 'individual' | 'grupal' | 'unsure';
 export type ParticipantAge = 'adolescent' | 'young-adult' | 'adult';
@@ -12,6 +12,18 @@ export type PrimariaCourse = '1r' | '2n' | '3r' | '4t' | '5è' | '6è';
 export type ESOCourse = '1r ESO' | '2n ESO' | '3r ESO' | '4t ESO';
 export type BatxilleratCourse = '1r Batxillerat' | '2n Batxillerat';
 export type CourseGroup = InfantilCourse | PrimariaCourse | ESOCourse | BatxilleratCourse;
+
+// Serveis Externs subtypes
+export type ExternsSubtype = 'centre-educatiu' | 'altres-entitats';
+export type CentreSubtype = 'alumnes' | 'professorat';
+export type EntityType =
+  | 'ajuntament'
+  | 'hospital'
+  | 'residencia'
+  | 'centre-cultural'
+  | 'col-lectiu-empresa'
+  | 'entitat-social'
+  | 'altres';
 
 export interface ContactFormData {
   // Información básica
@@ -34,9 +46,24 @@ export interface ContactFormData {
   educationStage: EducationStage | '';
   studentsCount: number | '';
   courseGroup: CourseGroup | '';
-  courseInterest: string; // Curso o monográfico de interés (opcional)
-  
-  // Común
+  courseInterest: string; // Curs o monogràfic d'interès (opcional)
+
+  // Serveis Externs - subtipus
+  externsSubtype: ExternsSubtype | '';
+  centreSubtype: CentreSubtype | '';
+
+  // Formació al professorat
+  teachersCount: number | '';
+  trainingInterest: string;
+
+  // Altres entitats
+  entityType: EntityType | '';
+  entityName: string;
+  entityDescription: string;
+  participantsCount: number | '';
+  projectDescription: string;
+
+  // Comú
   message: string;
   contactPreference: ContactPreference[];
   availability: Availability | '';
@@ -66,5 +93,11 @@ export interface FormErrors {
     session?: boolean;
     time?: boolean;
   };
-  centres: Record<string, never>;
+  // Serveis Externs
+  externsSubtype?: string;
+  centreSubtype?: string;
+  schoolName?: string;
+  entityType?: string;
+  entityName?: string;
+  participantsCount?: string;
 }
