@@ -10,13 +10,13 @@ interface ContactPreferencesProps {
 }
 
 export const ContactPreferences = ({ formData, updateField }: ContactPreferencesProps) => {
-  const isCentresEducatius = formData.serviceType === 'centres-educatius';
+  const isServeisExterns = formData.serviceType === 'serveis-externs';
 
   return (
     <div className="space-y-4 border-t pt-6">
       <h3 className="text-xl font-semibold">Preferències de Contacte</h3>
       
-      {!isCentresEducatius && (
+      {!isServeisExterns && (
         <div>
           <label className="block text-sm font-medium mb-2">
             Com prefereixes que et contactem? (selecciona totes les que apliquin)
