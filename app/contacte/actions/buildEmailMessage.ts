@@ -61,34 +61,61 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
     }
   }
   
-  // Centres Educatius
-  if (data.serviceType === 'centres-educatius') {
-    msg += '🏫 CENTRES EDUCATIUS\n';
-    
-    if (data.schoolName) {
-      msg += `Nom del centre: ${data.schoolName}\n`;
+  // Serveis Externs
+  if (data.serviceType === 'serveis-externs') {
+    msg += '🏛️ SERVEIS EXTERNS\n';
+
+    if (data.externsSubtype === 'centre-educatiu') {
+      msg += `Tipus: Centre Educatiu\n`;
+
+      if (data.centreSubtype === 'alumnes') {
+        msg += `Destinatari: Formació per a alumnes\n`;
+        if (data.schoolName) msg += `Nom del centre: ${data.schoolName}\n`;
+        if (data.educationStage) {
+          const stageLabels: Record<string, string> = {
+            infantil: 'Infantil', primaria: 'Primària', eso: 'ESO', batxillerat: 'Batxillerat'
+          };
+          msg += `Etapa educativa: ${stageLabels[data.educationStage]}\n`;
+        }
+        if (data.courseGroup) msg += `Curs: ${data.courseGroup}\n`;
+        if (data.studentsCount) msg += `Nombre aproximat d'alumnes: ${data.studentsCount}\n`;
+        if (data.courseInterest) msg += `Curs/Monogràfic d'interès: ${data.courseInterest}\n`;
+      }
+
+      if (data.centreSubtype === 'professorat') {
+        msg += `Destinatari: Formació al professorat\n`;
+        if (data.schoolName) msg += `Nom del centre: ${data.schoolName}\n`;
+        if (data.educationStage) {
+          const stageLabels: Record<string, string> = {
+            infantil: 'Infantil', primaria: 'Primària', eso: 'ESO', batxillerat: 'Batxillerat'
+          };
+          msg += `Etapa educativa: ${stageLabels[data.educationStage]}\n`;
+        }
+        if (data.teachersCount) msg += `Nombre de professors: ${data.teachersCount}\n`;
+        if (data.trainingInterest) msg += `Àrea d'interès per a la formació: ${data.trainingInterest}\n`;
+      }
     }
-    
-    if (data.educationStage) {
-      const stageLabels = {
-        infantil: 'Infantil',
-        primaria: 'Primària',
-        eso: 'ESO',
-        batxillerat: 'Batxillerat'
-      };
-      msg += `Etapa educativa: ${stageLabels[data.educationStage]}\n`;
-    }
-    
-    if (data.courseGroup) {
-      msg += `Curs: ${data.courseGroup}\n`;
-    }
-    
-    if (data.studentsCount) {
-      msg += `Nombre aproximat d'alumnes: ${data.studentsCount}\n`;
-    }
-    
-    if (data.courseInterest) {
-      msg += `Curs/Monogràfic d'interès: ${data.courseInterest}\n`;
+
+    if (data.externsSubtype === 'altres-entitats') {
+      msg += `Tipus: Altres entitats\n`;
+      if (data.entityType) {
+        const entityLabels: Record<string, string> = {
+          ajuntament: 'Ajuntament',
+          hospital: 'Hospital',
+          residencia: 'Residència',
+          'centre-cultural': 'Centre Cultural',
+          'col-lectiu-empresa': 'Col·lectiu d\'empresa',
+          'entitat-social': 'Entitat Social',
+          altres: 'Altres'
+        };
+        msg += `Tipus d'entitat: ${entityLabels[data.entityType]}\n`;
+      }
+      if (data.entityName) msg += `Nom de l'entitat: ${data.entityName}\n`;
+      if (data.entityType === 'altres' && data.entityDescription) {
+        msg += `Descripció de l'entitat: ${data.entityDescription}\n`;
+      }
+      if (data.participantsCount) msg += `Nombre aproximat de participants: ${data.participantsCount}\n`;
+      if (data.projectDescription) msg += `Descripció del projecte: ${data.projectDescription}\n`;
     }
   }
   
