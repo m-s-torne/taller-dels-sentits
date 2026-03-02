@@ -1,5 +1,6 @@
 "use client"
 import { motion, AnimatePresence } from 'motion/react';
+import { FadeInView } from '@/app/_components/FadeInView';
 import { useReviews } from '@/app/(serveis)/hooks/useReviews';
 import { SectionHeading } from '@/app/_components/SectionHeading';
 
@@ -25,13 +26,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
     if (validReviews.length === 0) return null;
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16 pt-20"
-        >
+        <FadeInView as="section" className="mb-16 pt-20">
             {/* Título */}
             <SectionHeading headingLevel="h2" title="Algunes persones ens han dit:" className="text-center sm:text-3xl! lg:text-4xl! mb-5!" />
             
@@ -121,6 +116,6 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
                     </button>
                 </div>
             )}
-        </motion.section>
+        </FadeInView>
     );
 };
