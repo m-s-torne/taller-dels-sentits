@@ -10,6 +10,7 @@ import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 import { motion } from 'motion/react';
 import { ImageCarousel } from '../components/ImageCarousel';
 import { carouselImages } from './lib/carouselImages';
+import ButtonComponent from '@/app/_components/ui/ButtonComponent';
 
 export default function ServeisExterns() {
     const service = servicesData.find(s => s.id === 'serveis-externs')!;
@@ -50,6 +51,16 @@ export default function ServeisExterns() {
                                 <ParagraphList paragraphs={sub.paragraphs} boldIndex={0} />
                                 
                                 { i === 0 && <ImageCarousel images={carouselImages} /> }
+
+                                { i === 0 && (
+                                    <div className="flex justify-center pb-8">
+                                        <ButtonComponent
+                                            text="Descarregar PDF"
+                                            href="/pdfs/centres-educatius.pdf"
+                                            download="Taller-dels-Sentits-Centres-Educatius.pdf"
+                                        />
+                                    </div>
+                                )}
                                 
                                 {sub.subheading && (
                                     <div className="mt-4">
