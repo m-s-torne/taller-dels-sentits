@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import type { Question } from '@/app/_types/services.types';
 import { motion, AnimatePresence } from 'motion/react';
+import { FadeInView } from '@/app/_components/FadeInView';
 
 interface QuestionCarouselProps {
     questions: Question[];
@@ -23,13 +24,7 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
     if (questions.length === 0) return null;
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-        >
+        <FadeInView as="section" className="mb-16">
             <div className="relative min-h-24 flex items-center justify-center">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -46,6 +41,6 @@ export const QuestionCarousel = ({ questions }: QuestionCarouselProps) => {
                     </motion.div>
                 </AnimatePresence>
             </div>
-        </motion.section>
+        </FadeInView>
     );
 };

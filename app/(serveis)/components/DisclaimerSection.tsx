@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { FadeInView } from '@/app/_components/FadeInView';
 
 interface DisclaimerSectionProps {
     disclaimer: string[];
@@ -10,13 +10,7 @@ export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
     const [firstSentence, ...restSentences] = disclaimer;
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-        >
+        <FadeInView as="section" className="mb-16">
             {/* Primera frase fuera del container */}
             <p className="text-shakespeare! text-xs sm:text-sm leading-relaxed mb-4">
                 {firstSentence.trim()}
@@ -32,6 +26,6 @@ export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
                     ))}
                 </div>
             )}
-        </motion.section>
+        </FadeInView>
     );
 };

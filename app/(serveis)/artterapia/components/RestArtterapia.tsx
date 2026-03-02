@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { FadeInView } from '@/app/_components/FadeInView';
 import { SectionHeading } from '@/app/_components/SectionHeading';
 
 interface RestSectionProps {
@@ -18,13 +18,7 @@ export const RestArtterapia = ({ rest }: RestSectionProps) => {
     if (!rest || !rest.title) return null;
 
     return (
-        <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-        >
+        <FadeInView as="section" className="mb-16">
             <div className="text-center mb-12 space-y-7">
                 <SectionHeading headingLevel="h2" title={rest.title} className="sm:text-5xl! lg:text-5xl!" />
                 <p className="text-shakespeare! text-sm sm:text-base lg:text-lg leading-relaxed">
@@ -67,6 +61,6 @@ export const RestArtterapia = ({ rest }: RestSectionProps) => {
                     ))}
                 </div>
             )}
-        </motion.section>
+        </FadeInView>
     );
 };

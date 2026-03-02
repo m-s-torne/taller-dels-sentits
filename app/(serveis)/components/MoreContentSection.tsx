@@ -1,5 +1,6 @@
 "use client"
 import { motion, AnimatePresence } from 'motion/react';
+import { FadeInView } from '@/app/_components/FadeInView';
 import { useState } from 'react';
 import { TriangleButton } from '@/app/_components/ui/TriangleButton';
 
@@ -19,13 +20,7 @@ export const MoreContentSection = ({ moreContent, images }: MoreContentSectionPr
 
     return (
         <section>
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6 }}
-                className="flex justify-center pb-6"
-            >
+            <FadeInView className="flex justify-center pb-6">
                 {/* Botón expandible */}
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
@@ -41,7 +36,7 @@ export const MoreContentSection = ({ moreContent, images }: MoreContentSectionPr
                 >
                     {moreContent.buttonText.trim()}
                 </button>
-            </motion.div>
+            </FadeInView>
 
             {/* Contenido expandible - Full width */}
             <AnimatePresence>
