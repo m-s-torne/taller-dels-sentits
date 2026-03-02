@@ -1,10 +1,11 @@
 interface SectionHeadingProps {
     headingLevel: 'h1' | 'h2' | 'h3';
     title: string;
+    subtitle?: string;
     className?: string;
 }
 
-export const SectionHeading = ({ headingLevel, title, className }: SectionHeadingProps) => {
+export const SectionHeading = ({ headingLevel, title, subtitle, className }: SectionHeadingProps) => {
     const HeadingTag = headingLevel;
     const baseClasses =
         headingLevel === 'h1'
@@ -14,8 +15,15 @@ export const SectionHeading = ({ headingLevel, title, className }: SectionHeadin
             : "text-xl sm:text-2xl lg:text-3xl font-light text-shakespeare! mb-6";
 
     return (
-        <HeadingTag className={`${baseClasses}${className ? ` ${className}` : ''}`}>
-            {title}
-        </HeadingTag>
+        <>
+            <HeadingTag className={`${baseClasses}${className ? ` ${className}` : ''}`}>
+                {title}
+            </HeadingTag>
+            {subtitle && (
+                <p className="text-base sm:text-[15px] lg:text-[20px] font-light">
+                    {subtitle}
+                </p>
+            )}
+        </>
     );
 };
