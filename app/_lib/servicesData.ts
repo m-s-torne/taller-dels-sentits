@@ -171,22 +171,6 @@ export const servicesData: ServiceSectionType[] = [
             },
             {
                 review: `
-                    Vaig fer Artteràpia amb el Víctor per 
-                    tal de continuar amb el meu procés terapèutic 
-                    des d’una perspectiva diferent: utilitzant menys 
-                    la racionalitat de les paraules i més de les 
-                    emocions dels sentits. A través de diverses 
-                    peces i processos vaig anar construïnt des de 
-                    la cura, els detalls, el repòs, la serenor. El 
-                    Víctor em va ajudar a veure que, de vegades, una 
-                    tortuga a mig fer pot ser un dofí, una onada o 
-                    quelcom altre encara per imaginar; que els que ens 
-                    passa dins passa també fora; i que l’art, com el dia 
-                    a dia, es transforma amb la mirada.`,
-                author: `Jove de 19 anys.`,
-            },
-            {
-                review: `
                     Trabajar en sesiones idividuales con Miriam es laborioso
                     y por ello, muy enriquecedor. Sabe guiarte y, sobretodo,
                     acompañarte amorosamente en el camino que emprendes para
