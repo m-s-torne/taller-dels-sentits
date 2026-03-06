@@ -49,7 +49,7 @@ const ContentDisplay = ({
                     {/* Texto descriptivo con overflow y scroll interno */}
                     <div
                         ref={textRef}
-                        className="text-lilac! text-sm sm:text-base lg:text-lg leading-relaxed text-left h-52 md:h-56 no-user-scroll relative py-3"
+                        className="text-lilac! text-sm sm:text-base lg:text-lg leading-relaxed text-left h-52 md:h-60 no-user-scroll relative py-3"
                         style={{
                             scrollbarWidth: 'none',
                         }}
