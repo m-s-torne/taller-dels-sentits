@@ -26,7 +26,7 @@ export const servicesData: ServiceSectionType[] = [
             l’enfocament artterapèutic del psiquiatra Jean- Pierre Klein, la teràpia de joc de Violet Oaklander i l’artteràpia 
             des d’ un enfocament gestàltic de Javier Melguizo.`,
 
-            `En els darrers anys, la nostra experiència professional s’ha anat centrant en l’àmbit
+            `En els darrers anys, l'experiència professional s’ha anat centrant en l’àmbit
             artterapèutic, tant en dispositius individuals com en grups reduïts, atenent infants,
             adolescents, joves i adults.`,
 
