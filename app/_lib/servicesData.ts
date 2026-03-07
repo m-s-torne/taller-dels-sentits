@@ -370,19 +370,12 @@ export const servicesData: ServiceSectionType[] = [
         sections: [
             {
                 title: 'Centres educatius',
-                paragraphs: [
-                    `L'expressió i creació artístiques són eines de coneixement i la seva pràctica dóna als infants i adolescents més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta.`,
-                    `Oferim sessions especialitzades per a centres educatius de primària i secundària afavorint la mirada introspectiva de l'experiència creativa mitjançant el coneixement d'un artista, moviment artístic tot integrant les eines de l'artteràpia.`,
-                ],
+                paragraphs: [],
                 subsections: [
                     {
                         title: `Monogràfics d'artistes i moviments artístics`,
                         subtitle: `Sessions monogràfiques per a la difusió pedagògica de les Arts Plàstiques.`,
-                        paragraphs: [
-                            `És realment d'aquesta forma que l'obra d'art pot ser significativa per a cada nen. I és una manera enriquidora d'acostar-se a ell mateix, tot abordant la creació des de la pròpia sensibilitat, atenent els sentits, els sentiments i les seves pròpies vivències. Des del Taller dels Sentits, creiem, doncs, que l'educació de l'art no s'ha de centrar exclusivament en l'habilitat manual o el coneixement tècnic, ni afavorir un sol gust estètic.`,
-                            `L'art és transformador. Sabem que la plàstica és també coneixement i la seva pràctica dóna als infants més recursos de reflexió, de comprensió d'ells mateixos i del món que els envolta. El fet d'implicar-los en un procés creatiu afavoreix les seves capacitats expressives i de comunicació, fomenta l'autoestima, tot aprenent a valorar la pròpia mirada de les coses i el respecte per la mirada dels altres.`,
-                            `El Taller dels Sentits porta a terme un projecte per a les escoles cada cop més consolidat. El nostre objectiu és difondre de manera entenedora el motiu pel qual un artista o un moviment artístic busca i troba les seves "maneres de fer". Les sessions duren aproximadament una hora: després d'una explicació interactiva amb els alumnes i amb l'us d'imatges, sempre es proposa un treball plàstic, amb prou marge per tal que l'alumne interioritzi els arguments que han portat l'artista a crear la seva obra i se'ls faci seus.`,
-                        ],
+                        paragraphs: [],
                         subheading: `Des del Taller dels Sentits, hem configurat i realitzat projectes de divulgació de les arts plàstiques i projectes d'artteràpia a:`,
                         list: [
                             `Escola El Cim, de Vilanova i la Geltrú`,

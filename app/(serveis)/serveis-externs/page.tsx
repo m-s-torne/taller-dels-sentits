@@ -30,13 +30,17 @@ export default function ServeisExterns() {
                     <FadeInView key={section.title} as="section" className="py-10 space-y-6">
                         <SectionHeading headingLevel="h2" title={section.title} className="text-center mb-4" />
                         
-                        <ParagraphList paragraphs={section.paragraphs} boldIndex={0} />
+                        {section.paragraphs.length > 0 && (
+                            <ParagraphList paragraphs={section.paragraphs} boldIndex={0} />
+                        )}
 
                         {section.subsections?.map((sub, i) => (
                             <div key={sub.title} className="space-y-8 pt-6">
                                 <SectionHeading headingLevel="h3" title={sub.title} subtitle={sub.subtitle} />
                                 
-                                <ParagraphList paragraphs={sub.paragraphs} boldIndex={0} />
+                                {sub.paragraphs.length > 0 && (
+                                    <ParagraphList paragraphs={sub.paragraphs} boldIndex={0} />
+                                )}
                                 
                                 { i === 0 && <ImageCarousel images={carouselImages} /> }
 
