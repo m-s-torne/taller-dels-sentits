@@ -92,6 +92,24 @@ export const MoreContentSection = ({ moreContent, images }: MoreContentSectionPr
                     </motion.div>
                 )}
             </AnimatePresence>
+            {!isExpanded && 
+                <motion.div
+                    className="flex justify-center"
+                    initial={{ maxHeight: 0, opacity: 0, marginBottom: 0 }}
+                    animate={{ maxHeight: 2000, opacity: 1, marginBottom: 0 }}
+                    exit={{ maxHeight: 0, opacity: 0, marginBottom: 0 }}
+                    transition={{ 
+                        maxHeight: { duration: 0.7, ease: "easeInOut" },
+                        opacity: { duration: 0.5, ease: "easeInOut" },
+                        marginBottom: { duration: 0.7, ease: "easeInOut" }
+                    }}
+                >
+                    <TriangleButton
+                        color="shakespeare"
+                        onClick={() => setIsExpanded(true)}
+                    />
+                </motion.div>
+            }
         </section>
     );
 };
