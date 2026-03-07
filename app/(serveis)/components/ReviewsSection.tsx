@@ -26,7 +26,7 @@ export const ReviewsSection = ({ reviews }: ReviewsSectionProps) => {
     if (validReviews.length === 0) return null;
 
     return (
-        <FadeInView as="section" className="mb-16 pt-20">
+        <FadeInView as="section" className="mb-16 pt-10">
             {/* Título */}
             <SectionHeading headingLevel="h2" title="Algunes persones ens han dit:" className="text-center sm:text-3xl! lg:text-4xl! mb-5!" />
             
