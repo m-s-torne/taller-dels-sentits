@@ -236,7 +236,7 @@ export const servicesData: ServiceSectionType[] = [
         title: 'ARTPERDINS',
         subtitle: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents, Joves i Adults.",
         shortDescription: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents\nJoves i Adults.",
-        exclamation: "Et convido a provar els nostres cursos de L’ Artperdins!",
+        exclamation: "Et convido a provar els nostres cursos i Monogràfics de L’ Artperdins!",
         longDescription: [
             `Amb 15 anys de trajectòria de L’Artperdins, hem anat configurant una metodologia pròpia per a 
             adolescents, joves i adults que integra el coneixement de les eines i tècniques artístiques amb 
@@ -259,11 +259,11 @@ export const servicesData: ServiceSectionType[] = [
             },
             {
                 service: 'artperdins',
-                text: `T' agradaria provar d' expressar-ho tu mateix?`
+                text: `Alguna vegada mirant una pintura has sentit que expressava com cap altra cosa el que tu senties en aquell moment?`
             },
             {
                 service: 'artperdins',
-                text: `Alguna vegada mirant una pintura has sentit que expressava com cap altra cosa el que tu senties en aquell moment?`
+                text: `T' agradaria provar d' expressar-ho tu mateix?`
             },
             {
                 service: 'artperdins',
