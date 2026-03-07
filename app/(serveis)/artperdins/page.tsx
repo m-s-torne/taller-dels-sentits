@@ -38,11 +38,7 @@ export default function Artperdins() {
 
                 <QuestionCarousel questions={service.questions}/>
                 
-                <ImageCarousel images={carouselImages1} />
-
-                <RestArtperDins rest={service.rest}/>
-
-                <ImageCarousel images={carouselImages2} />
+                <ImageCarousel images={[...carouselImages1, ...carouselImages2]} />
 
                 <MoreContentSection 
                     moreContent={service.moreContent}
