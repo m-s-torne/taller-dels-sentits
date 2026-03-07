@@ -1,10 +1,10 @@
 interface TriangleButtonProps {
-  triangleRotation: string;
+  triangleRotation?: string;
   onClick: () => void;
   color?: 'lilac' | 'scampi' | 'shakespeare';
 }
 
-export const TriangleButton = ({ triangleRotation, onClick, color = 'lilac' }: TriangleButtonProps) => {
+export const TriangleButton = ({ triangleRotation = "rotate(0deg)", onClick, color = 'lilac' }: TriangleButtonProps) => {
   const colorClasses = {
     lilac: 'text-lilac hover:text-lilac/70',
     scampi: 'text-scampi hover:text-scampi/70',
