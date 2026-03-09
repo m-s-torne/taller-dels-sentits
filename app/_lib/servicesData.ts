@@ -115,7 +115,7 @@ export const servicesData: ServiceSectionType[] = [
                     tot plegat es converteixi en una experiència 
                     única on expressar lliurement idees i emocions 
                     a través de l’art.`,
-                author: `M.`,
+                author: `M. en una experiència grupal`,
             },
             {
                 review: `
@@ -183,7 +183,7 @@ export const servicesData: ServiceSectionType[] = [
                     formidable herramienta de autoconocimiento para quien esté
                     dispuesto a trabajarse.
                 `,
-                author: `Alumna de les sessions per a adults.`,
+                author: `V.`,
             },
             {
                 review: `
@@ -236,7 +236,7 @@ export const servicesData: ServiceSectionType[] = [
         title: 'ARTPERDINS',
         subtitle: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents, Joves i Adults.",
         shortDescription: "Cursos anuals d'Acompanyament Creatiu d'Expressió Artística per a Adolescents\nJoves i Adults.",
-        exclamation: "Et convido a provar els nostres cursos i Monogràfics de L’ Artperdins!",
+        exclamation: "Et convido a provar els nostres cursos i monogràfics de l’ Artperdins!",
         longDescription: [
             `Amb 15 anys de trajectòria de L’Artperdins, hem anat configurant una metodologia pròpia per a 
             adolescents, joves i adults que integra el coneixement de les eines i tècniques artístiques amb 
@@ -407,15 +407,15 @@ export const servicesData: ServiceSectionType[] = [
                             `Amb l'objectiu de formar i assessorar al professorat hem configurat projectes amb una mirada multidisciplinar que comença escoltant la relació de cada docent amb l'art i des d'aquesta, ampliar la significació d'una àrea educativa vinculada a l'escolta personal, el permís expressiu i la cura emocional.`,
                         ],
                         subheading: `Des del Taller dels Sentits, hem configurat i realitzat formació al professorat a:`,
-                        list: [
-                            `Escola Pia, de Sitges`,
-                            `CEIP Maria d'Osó, de Sitges`,
-                            `CEIP Itaca, de Vilanova i la Geltrú: La mirada de l'Expressió Plàstica. Eines per a repensar l'àrea d'expressió plàstica a infantil i primària.`,
-                            `CEIP Arjau, de Vilanova i la Geltrú`,
-                            `CEIP Cossetània, de Vilanova i la Geltrú`,
-                            `Escola d'Estiu del Penedès, Saifores: Breu viatge de l'Expressió a la Creació`,
-                            `Escola d'Estiu del Penedès, Saifores: Sobre la creativitat`,
-                            `CEIP Maria d'Osó, de Sitges: La mirada de la paraula — curs sobre poesia visual`,
+                        objectList: [
+                            { school: `Escola Pia, de Sitges` },
+                            { school: `CEIP Maria d'Osó, de Sitges` },
+                            { school: `CEIP Itaca, de Vilanova i la Geltrú`, project: `La mirada de l'Expressió Plàstica. Eines per a repensar l'àrea d'expressió plàstica a infantil i primària.` },
+                            { school: `CEIP Arjau, de Vilanova i la Geltrú` },
+                            { school: `CEIP Cossetània, de Vilanova i la Geltrú` },
+                            { school: `Escola d'Estiu del Penedès, Saifores`, project: `Breu viatge de l'Expressió a la Creació` },
+                            { school: `Escola d'Estiu del Penedès, Saifores`, project: `Sobre la creativitat` },
+                            { school: `CEIP Maria d'Osó, de Sitges`, project: `La mirada de la paraula — curs sobre poesia visual` },
                         ],
                     },
                 ],
