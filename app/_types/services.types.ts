@@ -1,5 +1,10 @@
 type Service = "artterapia" | "artperdins" | "serveis-externs";
 
+export interface SchoolProjectItem {
+    school: string;
+    project?: string;
+}
+
 export interface Quote {
     text: string;
     author: string;
@@ -21,6 +26,7 @@ export interface ServicePageSubsection {
     paragraphs: string[];
     subheading?: string;
     list?: string[];
+    objectList?: SchoolProjectItem[];
 }
 
 export interface ServicePageSection {
