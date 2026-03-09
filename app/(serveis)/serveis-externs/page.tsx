@@ -55,7 +55,7 @@ export default function ServeisExterns() {
                                 )}
                                 
                                 {sub.subheading && (
-                                    <SubheadingWithList title={sub.subheading} list={sub.list} />
+                                    <SubheadingWithList title={sub.subheading} list={sub.list} objectList={sub.objectList} />
                                 )}
                             </div>
                         ))}
