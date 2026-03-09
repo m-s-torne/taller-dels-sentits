@@ -6,6 +6,7 @@ import { ParagraphList } from '@/app/_components/ParagraphList';
 import { HeroSection } from '@/app/(serveis)/components';
 import headerImage from './assets/inici.jpg'
 import { MemberCard } from './components/MemberCard';
+import img1 from './assets/don_venim.jpg'
 
 export default function QuiSom () {
     const sections = [
@@ -34,7 +35,7 @@ export default function QuiSom () {
                                 headingLevel={section.headingLevel}
                                 title={section.title ?? 'no title provided'}
                             />
-                            <ParagraphList paragraphs={section.paragraphs} boldIndex={section.boldIndex} />
+                            <ParagraphList image={sectionIndex === 0 ? { src: img1.src, alt: img1.src } : undefined} paragraphs={section.paragraphs} boldIndex={section.boldIndex} />
                         </section>
                     ))}
 
