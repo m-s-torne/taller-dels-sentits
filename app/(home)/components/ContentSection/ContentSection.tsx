@@ -22,9 +22,8 @@ export const ContentSection = () => {
         <motion.section 
             id="essencia" 
             className="bg-shakespeare sm:py-20 py-10 px-4 sm:px-6 md:px-10 overflow-hidden"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
         >
             <div className="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-0 lg:gap-8 xl:gap-16">
