@@ -13,7 +13,8 @@ interface HeaderProps {
 
 const Header = ({ logoImg }: HeaderProps) => {
   const {
-    show,
+    headerY,
+    headerOpacity,
     setIsMenuOpen,
     toggleMenu,
     isMenuOpen,
@@ -27,9 +28,7 @@ const Header = ({ logoImg }: HeaderProps) => {
   return (
     <>
       <motion.header
-        initial={{ y: 0, opacity: 1 }}
-        animate={{ y: show ? 0 : -100, opacity: show ? 1 : 0 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        style={{ y: headerY, opacity: headerOpacity }}
         className="fixed top-0 left-0 w-full z-50 flex justify-between items-center py-4 px-4 sm:px-6 md:px-10 bg-white text-gray-800 shadow-md"
       >
         <Link 

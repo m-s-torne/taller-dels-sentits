@@ -48,7 +48,7 @@ export const useFooterDropdown = ({
             observer.observe(footerRef.current);
         }
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         return () => {
             if (footerRef.current) {

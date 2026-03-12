@@ -1,29 +1,29 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
+import { useScroll, useMotionValueEvent, useMotionValue, animate } from "motion/react";
 
 export const useHeader = () => {
-    const [show, setShow] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const headerY = useMotionValue(0);
+    const headerOpacity = useMotionValue(1);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isServicesOpen, setIsServicesOpen] = useState(false);
     const servicesRef = useRef<HTMLLIElement>(null);
     const pathname = usePathname();
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            if (currentScrollY > lastScrollY && currentScrollY > 60) {
-                setShow(false); // Oculta al hacer scroll hacia abajo
-                setIsMenuOpen(false); // Cierra el menú al hacer scroll
-                setIsServicesOpen(false); // Cierra el submenu de servicios
-            } else {
-                setShow(true); // Muestra al hacer scroll hacia arriba
-            }
-            setLastScrollY(currentScrollY);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (current) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        if (current > previous && current > 60) {
+            animate(headerY, -100, { type: 'spring', stiffness: 300, damping: 30 });
+            animate(headerOpacity, 0, { duration: 0.15 });
+            if (isMenuOpen) setIsMenuOpen(false);
+            if (isServicesOpen) setIsServicesOpen(false);
+        } else {
+            animate(headerY, 0, { type: 'spring', stiffness: 300, damping: 30 });
+            animate(headerOpacity, 1, { duration: 0.15 });
+        }
+    });
 
     // Close menus when route changes
     useEffect(() => {
@@ -59,7 +59,8 @@ export const useHeader = () => {
     };
 
     return {
-        show,
+        headerY,
+        headerOpacity,
         setIsMenuOpen,
         toggleMenu,
         isMenuOpen,
