@@ -10,7 +10,7 @@ const StepsNavigation = ({ steps, selectedStep, handleStepChange }: StepsNavigat
     return (
         <div className="flex-1/4 flex flex-col items-center lg:items-start w-full lg:w-auto max-w-full overflow-hidden lg:overflow-visible">
             {/* Layout horizontal en mobile, vertical en desktop */}
-            <div className="relative flex lg:flex-col flex-row justify-around lg:justify-between lg:h-full w-full lg:w-auto lg:min-h-[500px] pb-12 lg:pb-0 px-2 lg:px-0 overflow-hidden lg:overflow-visible">
+            <div className="relative flex lg:flex-col flex-row justify-around lg:justify-between lg:h-full w-full lg:w-auto lg:min-h-125 pb-12 lg:pb-0 px-2 lg:px-0 overflow-hidden lg:overflow-visible">
                 {/* Línea vertical en desktop */}
                 <div className="hidden lg:block absolute w-2 bg-white" style={{
                     left: '6px',
