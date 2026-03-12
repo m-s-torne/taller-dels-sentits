@@ -12,9 +12,9 @@ export const DisclaimerSection = ({ disclaimer }: DisclaimerSectionProps) => {
     return (
         <FadeInView as="section" className="mb-16 text-sm sm:text-lg leading-relaxed">
             {/* Primera frase fuera del container */}
-            <p className="text-shakespeare! mb-4">
+            <h2 className="text-shakespeare! text-3xl! mb-4">
                 {firstSentence.trim()}
-            </p>
+            </h2>
             
             {/* Resto de frases dentro del container */}
             {restSentences.length > 0 && (
