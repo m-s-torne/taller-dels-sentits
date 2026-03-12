@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
+  metadataBase: new URL(process.env.SITE_URL!),
   title: {
     default: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     template: "%s | Taller dels Sentits",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ca_ES",
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: process.env.SITE_URL,
     siteName: "Taller dels Sentits",
     title: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta, i un acompanyament acurat a través de l'art...",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL,
+    canonical: process.env.SITE_URL,
   },
 };
 
