@@ -97,7 +97,7 @@ export const quiSomData: QuiSomData = {
           Japó\" es presenta a La sala d'Art Contemporani de Vilanova i la Geltrú, i el 2025 als 
           Trinitaris de Vilafranca del Penedès.`
         ],
-        image: miriamImage.src
+        image: miriamImage
       }
     ]
   },
@@ -126,7 +126,7 @@ export const quiSomData: QuiSomData = {
           dificultats emocionals i conductuals i les seves famílies; grups d’infants en contextos
           educatius formals i no formals, etc...`
         ],
-        image: victorImage.src
+        image: victorImage
       },
       {
         name: "Mariona Farreras",
@@ -145,7 +145,7 @@ export const quiSomData: QuiSomData = {
           `Actualment, també col.laboro amb l’associació Tantàgora, per al foment del gust de la
           lectura i la mediació literària.`
         ],
-        image: marionaImage.src
+        image: marionaImage
       }
     ]
   }

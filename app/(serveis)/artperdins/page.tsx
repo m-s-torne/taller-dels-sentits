@@ -25,7 +25,7 @@ export default function Artperdins() {
             <div className="max-w-5xl mx-auto">
                 <HeroSection title={service.title} subtitle={service.subtitle} />
 
-                <RoundHeaderImage src={headerImg.src} alt="Artperdins - Taller dels Sentits" />
+                <RoundHeaderImage src={headerImg} alt="Artperdins - Taller dels Sentits" />
 
                 {service.quote && <StaticQuote quote={service.quote} />}
 

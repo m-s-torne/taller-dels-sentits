@@ -19,7 +19,7 @@ export default function QuiSom () {
             <div className="max-w-5xl mx-auto">
                 <HeroSection title={quiSomData.mainTitle} subtitle={quiSomData.subtitle} />
                 
-                <RoundHeaderImage src={headerImage.src} alt="header image"/>
+                <RoundHeaderImage src={headerImage} alt="header image"/>
 
                 <div className="max-w-6xl mx-auto space-y-8 text-gray-700 text-sm sm:text-lg leading-relaxed">
                     <ParagraphList paragraphs={quiSomData.introduction.paragraphs} />
@@ -35,7 +35,7 @@ export default function QuiSom () {
                                 headingLevel={section.headingLevel}
                                 title={section.title ?? 'no title provided'}
                             />
-                            <ParagraphList image={sectionIndex === 0 ? { src: img1.src, alt: img1.src } : undefined} paragraphs={section.paragraphs} boldIndex={section.boldIndex} />
+                            <ParagraphList image={sectionIndex === 0 ? { src: img1, alt: "Imatge història del Taller dels Sentits" } : undefined} paragraphs={section.paragraphs} boldIndex={section.boldIndex} />
                         </section>
                     ))}
 

@@ -5,9 +5,9 @@ import image4 from '../assets/images/4.jpg';
 import image5 from '../assets/images/5.jpg';
 
 export const carouselImages = [
-    { src: image1.src, alt: 'Artteràpia servei 1' },
-    { src: image2.src, alt: 'Artteràpia servei 2' },
-    { src: image3.src, alt: 'Artteràpia servei 3' },
-    { src: image4.src, alt: 'Artteràpia servei 4' },
-    { src: image5.src, alt: 'Artteràpia servei 5' },
+    { src: image1, alt: 'Artteràpia servei 1' },
+    { src: image2, alt: 'Artteràpia servei 2' },
+    { src: image3, alt: 'Artteràpia servei 3' },
+    { src: image4, alt: 'Artteràpia servei 4' },
+    { src: image5, alt: 'Artteràpia servei 5' },
 ];

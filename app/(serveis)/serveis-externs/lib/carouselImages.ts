@@ -6,10 +6,10 @@ import image5 from '../assets/images/5.jpg';
 import image6 from '../assets/images/6.jpg';
 
 export const carouselImages = [
-    { src: image1.src, alt: 'Serveis externs 1' },
-    { src: image2.src, alt: 'Serveis externs 2' },
-    { src: image3.src, alt: 'Serveis externs 3' },
-    { src: image4.src, alt: 'Serveis externs 4' },
-    { src: image5.src, alt: 'Serveis externs 5' },
-    { src: image6.src, alt: 'Serveis externs 6' },
+    { src: image1, alt: 'Serveis externs 1' },
+    { src: image2, alt: 'Serveis externs 2' },
+    { src: image3, alt: 'Serveis externs 3' },
+    { src: image4, alt: 'Serveis externs 4' },
+    { src: image5, alt: 'Serveis externs 5' },
+    { src: image6, alt: 'Serveis externs 6' },
 ];

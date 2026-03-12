@@ -6,13 +6,13 @@ import image5 from '../assets/images/5.jpg';
 import image6 from '../assets/images/6.jpg';
 
 export const carouselImages1 = [
-    { src: image1.src, alt: 'Artperdins servei 1' },
-    { src: image2.src, alt: 'Artperdins servei 2' },
-    { src: image3.src, alt: 'Artperdins servei 3' },
+    { src: image1, alt: 'Artperdins servei 1' },
+    { src: image2, alt: 'Artperdins servei 2' },
+    { src: image3, alt: 'Artperdins servei 3' },
 ];
 
 export const carouselImages2 = [
-    { src: image4.src, alt: 'Artperdins servei 4' },
-    { src: image5.src, alt: 'Artperdins servei 5' },
-    { src: image6.src, alt: 'Artperdins servei 6' },
+    { src: image4, alt: 'Artperdins servei 4' },
+    { src: image5, alt: 'Artperdins servei 5' },
+    { src: image6, alt: 'Artperdins servei 6' },
 ];

@@ -19,7 +19,7 @@ export default function ServeisExterns() {
             <div className="max-w-5xl mx-auto">
                 <HeroSection title={service.title} subtitle={service.subtitle} />
 
-                <RoundHeaderImage src={headerImg.src} alt="Serveis Externs - Taller dels Sentits" />
+                <RoundHeaderImage src={headerImg} alt="Serveis Externs - Taller dels Sentits" />
 
                 {service.quote && <StaticQuote quote={service.quote} />}
 

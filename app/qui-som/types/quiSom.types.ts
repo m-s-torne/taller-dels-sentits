@@ -3,10 +3,12 @@ export interface QuiSomNarrativeSection {
     paragraphs: string[];
 }
 
+import { StaticImageData } from 'next/image';
+
 export interface TeamMember {
     name: string;
     bio: string[];
-    image: string;
+    image: StaticImageData;
 }
 
 export interface QuiSomData {

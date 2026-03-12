@@ -1,9 +1,10 @@
 "use client"
+import Image, { StaticImageData } from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
 import { useImageCarousel } from '@/app/(serveis)/hooks/useImageCarousel';
 
 interface ImageCarouselProps {
-    images: { src: string; alt: string }[];
+    images: { src: StaticImageData; alt: string }[];
 }
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
@@ -21,20 +22,27 @@ export const ImageCarousel = ({ images }: ImageCarouselProps) => {
             {/* Contenedor de imagen */}
             <div className="relative w-full max-w-3xl mx-auto h-96 md:h-125 overflow-hidden rounded-[40px]">
                 <AnimatePresence initial={false} custom={direction}>
-                    <motion.img
+                    <motion.div
                         key={`${currentIndex}-${transitionCount}`}
-                        src={images[currentIndex].src}
-                        alt={images[currentIndex].alt}
                         variants={slideVariants}
                         initial="enter"
                         animate="center"
                         exit="exit"
+                        custom={direction}
                         transition={{
                             duration: 1,
                             ease: "easeInOut"
                         }}
-                        className="absolute w-full h-full object-cover"
-                    />
+                        className="absolute w-full h-full"
+                    >
+                        <Image
+                            src={images[currentIndex].src}
+                            alt={images[currentIndex].alt}
+                            fill
+                            className="object-cover"
+                            placeholder="blur"
+                        />
+                    </motion.div>
                 </AnimatePresence>
             </div>
 

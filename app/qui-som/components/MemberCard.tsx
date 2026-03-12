@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { TeamMember } from "../types/quiSom.types";
 
 export const MemberCard = ({ member }: { member: TeamMember }) => {
@@ -9,10 +10,13 @@ export const MemberCard = ({ member }: { member: TeamMember }) => {
                 </h3>
                 <div className="flex flex-col md:block md:overflow-hidden">
                     {member.image && (
-                        <img
+                        <Image
                             src={member.image}
                             alt={member.name}
+                            width={256}
+                            height={340}
                             className="w-64 object-cover rounded-[40px] mb-6 md:float-left md:mr-12 md:mb-4"
+                            placeholder="blur"
                         />
                     )}
                     <div className="space-y-4">
