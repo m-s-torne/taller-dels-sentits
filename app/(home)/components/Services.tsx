@@ -3,21 +3,33 @@ import Link from 'next/link';
 import ButtonComponent from '@/app/_components/ui/ButtonComponent';
 import { servicesData } from '@/app/_lib/servicesData';
 import { motion } from 'motion/react';
+import type { Variants } from 'motion/react';
+
+const containerVariants: Variants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
 
 const Services = () => {
 
     return (
         <motion.section 
             className="bg-lilac py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
         >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                 {servicesData.map((service) => (
-                    <div
+                    <motion.div
                         key={service.title}
+                        variants={cardVariants}
                         className="flex flex-col items-center text-center"
                     >
                         {/* Icono */}
@@ -45,7 +57,7 @@ const Services = () => {
                         <Link href={`/${service.id === 'serveis-externs' ? 'centres' : service.id}`}>
                             <ButtonComponent text="SABER MÉS" />
                         </Link>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </motion.section>

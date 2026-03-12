@@ -1,26 +1,32 @@
 "use client"
 import heroImg from '@/app/(home)/assets/images/miriam_porta.jpg'
 import { motion } from 'motion/react';
+import type { Variants } from 'motion/react';
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+};
 
 const HeroSection = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, ease: 'easeOut' }}
-    >
+    <motion.div variants={containerVariants} initial="hidden" animate="visible">
       {/* Banner azul */}
-      <div className="bg-shakespeare py-4 pt-25 overflow-x-hidden">
+      <motion.div variants={itemVariants} className="bg-shakespeare py-4 pt-25 overflow-x-hidden">
         <div className="text-center ">
           <h3 className="text-lilac! sm:text-xl font-light tracking-wide">
             ~ Centre d'artteràpia i expressió plàstica ~
           </h3>
         </div>
-      </div>
+      </motion.div>
 
       {/* Hero principal */}
-      <section className="bg-lilac py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden">
+      <motion.section variants={itemVariants} className="bg-lilac py-20 px-4 sm:px-6 md:px-10 overflow-x-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
           {/* Imagen circular a la izquierda */}
           <div className="shrink-0">
@@ -41,7 +47,7 @@ const HeroSection = () => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
     </motion.div>
   )
 };

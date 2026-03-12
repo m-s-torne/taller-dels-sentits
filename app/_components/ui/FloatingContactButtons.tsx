@@ -1,17 +1,38 @@
 "use client";
 
 import { motion } from 'motion/react';
+import type { Variants } from 'motion/react';
 import Link from 'next/link';
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.3 },
+  },
+};
 
 export default function FloatingContactButtons() {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <motion.div
+      className="fixed bottom-6 right-6 z-50 flex flex-col gap-3"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* WhatsApp Button */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-      >
+      <motion.div variants={itemVariants}>
         <Link
           href="https://wa.me/34675206204"
           target="_blank"
@@ -31,11 +52,7 @@ export default function FloatingContactButtons() {
       </motion.div>
 
       {/* Email Button */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.3 }}
-      >
+      <motion.div variants={itemVariants}>
         <Link
           href="mailto:tallerdelssentits@gmail.com"
           target="_blank"
@@ -58,6 +75,6 @@ export default function FloatingContactButtons() {
           </svg>
         </Link>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
