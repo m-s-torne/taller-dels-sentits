@@ -7,7 +7,7 @@ import { ParagraphList } from '@/app/_components/ParagraphList';
 import { SectionHeading } from '@/app/_components/SectionHeading';
 import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 import { FadeInView } from '@/app/_components/FadeInView';
-import { ImageCarousel } from '../components/ImageCarousel';
+import { ImageCarousel } from '../components';
 import { carouselImages } from './lib/carouselImages';
 import ButtonComponent from '@/app/_components/ui/ButtonComponent';
 

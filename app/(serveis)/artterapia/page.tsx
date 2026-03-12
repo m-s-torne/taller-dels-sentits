@@ -16,7 +16,7 @@ import {
     RestArtterapia,
 } from './components/RestArtterapia';
 import { carouselImages } from '@/app/(serveis)/artterapia/lib/carouselImages';
-import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
+import { ImageCarousel } from '@/app/(serveis)/components';
 import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 
 export default function Artterapia() {

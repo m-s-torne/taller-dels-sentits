@@ -13,7 +13,7 @@ import {
     StaticQuote,
 } from '@/app/(serveis)/components';
 import { RestArtperDins } from './components/RestArtperdins';
-import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
+import { ImageCarousel } from '@/app/(serveis)/components';
 import { carouselImages1, carouselImages2 } from './lib/carouselImages';
 import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 
