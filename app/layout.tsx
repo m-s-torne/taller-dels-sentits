@@ -21,7 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tallerdelssentits.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: {
     default: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     template: "%s | Taller dels Sentits",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ca_ES",
-    url: "https://tallerdelssentits.vercel.app",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "Taller dels Sentits",
     title: "Taller dels Sentits - Artteràpia a Vilanova i la Geltrú",
     description: "Centre d'artteràpia i expressió plàstica a Vilanova i la Geltrú. Oferim un espai de permís i escolta, i un acompanyament acurat a través de l'art...",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://tallerdelssentits.vercel.app",
+    canonical: process.env.NEXT_PUBLIC_SITE_URL,
   },
 };
 
@@ -81,11 +81,13 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
-        <Header logoImg="/logo-taller-dels-sentits.svg"/>
-        {children}
-        <Footer/>
-        <FloatingContactButtons />
-        <Toaster position="top-center" />
+        <div className="overflow-x-hidden max-w-[100vw]">
+          <Header logoImg="/logo-taller-dels-sentits.svg"/>
+          {children}
+          <Footer/>
+          <FloatingContactButtons />
+          <Toaster position="top-center" />
+        </div>
       </body>
     </html>
   );
