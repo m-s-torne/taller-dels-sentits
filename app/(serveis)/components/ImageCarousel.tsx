@@ -1,49 +1,40 @@
 "use client"
 import Image, { StaticImageData } from 'next/image';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { useImageCarousel } from '@/app/(serveis)/hooks/useImageCarousel';
 
+interface CarouselImage {
+    src: StaticImageData;
+    alt: string;
+}
+
 interface ImageCarouselProps {
-    images: { src: StaticImageData; alt: string }[];
+    images: CarouselImage[];
 }
 
 export const ImageCarousel = ({ images }: ImageCarouselProps) => {
-    const { 
-        currentIndex, 
-        direction, 
-        transitionCount, 
-        handlePrev, 
-        handleNext, 
-        slideVariants 
-    } = useImageCarousel(images.length);
+    const { currentIndex, handlePrev, handleNext } = useImageCarousel(images.length);
 
     return (
         <div className="mb-16">
             {/* Contenedor de imagen */}
             <div className="relative w-full max-w-3xl mx-auto h-96 md:h-125 overflow-hidden rounded-[40px]">
-                <AnimatePresence initial={false} custom={direction}>
+                {images.map((image, index) => (
                     <motion.div
-                        key={`${currentIndex}-${transitionCount}`}
-                        variants={slideVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        custom={direction}
-                        transition={{
-                            duration: 1,
-                            ease: "easeInOut"
-                        }}
-                        className="absolute w-full h-full"
+                        key={index}
+                        className="absolute inset-0"
+                        animate={{ opacity: index === currentIndex ? 1 : 0 }}
+                        transition={{ duration: 1, ease: 'easeInOut' }}
+                        style={{ opacity: index === 0 ? 1 : 0 }}
                     >
                         <Image
-                            src={images[currentIndex].src}
-                            alt={images[currentIndex].alt}
+                            src={image.src}
+                            alt={image.alt}
                             fill
                             className="object-cover"
-                            placeholder="blur"
                         />
                     </motion.div>
-                </AnimatePresence>
+                ))}
             </div>
 
             {/* Botones de navegación */}
