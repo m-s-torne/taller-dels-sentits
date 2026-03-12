@@ -5,7 +5,6 @@ import headerImg from './assets/images/taller_dels_sentits_serveis_externs.jpg';
 import { HeroSection, StaticQuote, SubheadingWithList } from '@/app/(serveis)/components';
 import { ParagraphList } from '@/app/_components/ParagraphList';
 import { SectionHeading } from '@/app/_components/SectionHeading';
-import { useScrollToTop } from '@/app/_hooks/useScrollToTop';
 import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 import { FadeInView } from '@/app/_components/FadeInView';
 import { ImageCarousel } from '../components/ImageCarousel';
@@ -14,8 +13,6 @@ import ButtonComponent from '@/app/_components/ui/ButtonComponent';
 
 export default function ServeisExterns() {
     const service = servicesData.find(s => s.id === 'serveis-externs')!;
-
-    useScrollToTop();
 
     return (
         <main className={`${service.bgColor} py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen`}>

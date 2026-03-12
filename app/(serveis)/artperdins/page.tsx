@@ -15,13 +15,10 @@ import {
 import { RestArtperDins } from './components/RestArtperdins';
 import { ImageCarousel } from '@/app/(serveis)/components/ImageCarousel';
 import { carouselImages1, carouselImages2 } from './lib/carouselImages';
-import { useScrollToTop } from '@/app/_hooks/useScrollToTop';
 import { RoundHeaderImage } from '@/app/_components/RoundHeaderImage';
 
 export default function Artperdins() {
     const service = servicesData.find(s => s.id === 'artperdins')!;
-
-    useScrollToTop();
 
     return (
         <main className={`${service.bgColor} py-10 px-4 sm:px-6 md:px-10 mt-18 min-h-screen`}>
