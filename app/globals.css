@@ -41,12 +41,5 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 /* Prevenir overflow horizontal en toda la app */
-html, body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-#root {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
+/* overflow-x en html/body crea un contenidor de scroll diferent del viewport,
+   trencant la restauració de scroll del navegador. S'usa un wrapper div en el layout. */
