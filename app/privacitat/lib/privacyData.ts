@@ -1,3 +1,5 @@
+import { siteConfig } from "@/app/_lib/siteConfig";
+
 export interface PrivacySection {
   id: string;
   title: string;
@@ -11,24 +13,24 @@ export const privacyData = {
   },
 
   responsable: {
-    nombre: "Taller dels Sentits",
-    nif: "XXXXXXXXX", // A completar pel client
-    direccion: "Vilanova i la Geltrú, Barcelona",
-    email: "tallerdelssentits@gmail.com",
-    telefono: "XXX XXX XXX", // A completar pel client
+    nombre: siteConfig.businessName,
+    nif: siteConfig.ownerNif,
+    direccion: siteConfig.businessAddress,
+    email: siteConfig.contactEmail,
+    telefono: siteConfig.contactPhone,
   },
 
   sections: [
     {
       id: "1",
       title: "1. Qui és el responsable del tractament de les teves dades?",
-      content: `Responsable: Taller dels Sentits
-NIF: XXXXXXXXX
-Adreça: Vilanova i la Geltrú, Barcelona
-Correu electrònic: tallerdelssentits@gmail.com
-Telèfon: XXX XXX XXX
+      content: `Responsable: ${siteConfig.businessName}
+NIF: ${siteConfig.ownerNif}
+Adreça: ${siteConfig.businessAddress}
+Correu electrònic: ${siteConfig.contactEmail}
+Telèfon: ${siteConfig.contactPhone}
 
-El Taller dels Sentits és el responsable del tractament de les dades personals que ens proporciones a través del formulari de contacte de la nostra pàgina web.`,
+El ${siteConfig.businessName} és el responsable del tractament de les dades personals que ens proporciones a través del formulari de contacte de la nostra pàgina web.`,
     },
     {
       id: "2",
@@ -65,7 +67,7 @@ Aquest consentiment és:
 - Informat: aquesta política t'explica com tractem les teves dades.
 - Inequívoc: has d'acceptar activament abans d'enviar el formulari.
 
-Pots retirar el teu consentiment en qualsevol moment contactant-nos per correu electrònic: tallerdelssentits@gmail.com`,
+Pots retirar el teu consentiment en qualsevol moment contactant-nos per correu electrònic: ${siteConfig.contactEmail}`,
     },
     {
       id: "5",
@@ -74,7 +76,7 @@ Pots retirar el teu consentiment en qualsevol moment contactant-nos per correu e
 Les dades transiten per la nostra aplicació web sense emmagatzematge persistent en bases de dades pròpies. El servei de correu electrònic (EmailJS) pot conservar registres tècnics temporalment (7-30 dies) per raons de seguretat i funcionament del servei.
 
 Després de l'enviament:
-Les teves dades arriben per correu electrònic al Taller dels Sentits i es conserven el temps necessari per:
+Les teves dades arriben per correu electrònic al ${siteConfig.businessName} i es conserven el temps necessari per:
 - Respondre adequadament a la teva consulta.
 - Gestionar el servei que has sol·licitat.
 - Complir amb obligacions legals que puguin aplicar.
@@ -117,7 +119,7 @@ Dret de portabilitat: Rebre les dades que ens has proporcionat en un format estr
 Dret a retirar el consentiment: Pots retirar el consentiment en qualsevol moment, sense que això afecti la licitud del tractament basat en el consentiment previ a la seva retirada.
 
 Com exercir els teus drets:
-Pots exercir aquests drets enviant un correu electrònic a tallerdelssentits@gmail.com, indicant en l'assumpte "Exercici de Drets RGPD" i adjuntant còpia del teu DNI o document equivalent.
+Pots exercir aquests drets enviant un correu electrònic a ${siteConfig.contactEmail}, indicant en l'assumpte "Exercici de Drets RGPD" i adjuntant còpia del teu DNI o document equivalent.
 
 Reclamació davant l'autoritat de control:
 Si consideres que el tractament de les teves dades personals vulnera la normativa, tens dret a presentar una reclamació davant l'Agència Espanyola de Protecció de Dades (AEPD) a través de la seva [seu electrònica](https://sedeagpd.gob.es) o adreça postal: C/ Jorge Juan, 6, 28001 Madrid.`,
@@ -125,7 +127,7 @@ Si consideres que el tractament de les teves dades personals vulnera la normativ
     {
       id: "8",
       title: "8. Mesures de seguretat",
-      content: `El Taller dels Sentits aplica mesures tècniques i organitzatives adequades per garantir la seguretat de les teves dades personals i evitar la seva alteració, pèrdua, tractament o accés no autoritzat:
+      content: `El ${siteConfig.businessName} aplica mesures tècniques i organitzatives adequades per garantir la seguretat de les teves dades personals i evitar la seva alteració, pèrdua, tractament o accés no autoritzat:
 
 - Validació server-side: Totes les dades del formulari es validen i sanititzen en el servidor abans de ser processades, prevenint atacs d'injecció de codi i altres vulnerabilitats.
 - Honeypot anti-bot: Camp invisible que detecta i bloqueja silenciosament l'enviament automatitzat per robots (spam bots).
@@ -157,9 +159,9 @@ En cas de canvis substancials que requereixin el teu consentiment, t'informarem 
       title: "11. Contacte",
       content: `Per a qualsevol qüestió relacionada amb aquesta política de privacitat o l'exercici dels teus drets, pots contactar amb nosaltres a través de:
 
-Correu electrònic: tallerdelssentits@gmail.com
-Telèfon: XXX XXX XXX
-Adreça postal: Vilanova i la Geltrú, Barcelona
+Correu electrònic: ${siteConfig.contactEmail}
+Telèfon: ${siteConfig.contactPhone}
+Adreça postal: ${siteConfig.businessAddress}
 
 Estem a la teva disposició per resoldre qualsevol dubte sobre el tractament de les teves dades personals.`,
     },

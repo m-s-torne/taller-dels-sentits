@@ -3,6 +3,7 @@
 import { motion } from 'motion/react';
 import type { Variants } from 'motion/react';
 import Link from 'next/link';
+import { siteConfig } from '@/app/_lib/siteConfig';
 
 const containerVariants: Variants = {
   hidden: {},
@@ -34,7 +35,7 @@ export default function FloatingContactButtons() {
       {/* WhatsApp Button */}
       <motion.div variants={itemVariants}>
         <Link
-          href="https://wa.me/34675206204"
+          href={`https://wa.me/${siteConfig.contactPhoneWa}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex border-3 border-shakespeare h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform hover:scale-110 hover:shadow-xl"
@@ -54,7 +55,7 @@ export default function FloatingContactButtons() {
       {/* Email Button */}
       <motion.div variants={itemVariants}>
         <Link
-          href="mailto:tallerdelssentits@gmail.com"
+          href={`mailto:${siteConfig.contactEmail}`}
           target="_blank"
           className="flex border-3 border-shakespeare h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform hover:scale-110 hover:shadow-xl"
           aria-label="Enviar correu electrònic"

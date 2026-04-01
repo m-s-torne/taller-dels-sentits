@@ -1,3 +1,5 @@
+import { siteConfig } from "@/app/_lib/siteConfig";
+
 export interface LegalSection {
   id: string;
   title: string;
@@ -10,19 +12,19 @@ export const legalData: LegalSection[] = [
     title: "1. Identificació del Responsable",
     content: [
       "En compliment de la Llei 34/2002, de 11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI), s'informa que:",
-      "Titular: Miriam Artigas Marroquín",
-      "NIF: 52214652Y",
-      "Domicili Professional: Vilanova i la Geltrú, Barcelona",
-      "Correu Electrònic: tallerdelssentits@gmail.com",
-      "Telèfon: +34 675 20 62 04",
-      "Nom Comercial: Taller dels Sentits"
+      `Titular: ${siteConfig.ownerName}`,
+      `NIF: ${siteConfig.ownerNif}`,
+      `Domicili Professional: ${siteConfig.businessAddress}`,
+      `Correu Electrònic: ${siteConfig.contactEmail}`,
+      `Telèfon: ${siteConfig.contactPhone}`,
+      `Nom Comercial: ${siteConfig.businessName}`,
     ]
   },
   {
     id: "objecte",
     title: "2. Objecte i Activitat",
     content: [
-      "Aquest lloc web ofereix informació sobre els serveis d'artteràpia, tallers creatius (Artperdins) i programes per a centres educatius que ofereix Taller dels Sentits.",
+      `Aquest lloc web ofereix informació sobre els serveis d'artteràpia, tallers creatius (Artperdins) i programes per a centres educatius que ofereix ${siteConfig.businessName}.`,
       "L'activitat principal és la prestació de serveis terapèutics i creatius mitjançant l'art, així com l'acompanyament emocional a persones, grups i comunitats educatives."
     ]
   },
@@ -47,33 +49,33 @@ export const legalData: LegalSection[] = [
     id: "limitacio-responsabilitat",
     title: "5. Limitació de Responsabilitat",
     content: [
-      "Taller dels Sentits no es fa responsable de:",
+      `${siteConfig.businessName} no es fa responsable de:`,
       "• La disponibilitat tècnica del lloc web",
       "• Errors o omissions en els continguts",
       "• La manca de veracitat, exactitud, exhaustivitat i/o actualització dels continguts",
       "• Danys i perjudicis que puguin derivar-se de l'ús del lloc web o dels seus continguts",
-      "Taller dels Sentits es reserva el dret a modificar els continguts del lloc web sense previ avís."
+      `${siteConfig.businessName} es reserva el dret a modificar els continguts del lloc web sense previ avís.`
     ]
   },
   {
     id: "links",
     title: "6. Enllaços Externs",
     content: [
-      "Aquest lloc web pot contenir enllaços a llocs web de tercers. Taller dels Sentits no exerceix cap control sobre aquests llocs i, per tant, no es fa responsable dels seus continguts.",
+      `Aquest lloc web pot contenir enllaços a llocs web de tercers. ${siteConfig.businessName} no exerceix cap control sobre aquests llocs i, per tant, no es fa responsable dels seus continguts.`,
       "L'usuari accedeix a aquests enllaços sota la seva pròpia responsabilitat."
     ]
   },
   {
     id: "modificacions",
     title: "7. Modificacions",
-    content: "Taller dels Sentits es reserva el dret a modificar el present Avís Legal en qualsevol moment. Els usuaris estan subjectes a la versió publicada en cada moment que accedeixin al lloc web."
+    content: `${siteConfig.businessName} es reserva el dret a modificar el present Avís Legal en qualsevol moment. Els usuaris estan subjectes a la versió publicada en cada moment que accedeixin al lloc web.`
   },
   {
     id: "legislacio",
     title: "8. Legislació Aplicable i Jurisdicció",
     content: [
       "Aquest Avís Legal es regeix per la legislació espanyola vigent.",
-      "Per a la resolució de qualsevol controvèrsia que pugui sorgir en relació amb aquest lloc web i les seves activitats, les parts se sotmeten als Jutjats i Tribunals de Vilanova i la Geltrú (Barcelona)."
+      `Per a la resolució de qualsevol controvèrsia que pugui sorgir en relació amb aquest lloc web i les seves activitats, les parts se sotmeten als Jutjats i Tribunals de ${siteConfig.businessAddress}.`
     ]
   },
   {
@@ -81,7 +83,7 @@ export const legalData: LegalSection[] = [
     title: "9. Contacte",
     content: [
       "Per a qualsevol qüestió relacionada amb aquest Avís Legal, pot posar-se en contacte amb nosaltres a través de:",
-      "Correu electrònic: tallerdelssentits@gmail.com",
+      `Correu electrònic: ${siteConfig.contactEmail}`,
       "Última actualització: desembre de 2025"
     ]
   }

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/app/_lib/siteConfig';
 import { ImageResponse } from 'next/og';
 
 export async function GET() {
@@ -22,7 +23,7 @@ export async function GET() {
         }}
       >
         <img
-          src="https://tallerdelssentits.vercel.app/logo-taller-dels-sentits.png"
+          src={`${siteConfig.siteUrl}/logo-taller-dels-sentits.png`}
           alt="Taller dels Sentits"
           width="500"
           height="272"
