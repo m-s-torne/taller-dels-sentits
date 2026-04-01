@@ -10,11 +10,11 @@ export const legalData: LegalSection[] = [
     title: "1. Identificació del Responsable",
     content: [
       "En compliment de la Llei 34/2002, de 11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSI), s'informa que:",
-      "Titular: [Nom i Cognoms del/de la Titular]",
-      "NIF: XXXXXXXXX",
+      "Titular: Miriam Artigas Marroquín",
+      "NIF: 52214652Y",
       "Domicili Professional: Vilanova i la Geltrú, Barcelona",
       "Correu Electrònic: tallerdelssentits@gmail.com",
-      "Telèfon: XXX XXX XXX",
+      "Telèfon: +34 675 20 62 04",
       "Nom Comercial: Taller dels Sentits"
     ]
   },
