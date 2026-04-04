@@ -77,6 +77,20 @@ const sanitizeText = (text: string): string => {
 };
 
 /**
+ * Allowed values for enum-typed fields (mirrors form.types.ts)
+ * Validated server-side to prevent injection of arbitrary strings into email HTML
+ */
+const VALID_SERVICE_TYPES = ['general', 'artterapia', 'artperdins', 'serveis-externs'] as const;
+const VALID_ARTTHERAPY_FORMATS = ['individual', 'grupal', 'unsure'] as const;
+const VALID_PARTICIPANT_AGES = ['adolescent', 'young-adult', 'adult'] as const;
+const VALID_EDUCATION_STAGES = ['infantil', 'primaria', 'eso', 'batxillerat'] as const;
+const VALID_EXTERNS_SUBTYPES = ['centre-educatiu', 'altres-entitats'] as const;
+const VALID_CENTRE_SUBTYPES = ['alumnes', 'professorat'] as const;
+const VALID_ENTITY_TYPES = ['ajuntament', 'hospital', 'residencia', 'centre-cultural', 'col-lectiu-empresa', 'entitat-social', 'altres'] as const;
+const VALID_AVAILABILITIES = ['morning', 'afternoon', 'anytime'] as const;
+const VALID_CONTACT_PREFERENCES = ['email', 'phone', 'whatsapp'] as const;
+
+/**
  * Server-side validation and sanitization of form data
  * This runs on the server and cannot be bypassed by malicious clients
  *
@@ -222,6 +236,48 @@ export const validateAndSanitize = async (
       }
     }
 
+    // ===== ENUM VALIDATION =====
+    // Validate union-typed fields against their allowed values to prevent
+    // arbitrary string injection into email HTML by direct Server Action calls
+    if (!(VALID_SERVICE_TYPES as readonly string[]).includes(formData.serviceType)) {
+      return { valid: false, error: 'Tipus de servei no vàlid' };
+    }
+
+    if (formData.availability && !(VALID_AVAILABILITIES as readonly string[]).includes(formData.availability)) {
+      return { valid: false, error: 'Disponibilitat no vàlida' };
+    }
+
+    if (formData.contactPreference.some(p => !(VALID_CONTACT_PREFERENCES as readonly string[]).includes(p))) {
+      return { valid: false, error: 'Preferència de contacte no vàlida' };
+    }
+
+    if (formData.serviceType === 'artterapia' && formData.arttherapyFormat && !(VALID_ARTTHERAPY_FORMATS as readonly string[]).includes(formData.arttherapyFormat)) {
+      return { valid: false, error: 'Format d\'artteràpia no vàlid' };
+    }
+
+    if (formData.serviceType === 'artperdins' && formData.participantAge && !(VALID_PARTICIPANT_AGES as readonly string[]).includes(formData.participantAge)) {
+      return { valid: false, error: 'Edat del participant no vàlida' };
+    }
+
+    if (formData.serviceType === 'serveis-externs') {
+      if (formData.externsSubtype && !(VALID_EXTERNS_SUBTYPES as readonly string[]).includes(formData.externsSubtype)) {
+        return { valid: false, error: 'Subtipus de serveis externs no vàlid' };
+      }
+      if (formData.externsSubtype === 'centre-educatiu') {
+        if (formData.centreSubtype && !(VALID_CENTRE_SUBTYPES as readonly string[]).includes(formData.centreSubtype)) {
+          return { valid: false, error: 'Subtipus de centre no vàlid' };
+        }
+        if (formData.educationStage && !(VALID_EDUCATION_STAGES as readonly string[]).includes(formData.educationStage)) {
+          return { valid: false, error: 'Etapa educativa no vàlida' };
+        }
+      }
+      if (formData.externsSubtype === 'altres-entitats') {
+        if (formData.entityType && !(VALID_ENTITY_TYPES as readonly string[]).includes(formData.entityType)) {
+          return { valid: false, error: 'Tipus d\'entitat no vàlid' };
+        }
+      }
+    }
+
     // ===== SANITIZE INPUTS =====
     // Clean all text inputs to prevent XSS
     const sanitizedData: ContactFormData = {
@@ -279,6 +335,9 @@ export const handleFormSubmit = async (
   error?: string;
   message?: string;
 }> => {
+  // Declared outside try so the outer catch can use sanitized data for fallback storage
+  let sanitizedData: ContactFormData | null = null;
+
   try {
     // 0. Rate limiting check (IP-based)
     const requestHeaders = await headers();
@@ -304,7 +363,7 @@ export const handleFormSubmit = async (
       };
     }
 
-    const sanitizedData = validation.data;
+    sanitizedData = validation.data;
 
     // 2. Email-based rate limit check (prevents spam to third-party emails)
     if (checkRateLimitEmail(sanitizedData.email)) {
@@ -320,7 +379,7 @@ export const handleFormSubmit = async (
     // 3. Build email message
     const emailContent = await buildEmailMessage(sanitizedData);
 
-    // 3. Send via Resend
+    // 4. Send via Resend
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not configured');
       return {
@@ -415,9 +474,10 @@ export const handleFormSubmit = async (
     console.error('Error submitting form:', error);
 
     // Try to save fallback for catastrophic errors
+    // Use sanitizedData if validation already completed, otherwise fall back to raw formData
     const clientIp = getClientIp(await headers());
     const fallbackSaved = await saveFallbackSubmission(
-      formData,
+      sanitizedData ?? formData,
       `Catastrophic error: ${error instanceof Error ? error.message : 'Unknown error'}`
     );
 

@@ -15,10 +15,17 @@ describe('rateLimit', () => {
   beforeEach(() => {
     // Reset rate limit before each test
     resetRateLimitForIp(testIp);
+    // Ensure CLOUDFLARE_PROXY is unset between tests
+    delete process.env.CLOUDFLARE_PROXY;
+  });
+
+  afterEach(() => {
+    delete process.env.CLOUDFLARE_PROXY;
   });
 
   describe('getClientIp', () => {
-    it('RL1 — extracts IP from cf-connecting-ip header', () => {
+    it('RL1 — extracts IP from cf-connecting-ip when CLOUDFLARE_PROXY=true', () => {
+      process.env.CLOUDFLARE_PROXY = 'true';
       const headers = new Headers({
         'cf-connecting-ip': '203.0.113.1',
       });
@@ -28,9 +35,32 @@ describe('rateLimit', () => {
       expect(ip).toBe('203.0.113.1');
     });
 
-    it('RL2 — uses x-forwarded-for if cf-connecting-ip not present', () => {
+    it('RL1b — ignores cf-connecting-ip when CLOUDFLARE_PROXY is not set (prevents spoofing)', () => {
+      // Without CLOUDFLARE_PROXY, cf-connecting-ip must not be trusted
       const headers = new Headers({
-        'x-forwarded-for': '203.0.113.2, 203.0.113.99',
+        'cf-connecting-ip': '1.2.3.4',
+        'x-real-ip': '203.0.113.5',
+      });
+
+      const ip = getClientIp(headers);
+
+      expect(ip).toBe('203.0.113.5');
+    });
+
+    it('RL1c — falls back to x-forwarded-for if x-real-ip not present and no Cloudflare', () => {
+      const headers = new Headers({
+        'cf-connecting-ip': '1.2.3.4',
+        'x-forwarded-for': '203.0.113.6, 10.0.0.1',
+      });
+
+      const ip = getClientIp(headers);
+
+      expect(ip).toBe('203.0.113.6');
+    });
+
+    it('RL2 — uses x-real-ip when present (Vercel infrastructure header)', () => {
+      const headers = new Headers({
+        'x-real-ip': '203.0.113.2',
       });
 
       const ip = getClientIp(headers);
@@ -38,7 +68,7 @@ describe('rateLimit', () => {
       expect(ip).toBe('203.0.113.2');
     });
 
-    it('RL3 — trims whitespace from x-forwarded-for', () => {
+    it('RL3 — uses x-forwarded-for when x-real-ip not present', () => {
       const headers = new Headers({
         'x-forwarded-for': ' 203.0.113.3 , 203.0.113.99',
       });

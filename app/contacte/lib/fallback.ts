@@ -115,7 +115,8 @@ export const deleteFallbackSubmission = async (filename: string): Promise<boolea
   try {
     const filepath = path.join(FALLBACK_DIR, filename);
     // Validate path to prevent directory traversal
-    if (!filepath.startsWith(FALLBACK_DIR)) {
+    // Must use path.sep suffix to avoid matching sibling directories with the same prefix
+    if (!filepath.startsWith(FALLBACK_DIR + path.sep)) {
       throw new Error('Invalid file path');
     }
     await fs.unlink(filepath);

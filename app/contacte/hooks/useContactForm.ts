@@ -283,9 +283,13 @@ export const useContactForm = () => {
         setTimeout(() => {
           resetForm();
         }, 2000);
+      } else if (result.error === 'invalid_honeypot') {
+        // Silently treat as success to avoid revealing the honeypot trap to bots
+        setStatus('success');
+        setTimeout(() => resetForm(), 2000);
       } else {
         setStatus('error');
-        toast.error(result.message || result.error || 'Error en enviar el missatge. Si us plau, torna-ho a intentar.', {
+        toast.error(result.message || 'Error en enviar el missatge. Si us plau, torna-ho a intentar.', {
           duration: 6000,
         });
         console.error('Form submission error:', result.error);

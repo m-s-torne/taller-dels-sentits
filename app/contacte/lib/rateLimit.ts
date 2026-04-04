@@ -33,20 +33,26 @@ let lastCleanupTime = Date.now();
 /**
  * Extract client IP from headers
  * Handles proxied requests (Vercel, Cloudflare, etc.)
+ *
+ * Security note: cf-connecting-ip is only trusted when CLOUDFLARE_PROXY=true is set,
+ * because without Cloudflare in front, any client can spoof this header freely.
+ * On Vercel, x-real-ip is set by the infrastructure and cannot be spoofed by clients.
  */
 export const getClientIp = (headers: Headers): string => {
-  // Try Cloudflare header first
-  const cfIp = headers.get('cf-connecting-ip');
-  if (cfIp) return cfIp;
-
-  // Try X-Forwarded-For (common proxy header)
-  const forwardedFor = headers.get('x-forwarded-for');
-  if (forwardedFor) {
-    // Take first IP if multiple
-    return forwardedFor.split(',')[0].trim();
+  // Only trust cf-connecting-ip when explicitly configured with Cloudflare as proxy
+  if (process.env.CLOUDFLARE_PROXY === 'true') {
+    const cfIp = headers.get('cf-connecting-ip');
+    if (cfIp) return cfIp.trim();
   }
 
-  // Fallback
+  // x-real-ip is set by Vercel/nginx infrastructure and cannot be spoofed by clients
+  const realIp = headers.get('x-real-ip');
+  if (realIp) return realIp.trim();
+
+  // x-forwarded-for: Vercel always prepends the real client IP as the first value
+  const forwardedFor = headers.get('x-forwarded-for');
+  if (forwardedFor) return forwardedFor.split(',')[0].trim();
+
   return 'unknown';
 };
 

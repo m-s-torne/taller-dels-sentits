@@ -450,3 +450,138 @@ describe('validateAndSanitize — unexpected throw', () => {
     expect(result.error).toBe('Error al processar les dades. Si us plau, torna-ho a intentar.');
   });
 });
+
+// ---------------------------------------------------------------------------
+// 3.14 Enum validation (server-side protection against direct Server Action calls)
+// ---------------------------------------------------------------------------
+
+describe('validateAndSanitize — enum validation', () => {
+  it('EV1 — rejects invalid serviceType', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'hacked' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Tipus de servei no vàlid');
+  });
+
+  it('EV2 — rejects invalid availability', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      availability: 'always' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Disponibilitat no vàlida');
+  });
+
+  it('EV3 — accepts valid availability values', async () => {
+    for (const val of ['morning', 'afternoon', 'anytime'] as const) {
+      const result = await validateAndSanitize({ ...baseValidForm, availability: val });
+      expect(result.valid).toBe(true);
+    }
+  });
+
+  it('EV4 — rejects invalid contactPreference entry', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      contactPreference: ['email', 'fax'] as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Preferència de contacte no vàlida');
+  });
+
+  it('EV5 — rejects invalid arttherapyFormat when serviceType is artterapia', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'artterapia',
+      arttherapyFormat: 'online' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Format d\'artteràpia no vàlid');
+  });
+
+  it('EV6 — ignores arttherapyFormat when serviceType is not artterapia', async () => {
+    // invalid arttherapyFormat on a general form should NOT trigger error
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'general',
+      arttherapyFormat: 'online' as any,
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it('EV7 — rejects invalid participantAge when serviceType is artperdins', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'artperdins',
+      participantAge: 'elderly' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Edat del participant no vàlida');
+  });
+
+  it('EV8 — rejects invalid externsSubtype when serviceType is serveis-externs', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'serveis-externs',
+      location: 'Barcelona',
+      externsSubtype: 'empresa' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Subtipus de serveis externs no vàlid');
+  });
+
+  it('EV9 — rejects invalid centreSubtype for centre-educatiu', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'serveis-externs',
+      location: 'Barcelona',
+      externsSubtype: 'centre-educatiu',
+      centreSubtype: 'director' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Subtipus de centre no vàlid');
+  });
+
+  it('EV10 — rejects invalid educationStage for centre-educatiu', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'serveis-externs',
+      location: 'Barcelona',
+      externsSubtype: 'centre-educatiu',
+      centreSubtype: 'alumnes',
+      educationStage: 'universitat' as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Etapa educativa no vàlida');
+  });
+
+  it('EV11 — rejects invalid entityType for altres-entitats', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'serveis-externs',
+      location: 'Barcelona',
+      externsSubtype: 'altres-entitats',
+      entityType: 'clinic' as any,
+      entityName: 'Test Entity',
+      participantsCount: 10,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Tipus d\'entitat no vàlid');
+  });
+
+  it('EV12 — accepts valid enum combinations', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      serviceType: 'serveis-externs',
+      location: 'Barcelona',
+      externsSubtype: 'altres-entitats',
+      entityType: 'hospital',
+      entityName: 'Hospital de Vilafranca',
+      participantsCount: 20,
+      availability: 'morning',
+      contactPreference: ['email', 'phone'],
+    });
+    expect(result.valid).toBe(true);
+  });
+});

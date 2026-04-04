@@ -8,7 +8,7 @@ Next.js 16 art therapy center website with TypeScript, Tailwind CSS v4, and Moti
 - **Language**: TypeScript 5 (strict mode)
 - **Styling**: Tailwind CSS v4 (PostCSS-based)
 - **Animation**: `motion/react` library (not framer-motion)
-- **Forms**: EmailJS (@emailjs/browser)
+- **Email**: Resend (server-side API via `resend` package)
 - **Notifications**: react-hot-toast
 - **Package Manager**: pnpm
 - **React Compiler**: Enabled in next.config.ts
@@ -55,20 +55,22 @@ import { motion, AnimatePresence } from 'motion/react';
 
 ### Two-Phase Validation
 1. **Client-side** (UX): Real-time field validation in `useContactForm` hook.
-2. **Server-side** (Security): `validateAndSanitize` Server Action sanitizes all inputs before email sending.
+2. **Server-side** (Security): `validateAndSanitize` Server Action validates and sanitizes all inputs before email sending.
 
 ### Security Features
-- **Honeypot field**: `website` field in form (hidden, should always be empty).
-- **Server validation**: Never trust client data - always validate in Server Actions.
-- **Sanitization**: Remove HTML tags and dangerous characters in `handleSubmit.ts`.
-- **EmailJS**: Client-side email sending with public keys (secured via domain restrictions in EmailJS dashboard).
+- **Honeypot field**: `website` field in form (hidden, always empty for humans). Silent rejection if filled.
+- **Server validation**: Never trust client data — always validate in Server Actions.
+- **Enum validation**: All union-typed fields (`serviceType`, `availability`, etc.) are validated against allowed values server-side.
+- **Sanitization**: Remove HTML tags and dangerous characters in `handleSubmit.ts` via `sanitizeText`.
+- **Dual rate limiting**: Per-IP (failed attempts) and per-email (successful sends), both with 5-min windows.
+- **Resend**: Server-side email sending via `RESEND_API_KEY` (private, never exposed to client).
+- **Retry logic**: 2 attempts with 1s delay; fallback to `.contact-forms-fallback/*.json` on failure.
+- **Email routing**: Centre-educatiu → `NEXT_PUBLIC_CONTACT_EMAIL_SCHOOLS`, others → `NEXT_PUBLIC_CONTACT_EMAIL`.
 
 Example pattern from `useContactForm.ts`:
 ```typescript
-// Client validation
-const validation = await validateAndSanitize(formData);
-// Server Action returns sanitized data
-const result = await sendEmail(validation.data!);
+// Everything handled server-side — no bypass possible from DevTools
+const result = await handleFormSubmit(formData);
 ```
 
 ## Data Architecture
@@ -96,9 +98,24 @@ pnpm start        # Start production server
 ### Environment Variables
 Required in `.env.local`:
 ```
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=...
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=...
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=...
+# Resend (private - never expose to client)
+RESEND_API_KEY=...
+
+# Site & business info
+NEXT_PUBLIC_SITE_URL=...
+NEXT_PUBLIC_OWNER_NAME=...
+NEXT_PUBLIC_OWNER_NIF=...
+NEXT_PUBLIC_BUSINESS_NAME=...
+NEXT_PUBLIC_BUSINESS_ADDRESS=...
+
+# Contact routing
+NEXT_PUBLIC_CONTACT_EMAIL=...
+NEXT_PUBLIC_CONTACT_EMAIL_SCHOOLS=...
+NEXT_PUBLIC_CONTACT_PHONE=...
+NEXT_PUBLIC_CONTACT_PHONE_WA=...
+
+# Optional: set to "true" only if Cloudflare sits in front of Vercel
+# CLOUDFLARE_PROXY=true
 ```
 
 ### Git & Project Management
