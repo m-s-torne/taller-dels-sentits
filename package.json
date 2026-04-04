@@ -12,7 +12,6 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "motion": "^12.23.26",
     "next": "16.1.1",
     "react": "19.2.3",
