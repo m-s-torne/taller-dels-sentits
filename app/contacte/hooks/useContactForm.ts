@@ -1,8 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import toast from 'react-hot-toast';
 import type { ContactFormData, FormStatus, FormErrors } from '@/app/contacte/types/form.types';
-import { validateAndSanitize } from '@/app/contacte/actions/handleSubmit';
-import { sendEmail } from '@/app/contacte/actions/sendEmail';
+import { handleFormSubmit } from '@/app/contacte/actions/handleSubmit';
 import {
   validateLocation,
   validateField,
@@ -233,9 +232,8 @@ export const useContactForm = () => {
   };
 
   /**
-   * Handles form submission with two-step security process:
-   * 1. Server-side validation and sanitization (Server Action)
-   * 2. Client-side email sending with sanitized data
+   * Handles form submission with server-side validation, email building, and sending
+   * Everything is handled securely on the server via Resend
    */
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -254,7 +252,7 @@ export const useContactForm = () => {
         requiredFields.push('entityType', 'entityName', 'participantsCount');
       }
     }
-    
+
     requiredFields.forEach(field => {
       setTouchedFields((prev) => new Set(prev).add(field));
     });
@@ -269,35 +267,9 @@ export const useContactForm = () => {
     const loadingToast = toast.loading('Enviant el teu missatge...');
 
     try {
-      // STEP 1: Validate and sanitize on server (Server Action)
-      // This cannot be bypassed by malicious clients
-      const validation = await validateAndSanitize(formData);
-
-      // Check for honeypot detection
-      if (!validation.valid && validation.error === 'invalid_honeypot') {
-        // Bot detected - pretend success to avoid revealing the trap
-        toast.dismiss(loadingToast);
-        toast.success('Missatge enviat correctament! Et respondrem aviat.', {
-          duration: 5000,
-        });
-        setStatus('success');
-        setTimeout(() => resetForm(), 2000);
-        return;
-      }
-
-      // Check for validation errors
-      if (!validation.valid) {
-        toast.dismiss(loadingToast);
-        toast.error(validation.error || 'Error de validació', {
-          duration: 6000,
-        });
-        setStatus('error');
-        return;
-      }
-
-      // STEP 2: Send email from client with sanitized data
-      // Data is already validated and sanitized by the server
-      const result = await sendEmail(validation.data!);
+      // Call server action that handles validation, email building, and sending
+      // Everything happens on the server - no bypass possible
+      const result = await handleFormSubmit(formData);
 
       toast.dismiss(loadingToast);
 
@@ -306,21 +278,21 @@ export const useContactForm = () => {
         toast.success('Missatge enviat correctament! Et respondrem aviat.', {
           duration: 5000,
         });
-        
+
         // Reset form after 2 seconds
         setTimeout(() => {
           resetForm();
         }, 2000);
       } else {
         setStatus('error');
-        toast.error(result.error || 'Error en enviar el missatge. Si us plau, torna-ho a intentar.', {
+        toast.error(result.message || result.error || 'Error en enviar el missatge. Si us plau, torna-ho a intentar.', {
           duration: 6000,
         });
         console.error('Form submission error:', result.error);
       }
     } catch (error) {
       toast.dismiss(loadingToast);
-      
+
       setStatus('error');
       toast.error('Error inesperat. Si us plau, torna-ho a intentar més tard.', {
         duration: 6000,
