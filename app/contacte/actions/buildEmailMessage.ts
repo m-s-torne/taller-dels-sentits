@@ -1,4 +1,5 @@
 "use server"
+import { escapeHtml } from './escapeHtml';
 import type { ContactFormData } from '@/app/contacte/types/form.types';
 import { getCentreSubtypeLabel, getEntityTypeLabel, getServiceDescription } from '@/app/contacte/lib/serviceLabels';
 import { siteConfig } from '@/app/_lib/siteConfig';
@@ -10,13 +11,13 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
     anytime: 'Qualsevol moment'
   };
 
-  const arttherapyLabels = {
+  const arttherapyLabels: Record<string, string> = {
     individual: 'Sessions individuals',
     grupal: 'Sessions grupals',
     unsure: 'No estic segur/a'
   };
 
-  const ageLabels = {
+  const ageLabels: Record<string, string> = {
     adolescent: 'Adolescents (12-15 anys)',
     'young-adult': 'Joves (15-20 anys)',
     adult: 'Adults (20 anys o més)'
@@ -189,14 +190,14 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
       <!-- Header -->
       <div class="email-header">
         <h1>Nova Consulta</h1>
-        <p>${siteConfig.businessName}</p>
+        <p>${escapeHtml(siteConfig.businessName)}</p>
       </div>
 
       <!-- Body -->
       <div class="email-body">
         <!-- Message -->
         <div class="message-box">
-          ${data.message}
+          ${escapeHtml(data.message)}
         </div>
 
         <!-- Contact Information Section -->
@@ -207,22 +208,22 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           </div>
           <div class="field">
             <span class="field-label">Nom:</span>
-            <span class="field-value">${data.name}</span>
+            <span class="field-value">${escapeHtml(data.name)}</span>
           </div>
           <div class="field">
             <span class="field-label">Email:</span>
-            <span class="field-value"><a href="mailto:${data.email}" style="color: ${colors.shakespeare}; text-decoration: none;">${data.email}</a></span>
+            <span class="field-value"><a href="mailto:${escapeHtml(data.email)}" style="color: ${colors.shakespeare}; text-decoration: none;">${escapeHtml(data.email)}</a></span>
           </div>
           ${data.phone ? `
           <div class="field">
             <span class="field-label">Telèfon:</span>
-            <span class="field-value">${data.phone}</span>
+            <span class="field-value">${escapeHtml(data.phone)}</span>
           </div>
           ` : ''}
           ${data.location ? `
           <div class="field">
             <span class="field-label">Població:</span>
-            <span class="field-value">${data.location}</span>
+            <span class="field-value">${escapeHtml(data.location)}</span>
           </div>
           ` : ''}
         </div>
@@ -236,12 +237,12 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           </div>
           <div class="field">
             <span class="field-label">Mitjà preferit:</span>
-            <span class="field-value">${data.contactPreference.join(', ')}</span>
+            <span class="field-value">${data.contactPreference.map(escapeHtml).join(', ')}</span>
           </div>
           ${data.availability ? `
           <div class="field">
             <span class="field-label">Disponibilitat:</span>
-            <span class="field-value">${availabilityLabels[data.availability]}</span>
+            <span class="field-value">${availabilityLabels[data.availability] ?? escapeHtml(String(data.availability))}</span>
           </div>
           ` : ''}
         </div>
@@ -257,7 +258,7 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.arttherapyFormat ? `
           <div class="field">
             <span class="field-label">Format:</span>
-            <span class="field-value">${arttherapyLabels[data.arttherapyFormat]}</span>
+            <span class="field-value">${arttherapyLabels[data.arttherapyFormat] ?? escapeHtml(String(data.arttherapyFormat))}</span>
           </div>
           ` : ''}
         </div>
@@ -272,7 +273,7 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.participantAge ? `
           <div class="field">
             <span class="field-label">Edat participant:</span>
-            <span class="field-value">${ageLabels[data.participantAge]}</span>
+            <span class="field-value">${ageLabels[data.participantAge] ?? escapeHtml(String(data.participantAge))}</span>
           </div>
           ` : ''}
         </div>
@@ -299,19 +300,19 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.schoolName ? `
           <div class="field">
             <span class="field-label">Nom del centre:</span>
-            <span class="field-value">${data.schoolName}</span>
+            <span class="field-value">${escapeHtml(data.schoolName)}</span>
           </div>
           ` : ''}
           ${data.educationStage ? `
           <div class="field">
             <span class="field-label">Etapa:</span>
-            <span class="field-value">${educationStageLabels[data.educationStage]}</span>
+            <span class="field-value">${educationStageLabels[data.educationStage] ?? escapeHtml(String(data.educationStage))}</span>
           </div>
           ` : ''}
           ${data.courseGroup ? `
           <div class="field">
             <span class="field-label">Curs:</span>
-            <span class="field-value">${data.courseGroup}</span>
+            <span class="field-value">${escapeHtml(data.courseGroup)}</span>
           </div>
           ` : ''}
           ${data.studentsCount ? `
@@ -323,7 +324,7 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.courseInterest ? `
           <div class="field">
             <span class="field-label">Interès:</span>
-            <span class="field-value">${data.courseInterest}</span>
+            <span class="field-value">${escapeHtml(data.courseInterest)}</span>
           </div>
           ` : ''}
           ` : ''}
@@ -336,13 +337,13 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.schoolName ? `
           <div class="field">
             <span class="field-label">Nom del centre:</span>
-            <span class="field-value">${data.schoolName}</span>
+            <span class="field-value">${escapeHtml(data.schoolName)}</span>
           </div>
           ` : ''}
           ${data.educationStage ? `
           <div class="field">
             <span class="field-label">Etapa:</span>
-            <span class="field-value">${educationStageLabels[data.educationStage]}</span>
+            <span class="field-value">${educationStageLabels[data.educationStage] ?? escapeHtml(String(data.educationStage))}</span>
           </div>
           ` : ''}
           ${data.teachersCount ? `
@@ -354,7 +355,7 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.trainingInterest ? `
           <div class="field">
             <span class="field-label">Àrea d'interès:</span>
-            <span class="field-value">${data.trainingInterest}</span>
+            <span class="field-value">${escapeHtml(data.trainingInterest)}</span>
           </div>
           ` : ''}
           ` : ''}
@@ -363,24 +364,24 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.externsSubtype === 'altres-entitats' ? `
           <div class="field">
             <span class="field-label">Tipus de servei:</span>
-            <span class="field-value">${getServiceDescription(data.serviceType, data.externsSubtype as any, undefined, data.entityType as any, data.entityName)}</span>
+            <span class="field-value">${escapeHtml(getServiceDescription(data.serviceType, data.externsSubtype as any, undefined, data.entityType as any, data.entityName))}</span>
           </div>
           ${data.entityType ? `
           <div class="field">
             <span class="field-label">Tipus d'entitat:</span>
-            <span class="field-value">${entityLabels[data.entityType]}</span>
+            <span class="field-value">${entityLabels[data.entityType] ?? escapeHtml(String(data.entityType))}</span>
           </div>
           ` : ''}
           ${data.entityName ? `
           <div class="field">
             <span class="field-label">Nom entitat:</span>
-            <span class="field-value">${data.entityName}</span>
+            <span class="field-value">${escapeHtml(data.entityName)}</span>
           </div>
           ` : ''}
           ${data.entityType === 'altres' && data.entityDescription ? `
           <div class="field">
             <span class="field-label">Descripció:</span>
-            <span class="field-value">${data.entityDescription}</span>
+            <span class="field-value">${escapeHtml(data.entityDescription)}</span>
           </div>
           ` : ''}
           ${data.participantsCount ? `
@@ -392,7 +393,7 @@ export const buildEmailMessage = async (data: ContactFormData): Promise<string> 
           ${data.projectDescription ? `
           <div class="field">
             <span class="field-label">Descripció del projecte:</span>
-            <span class="field-value">${data.projectDescription}</span>
+            <span class="field-value">${escapeHtml(data.projectDescription)}</span>
           </div>
           ` : ''}
           ` : ''}

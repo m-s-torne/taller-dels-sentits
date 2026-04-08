@@ -27,4 +27,5 @@ export const baseValidForm: ContactFormData = {
   availability: '',
   privacyAccepted: true,
   website: '',
+  turnstileToken: 'test-token',
 };

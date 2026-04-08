@@ -1,7 +1,21 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { promises as dns } from 'dns';
 import { validateAndSanitize } from '../handleSubmit';
 import { baseValidForm } from './_fixtures';
 import type { ContactFormData } from '@/app/contacte/types/form.types';
+
+vi.mock('dns', () => ({
+  promises: {
+    resolveMx: vi.fn(),
+  },
+}));
+
+// Default: return valid MX for all domains unless overridden per-test
+beforeEach(() => {
+  vi.mocked(dns.resolveMx).mockResolvedValue([
+    { exchange: 'mail.example.com', priority: 10 },
+  ]);
+});
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -134,6 +148,34 @@ describe('validateAndSanitize — email', () => {
   it('E6 — accepts email with + and subdomain', async () => {
     const result = await validateAndSanitize({ ...baseValidForm, email: 'valid+tag@sub.domain.org' });
     expect(result.valid).toBe(true);
+  });
+
+  it('E7 — rejects email longer than 254 chars', async () => {
+    const longLocal = 'a'.repeat(243);
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      email: `${longLocal}@example.com`,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El correu electrònic no és vàlid');
+  });
+
+  it('E8 — rejects email with single quote', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      email: "bad'email@example.com",
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El correu electrònic no és vàlid');
+  });
+
+  it('E9 — rejects email with < char', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      email: 'bad<email@example.com',
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El correu electrònic no és vàlid');
   });
 });
 
@@ -424,6 +466,24 @@ describe('validateAndSanitize — sanitization', () => {
     expect(result.valid).toBe(true);
     expect(result.data!.website).toBe('');
   });
+
+  it('S7 — clamps studentsCount to 10_000', async () => {
+    const result = await validateAndSanitize({
+      ...sextAlumnesBase,
+      studentsCount: 99_999,
+    });
+    expect(result.valid).toBe(true);
+    expect(result.data!.studentsCount).toBe(10_000);
+  });
+
+  it('S8 — clamps participantsCount to 10_000', async () => {
+    const result = await validateAndSanitize({
+      ...altresEntitatsBase,
+      participantsCount: 50_000,
+    });
+    expect(result.valid).toBe(true);
+    expect(result.data!.participantsCount).toBe(10_000);
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -448,6 +508,93 @@ describe('validateAndSanitize — unexpected throw', () => {
     const result = await validateAndSanitize(null as unknown as ContactFormData);
     expect(result.valid).toBe(false);
     expect(result.error).toBe('Error al processar les dades. Si us plau, torna-ho a intentar.');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 3.15 Name entropy (anti-bot)
+// ---------------------------------------------------------------------------
+
+describe('validateAndSanitize — name entropy', () => {
+  it('NE1 — rejects random mixed-case with low vowel ratio', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, name: 'eJSoXzjvCfcwaCnY' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El nom no és vàlid');
+  });
+
+  it('NE2 — rejects all-consonant mixed-case string', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, name: 'KqXzPmTrVwBn' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El nom no és vàlid');
+  });
+
+  it('NE3 — accepts single real name', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, name: 'Joan' });
+    expect(result.valid).toBe(true);
+  });
+
+  it('NE4 — accepts full name with diacritic', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, name: 'Àlex Martí' });
+    expect(result.valid).toBe(true);
+  });
+
+  it('NE5 — accepts standard two-word name', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, name: 'Maria Camps' });
+    expect(result.valid).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 3.16 Disposable email blocklist
+// ---------------------------------------------------------------------------
+
+describe('validateAndSanitize — disposable email', () => {
+  it('DE1 — rejects mailinator.com', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'user@mailinator.com' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('No es permeten adreces de correu temporal');
+  });
+
+  it('DE2 — rejects guerrillamail.com', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'test@guerrillamail.com' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('No es permeten adreces de correu temporal');
+  });
+
+  it('DE3 — rejects yopmail.com', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'foo@yopmail.com' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('No es permeten adreces de correu temporal');
+  });
+
+  it('DE4 — accepts a standard non-disposable domain', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'user@gmail-de4.test' });
+    expect(result.valid).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// 3.17 MX record validation
+// ---------------------------------------------------------------------------
+
+describe('validateAndSanitize — MX record', () => {
+  it('MX1 — rejects domain that throws DNS error (no MX)', async () => {
+    vi.mocked(dns.resolveMx).mockRejectedValueOnce(new Error('ENOTFOUND'));
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'user@no-mx-mx1.test' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El domini del correu electrònic no és vàlid');
+  });
+
+  it('MX2 — rejects domain that returns empty MX list', async () => {
+    vi.mocked(dns.resolveMx).mockResolvedValueOnce([]);
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'user@empty-mx-mx2.test' });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('El domini del correu electrònic no és vàlid');
+  });
+
+  it('MX3 — accepts domain with valid MX records', async () => {
+    const result = await validateAndSanitize({ ...baseValidForm, email: 'user@valid-mx-mx3.test' });
+    expect(result.valid).toBe(true);
   });
 });
 
@@ -485,6 +632,15 @@ describe('validateAndSanitize — enum validation', () => {
     const result = await validateAndSanitize({
       ...baseValidForm,
       contactPreference: ['email', 'fax'] as any,
+    });
+    expect(result.valid).toBe(false);
+    expect(result.error).toBe('Preferència de contacte no vàlida');
+  });
+
+  it('EV4b — rejects contactPreference that is not an array', async () => {
+    const result = await validateAndSanitize({
+      ...baseValidForm,
+      contactPreference: 'email' as any,
     });
     expect(result.valid).toBe(false);
     expect(result.error).toBe('Preferència de contacte no vàlida');

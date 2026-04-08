@@ -1,4 +1,5 @@
 "use server"
+import { escapeHtml } from './escapeHtml';
 import type { ContactFormData } from '@/app/contacte/types/form.types';
 import { getServiceLabel } from './getServiceLabel';
 import { getServiceDescription } from '@/app/contacte/lib/serviceLabels';
@@ -154,30 +155,30 @@ export const buildConfirmationEmail = async (data: ContactFormData): Promise<str
       <!-- Header -->
       <div class="email-header">
         <h1>Confirmació de rebuda</h1>
-        <p>${siteConfig.businessName}</p>
+        <p>${escapeHtml(siteConfig.businessName)}</p>
       </div>
 
       <!-- Body -->
       <div class="email-body">
         <div class="greeting">
-          Hola <strong>${data.name}</strong>,
+          Hola <strong>${escapeHtml(data.name)}</strong>,
         </div>
 
         <div class="message">
-          Hem rebut correctament la teva consulta sobre <strong>${serviceLabel}</strong>.
+          Hem rebut correctament la teva consulta sobre <strong>${escapeHtml(serviceLabel)}</strong>.
         </div>
 
         <div class="service-box">
           <p class="service-label">Tipus de consulta:</p>
-          <p>${detailedServiceDescription}</p>
+          <p>${escapeHtml(detailedServiceDescription)}</p>
         </div>
 
         <div class="message">
-          Et respondrem el més aviat possible. Si necessites contactar amb nosaltres urgentment, pots enviar-nos un missatge al <strong>${siteConfig.contactPhone}</strong> o escriure'ns a <strong>${siteConfig.contactEmail}</strong>.
+          Et respondrem el més aviat possible. Si necessites contactar amb nosaltres urgentment, pots enviar-nos un missatge al <strong>${escapeHtml(siteConfig.contactPhone)}</strong> o escriure'ns a <strong>${escapeHtml(siteConfig.contactEmail)}</strong>.
         </div>
 
         <div class="signature">
-          <div class="signature-name">${siteConfig.businessName}</div>
+          <div class="signature-name">${escapeHtml(siteConfig.businessName)}</div>
           <p style="margin: 0; font-size: 13px;">Artteràpia i acompanyament creatiu</p>
         </div>
       </div>

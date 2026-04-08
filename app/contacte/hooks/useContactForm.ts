@@ -56,6 +56,9 @@ const initialFormData: ContactFormData = {
   
   // Honeypot field (anti-bot)
   website: '',
+
+  // Cloudflare Turnstile token (anti-bot CAPTCHA)
+  turnstileToken: '',
 };
 
 const initialErrorsData: FormErrors = {
@@ -228,6 +231,8 @@ export const useContactForm = () => {
    * Checks if form is valid (for submit button state)
    */
   const isFormValid = (): boolean => {
+    // Require a Turnstile token before the submit button becomes enabled.
+    if (!formData.turnstileToken) return false;
     return checkFormValidity(formData, errors);
   };
 
@@ -293,6 +298,7 @@ export const useContactForm = () => {
           duration: 6000,
         });
         console.error('Form submission error:', result.error);
+        setFormData((prev) => ({ ...prev, turnstileToken: '' }));
       }
     } catch (error) {
       toast.dismiss(loadingToast);
@@ -302,7 +308,12 @@ export const useContactForm = () => {
         duration: 6000,
       });
       console.error('Unexpected error during form submission:', error);
+      setFormData((prev) => ({ ...prev, turnstileToken: '' }));
     }
+  };
+
+  const setTurnstileToken = (token: string) => {
+    setFormData((prev) => ({ ...prev, turnstileToken: token }));
   };
 
   return {
@@ -314,5 +325,6 @@ export const useContactForm = () => {
     resetForm,
     isFormValid,
     markFieldAsTouched,
+    setTurnstileToken,
   };
 };

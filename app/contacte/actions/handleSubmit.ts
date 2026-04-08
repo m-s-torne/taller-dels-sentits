@@ -6,8 +6,10 @@ import { buildEmailMessage } from './buildEmailMessage';
 import { buildConfirmationEmail } from './buildConfirmationEmail';
 import { getServiceLabel } from './getServiceLabel';
 import { siteConfig } from '@/app/_lib/siteConfig';
-import { getClientIp, checkRateLimitIp, checkRateLimitEmail, recordRateLimitAttemptIp, recordRateLimitAttemptEmail } from '@/app/contacte/lib/rateLimit';
+import { getClientIp, getRawClientIp, checkRateLimitIp, checkRateLimitEmail, recordRateLimitAttemptIp, recordRateLimitAttemptEmail } from '@/app/contacte/lib/rateLimit';
+import { verifyTurnstile } from './verifyTurnstile';
 import { saveFallbackSubmission } from '@/app/contacte/lib/fallback';
+import { promises as dns } from 'dns';
 
 /**
  * Retry configuration for email sending
@@ -62,7 +64,8 @@ const getRecipientEmail = (formData: ContactFormData): string => {
  * Validates email format
  */
 const isValidEmail = (email: string): boolean => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email.length > 254) return false;
+  const emailRegex = /^[^\s@"'<>,;]+@[^\s@"'<>,;]+\.[^\s@"'<>,;]+$/;
   return emailRegex.test(email);
 };
 
@@ -73,7 +76,25 @@ const sanitizeText = (text: string): string => {
   return text
     .replace(/<[^>]*>/g, '')  // Remove HTML tags
     .replace(/[<>{}[\]\\]/g, '')  // Remove dangerous characters
+    .replace(/[\u0000-\u001F\u007F\u200B-\u200F\u2028-\u202F\uFEFF]/g, '')  // Remove control chars and zero-width/bidi overrides
     .trim();
+};
+
+const redactIp = (ip: string): string => {
+  if (ip === 'unknown') return 'unknown';
+  if (ip.includes(':')) {
+    const groups = ip.split(':');
+    return groups.slice(0, 4).join(':') + '::*';
+  }
+  const parts = ip.split('.');
+  if (parts.length === 4) return `${parts[0]}.${parts[1]}.*.*`;
+  return '*.*.*.*';
+};
+
+const redactEmail = (email: string): string => {
+  const at = email.indexOf('@');
+  if (at === -1) return '***';
+  return `***@${email.slice(at + 1)}`;
 };
 
 /**
@@ -89,6 +110,80 @@ const VALID_CENTRE_SUBTYPES = ['alumnes', 'professorat'] as const;
 const VALID_ENTITY_TYPES = ['ajuntament', 'hospital', 'residencia', 'centre-cultural', 'col-lectiu-empresa', 'entitat-social', 'altres'] as const;
 const VALID_AVAILABILITIES = ['morning', 'afternoon', 'anytime'] as const;
 const VALID_CONTACT_PREFERENCES = ['email', 'phone', 'whatsapp'] as const;
+
+/**
+ * Rejects bot-generated names (low vowel ratio or camelCase generator patterns)
+ */
+const isPlausibleName = (name: string): boolean => {
+  const letters = name.toLowerCase().replace(/[^a-záéíóúàèìòùüïñç]/g, '');
+  if (letters.length === 0) return false;
+
+  // Vowel ratio: real Romance-language names ~35–50%; random strings ~15–20%
+  const vowels = (letters.match(/[aeiouáéíóúàèìòùüï]/g) ?? []).length;
+  if (vowels / letters.length < 0.22) return false;
+
+  // Suspicious: no space + >12 chars + many case transitions = generator pattern
+  if (!name.includes(' ') && name.length > 12) {
+    const transitions = [...name].filter(
+      (c, i) => i > 0 && /[A-Z]/.test(c) !== /[A-Z]/.test(name[i - 1])
+    ).length;
+    if (transitions > 5) return false;
+  }
+
+  return true;
+};
+
+const DISPOSABLE_DOMAINS = new Set([
+  'mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwam.com',
+  'sharklasers.com', 'guerrillamailblock.com', 'grr.la', 'guerrillamail.info',
+  'guerrillamail.biz', 'guerrillamail.de', 'guerrillamail.net', 'guerrillamail.org',
+  'spam4.me', 'trashmail.com', 'trashmail.me', 'yopmail.com', 'dispostable.com',
+  'fakeinbox.com', 'maildrop.cc', 'spamgourmet.com', 'spamgourmet.net',
+  'discard.email', 'mailnull.com', 'spamcowboy.com', 'spamcowboy.net',
+]);
+
+const isDisposableEmail = (email: string): boolean => {
+  const domain = email.split('@')[1]?.toLowerCase();
+  return domain ? DISPOSABLE_DOMAINS.has(domain) : false;
+};
+
+const MX_CACHE_TTL_POSITIVE = 24 * 60 * 60 * 1000; // 24 hours
+const MX_CACHE_TTL_NEGATIVE = 5 * 60 * 1000;        // 5 minutes
+const MX_CACHE_MAX_SIZE = 1000;
+
+const mxCache = new Map<string, { valid: boolean; expiresAt: number }>();
+
+const hasValidMx = async (email: string): Promise<boolean> => {
+  const domain = email.split('@')[1]?.toLowerCase();
+  if (!domain) return false;
+
+  const cached = mxCache.get(domain);
+  if (cached) {
+    if (Date.now() < cached.expiresAt) return cached.valid;
+    mxCache.delete(domain);
+  }
+
+  try {
+    const records = await dns.resolveMx(domain);
+    const valid = records.length > 0;
+    if (mxCache.size >= MX_CACHE_MAX_SIZE) {
+      const firstKey = mxCache.keys().next().value;
+      if (firstKey !== undefined) mxCache.delete(firstKey);
+    }
+    mxCache.set(domain, {
+      valid,
+      expiresAt: Date.now() + (valid ? MX_CACHE_TTL_POSITIVE : MX_CACHE_TTL_NEGATIVE),
+    });
+    return valid;
+  } catch {
+    if (mxCache.size >= MX_CACHE_MAX_SIZE) {
+      const firstKey = mxCache.keys().next().value;
+      if (firstKey !== undefined) mxCache.delete(firstKey);
+    }
+    mxCache.set(domain, { valid: false, expiresAt: Date.now() + MX_CACHE_TTL_NEGATIVE });
+    return false;
+  }
+};
 
 /**
  * Server-side validation and sanitization of form data
@@ -112,9 +207,10 @@ export const validateAndSanitize = async (
     // ===== HONEYPOT VALIDATION =====
     // Silent rejection if honeypot field is filled (indicates bot)
     if (formData.website && formData.website.trim() !== '') {
-      console.log('🤖 Bot detected - honeypot field filled:', {
+      const safeHoneypotValue = JSON.stringify(String(formData.website).slice(0, 50));
+      console.log('Bot detected - honeypot field filled:', {
         timestamp: new Date().toISOString(),
-        honeypotValue: formData.website
+        honeypotValue: safeHoneypotValue,
       });
       // Return success to avoid revealing the honeypot
       // The email will never be sent
@@ -132,12 +228,24 @@ export const validateAndSanitize = async (
       };
     }
 
+    if (!isPlausibleName(formData.name.trim())) {
+      return { valid: false, error: 'El nom no és vàlid' };
+    }
+
     // Validate email
     if (!formData.email?.trim() || !isValidEmail(formData.email)) {
       return {
         valid: false,
         error: 'El correu electrònic no és vàlid'
       };
+    }
+
+    if (isDisposableEmail(formData.email)) {
+      return { valid: false, error: 'No es permeten adreces de correu temporal' };
+    }
+
+    if (!await hasValidMx(formData.email)) {
+      return { valid: false, error: 'El domini del correu electrònic no és vàlid' };
     }
 
     // Validate message
@@ -247,6 +355,9 @@ export const validateAndSanitize = async (
       return { valid: false, error: 'Disponibilitat no vàlida' };
     }
 
+    if (!Array.isArray(formData.contactPreference)) {
+      return { valid: false, error: 'Preferència de contacte no vàlida' };
+    }
     if (formData.contactPreference.some(p => !(VALID_CONTACT_PREFERENCES as readonly string[]).includes(p))) {
       return { valid: false, error: 'Preferència de contacte no vàlida' };
     }
@@ -293,16 +404,16 @@ export const validateAndSanitize = async (
         : '',
       courseInterest: formData.courseInterest ? sanitizeText(formData.courseInterest) : '',
       studentsCount: typeof formData.studentsCount === 'number'
-        ? Math.floor(Math.max(1, formData.studentsCount))
+        ? Math.floor(Math.min(10_000, Math.max(1, formData.studentsCount)))
         : '',
       teachersCount: typeof formData.teachersCount === 'number'
-        ? Math.floor(Math.max(1, formData.teachersCount))
+        ? Math.floor(Math.min(10_000, Math.max(1, formData.teachersCount)))
         : '',
       trainingInterest: formData.trainingInterest ? sanitizeText(formData.trainingInterest) : '',
       entityName: formData.entityName ? sanitizeText(formData.entityName) : '',
       entityDescription: formData.entityDescription ? sanitizeText(formData.entityDescription) : '',
       participantsCount: typeof formData.participantsCount === 'number'
-        ? Math.floor(Math.max(1, formData.participantsCount))
+        ? Math.floor(Math.min(10_000, Math.max(1, formData.participantsCount)))
         : '',
       projectDescription: formData.projectDescription ? sanitizeText(formData.projectDescription) : '',
       // Keep availability as-is since it's a union type
@@ -339,12 +450,30 @@ export const handleFormSubmit = async (
   let sanitizedData: ContactFormData | null = null;
 
   try {
-    // 0. Rate limiting check (IP-based)
+    // 0. Extract client IP
     const requestHeaders = await headers();
     const clientIp = getClientIp(requestHeaders);
+    const rawClientIp = getRawClientIp(requestHeaders);
 
+    // 0a. Cloudflare Turnstile verification — must run BEFORE rate limit,
+    //     honeypot, and any DNS/MX lookups so that unverified clients
+    //     cannot trigger downstream cost or consume rate-limit buckets.
+    const turnstile = await verifyTurnstile(
+      formData?.turnstileToken ?? '',
+      rawClientIp
+    );
+    if (!turnstile.ok) {
+      console.warn(`[Turnstile] rejected submission: reason=${turnstile.reason}`);
+      return {
+        success: false,
+        error: 'captcha_failed',
+        message: 'Verificació de seguretat fallida. Si us plau, torna-ho a intentar.',
+      };
+    }
+
+    // 0b. Rate limiting check (IP-based)
     if (checkRateLimitIp(clientIp)) {
-      console.warn(`[Rate Limit] IP exceeded for IP: ${clientIp}`);
+      console.warn(`[Rate Limit] IP exceeded for IP: ${redactIp(clientIp)}`);
       return {
         success: false,
         error: 'rate_limit_exceeded',
@@ -365,16 +494,26 @@ export const handleFormSubmit = async (
 
     sanitizedData = validation.data;
 
+    // Defense-in-depth: token is single-use and already consumed by siteverify
+    // above, but strip it from any object that may be persisted to fallback
+    // storage or logs.
+    sanitizedData.turnstileToken = '';
+
+    // Record IP attempt for every submission that passes validation
+    recordRateLimitAttemptIp(clientIp);
+
     // 2. Email-based rate limit check (prevents spam to third-party emails)
     if (checkRateLimitEmail(sanitizedData.email)) {
-      console.warn(`[Rate Limit] Email exceeded for: ${sanitizedData.email}`);
-      recordRateLimitAttemptIp(clientIp);
+      console.warn(`[Rate Limit] Email exceeded for: ${redactEmail(sanitizedData.email)}`);
       return {
         success: false,
         error: 'rate_limit_exceeded',
         message: 'Massa consultes des d\'aquest email. Torna-ho a intentar en alguns minuts.',
       };
     }
+
+    // Record email attempt for every submission that passes email rate-limit check
+    recordRateLimitAttemptEmail(sanitizedData.email);
 
     // 3. Build email message
     const emailContent = await buildEmailMessage(sanitizedData);
@@ -397,7 +536,7 @@ export const handleFormSubmit = async (
     let businessResult;
     try {
       businessResult = await sendEmailWithRetry(resend, {
-        from: `contact@${new URL(siteConfig.siteUrl).hostname}`,
+        from: `contact@${new URL(siteConfig.siteUrl).hostname.replace(/^www\./, '')}`,
         to: recipientEmail,
         replyTo: sanitizedData.email,
         subject: `Nova consulta: ${getServiceLabel(sanitizedData.serviceType)}`,
@@ -408,18 +547,15 @@ export const handleFormSubmit = async (
       console.error('Resend API error (business email, after retries):', error);
 
       // Try to save fallback submission
-      const fallbackSaved = await saveFallbackSubmission(
+      await saveFallbackSubmission(
         sanitizedData,
         `Email send failed: ${error instanceof Error ? error.message : 'Unknown error'}`
       );
 
-      recordRateLimitAttemptIp(clientIp);
       return {
         success: false,
         error: 'email_send_failed',
-        message: fallbackSaved
-          ? 'Technical issue sending email. We have recorded your submission and will contact you shortly.'
-          : 'Failed to send email. Please try again later or contact us directly.',
+        message: 'Error tècnic enviant el correu. Si us plau, torna-ho a intentar o contacta\'ns directament.',
       };
     }
 
@@ -427,18 +563,15 @@ export const handleFormSubmit = async (
       console.error('Resend API error (business email):', businessResult.error);
 
       // Try to save fallback submission
-      const fallbackSaved = await saveFallbackSubmission(
+      await saveFallbackSubmission(
         sanitizedData,
         `Resend error: ${businessResult.error}`
       );
 
-      recordRateLimitAttemptIp(clientIp);
       return {
         success: false,
         error: 'email_send_failed',
-        message: fallbackSaved
-          ? 'Technical issue sending email. We have recorded your submission and will contact you shortly.'
-          : 'Failed to send email. Please try again later.',
+        message: 'Error tècnic enviant el correu. Si us plau, torna-ho a intentar o contacta\'ns directament.',
       };
     }
 
@@ -447,7 +580,7 @@ export const handleFormSubmit = async (
 
     try {
       const confirmationResult = await sendEmailWithRetry(resend, {
-        from: `contact@${new URL(siteConfig.siteUrl).hostname}`,
+        from: `contact@${new URL(siteConfig.siteUrl).hostname.replace(/^www\./, '')}`,
         to: sanitizedData.email,
         subject: 'Confirmació de rebuda - Taller dels Sentits',
         html: confirmationContent,
@@ -462,9 +595,6 @@ export const handleFormSubmit = async (
       // Don't fail the whole request - business email was sent successfully
     }
 
-    // Record successful email submission for rate limiting
-    recordRateLimitAttemptEmail(sanitizedData.email);
-
     return {
       success: true,
       messageId: businessResult.data?.id,
@@ -475,18 +605,16 @@ export const handleFormSubmit = async (
 
     // Try to save fallback for catastrophic errors
     // Use sanitizedData if validation already completed, otherwise fall back to raw formData
-    const clientIp = getClientIp(await headers());
-    const fallbackSaved = await saveFallbackSubmission(
-      sanitizedData ?? formData,
+    const fallbackData = { ...(sanitizedData ?? formData), turnstileToken: '' };
+    await saveFallbackSubmission(
+      fallbackData,
       `Catastrophic error: ${error instanceof Error ? error.message : 'Unknown error'}`
     );
 
     return {
       success: false,
       error: 'email_send_failed',
-      message: fallbackSaved
-        ? 'Technical issue. We have recorded your submission and will contact you shortly.'
-        : 'An unexpected error occurred. Please try again later.',
+      message: 'Error tècnic enviant el correu. Si us plau, torna-ho a intentar o contacta\'ns directament.',
     };
   }
 };

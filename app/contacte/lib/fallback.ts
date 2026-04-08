@@ -5,9 +5,10 @@
 
 import fs from 'fs/promises';
 import path from 'path';
+import os from 'os';
 import type { ContactFormData } from '@/app/contacte/types/form.types';
 
-const FALLBACK_DIR = path.join(process.cwd(), '.contact-forms-fallback');
+const FALLBACK_DIR = path.join(os.tmpdir(), '.contact-forms-fallback');
 const FALLBACK_ENABLED = process.env.NODE_ENV === 'production';
 
 /**
@@ -40,7 +41,7 @@ export const saveFallbackSubmission = async (
     await ensureFallbackDir();
 
     const timestamp = new Date().toISOString();
-    const filename = `submission-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.json`;
+    const filename = `submission-${Date.now()}-${crypto.randomUUID().replace(/-/g, '')}.json`;
     const filepath = path.join(FALLBACK_DIR, filename);
 
     const fallbackData = {

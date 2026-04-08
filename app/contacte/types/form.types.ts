@@ -31,16 +31,16 @@ export interface ContactFormData {
   email: string;
   phone: string;
   location: string;
-  
+
   // Tipo de servicio
   serviceType: ServiceType;
-  
+
   // Artteràpia
   arttherapyFormat: ArttherapyFormat | '';
-  
+
   // Artperdins
   participantAge: ParticipantAge | '';
-  
+
   // Centres Educatius
   schoolName: string;
   educationStage: EducationStage | '';
@@ -67,14 +67,18 @@ export interface ContactFormData {
   message: string;
   contactPreference: ContactPreference[];
   availability: Availability | '';
-  
+
   // RGPD
   privacyAccepted: boolean;
-  
+
   // 🍯 Honeypot field (anti-bot)
   // This field should ALWAYS be empty if filled by a human
   // Bots will fill it automatically, allowing us to detect them
   website?: string;
+
+  // Cloudflare Turnstile token (anti-bot CAPTCHA)
+  // Produced client-side by the Turnstile widget, consumed once server-side.
+  turnstileToken: string;
 }
 
 export type FormStatus = 'idle' | 'sending' | 'success' | 'error';

@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import {
   getClientIp,
+  getRawClientIp,
   checkRateLimitIp,
   checkRateLimitEmail,
   recordRateLimitAttemptIp,
@@ -94,21 +95,20 @@ describe('rateLimit', () => {
       expect(result).toBe(false);
     });
 
-    it('RL6 — allows up to 3 failed attempts', () => {
-      recordRateLimitAttemptIp(testIp); // 1
-      expect(checkRateLimitIp(testIp)).toBe(false);
+    it('RL6 — allows up to 10 attempts', () => {
+      for (let i = 1; i <= 9; i++) {
+        recordRateLimitAttemptIp(testIp);
+        expect(checkRateLimitIp(testIp)).toBe(false);
+      }
 
-      recordRateLimitAttemptIp(testIp); // 2
-      expect(checkRateLimitIp(testIp)).toBe(false);
-
-      recordRateLimitAttemptIp(testIp); // 3
+      recordRateLimitAttemptIp(testIp); // 10
       expect(checkRateLimitIp(testIp)).toBe(true); // NOW blocked
     });
 
-    it('RL7 — blocks after 3 attempts', () => {
-      recordRateLimitAttemptIp(testIp);
-      recordRateLimitAttemptIp(testIp);
-      recordRateLimitAttemptIp(testIp);
+    it('RL7 — blocks after 10 attempts', () => {
+      for (let i = 0; i < 10; i++) {
+        recordRateLimitAttemptIp(testIp);
+      }
 
       const result = checkRateLimitIp(testIp);
 
@@ -119,9 +119,9 @@ describe('rateLimit', () => {
       const ip1 = '10.0.0.1';
       const ip2 = '10.0.0.2';
 
-      recordRateLimitAttemptIp(ip1);
-      recordRateLimitAttemptIp(ip1);
-      recordRateLimitAttemptIp(ip1);
+      for (let i = 0; i < 10; i++) {
+        recordRateLimitAttemptIp(ip1);
+      }
 
       // ip1 should be blocked
       expect(checkRateLimitIp(ip1)).toBe(true);
@@ -137,13 +137,12 @@ describe('rateLimit', () => {
 
   describe('recordRateLimitAttemptIp', () => {
     it('RL9 — increments attempt counter', () => {
-      recordRateLimitAttemptIp(testIp);
-      expect(checkRateLimitIp(testIp)).toBe(false);
+      for (let i = 1; i <= 9; i++) {
+        recordRateLimitAttemptIp(testIp);
+        expect(checkRateLimitIp(testIp)).toBe(false);
+      }
 
-      recordRateLimitAttemptIp(testIp);
-      expect(checkRateLimitIp(testIp)).toBe(false);
-
-      recordRateLimitAttemptIp(testIp);
+      recordRateLimitAttemptIp(testIp); // 10
       expect(checkRateLimitIp(testIp)).toBe(true);
     });
 
@@ -158,9 +157,9 @@ describe('rateLimit', () => {
 
   describe('resetRateLimitForIp', () => {
     it('RL11 — clears rate limit for specific IP', () => {
-      recordRateLimitAttemptIp(testIp);
-      recordRateLimitAttemptIp(testIp);
-      recordRateLimitAttemptIp(testIp);
+      for (let i = 0; i < 10; i++) {
+        recordRateLimitAttemptIp(testIp);
+      }
 
       expect(checkRateLimitIp(testIp)).toBe(true);
 
@@ -216,9 +215,9 @@ describe('rateLimit', () => {
       const email = 'independent@example.com';
 
       // Max out IP limit
-      recordRateLimitAttemptIp(ip);
-      recordRateLimitAttemptIp(ip);
-      recordRateLimitAttemptIp(ip);
+      for (let i = 0; i < 10; i++) {
+        recordRateLimitAttemptIp(ip);
+      }
 
       // IP should be blocked
       expect(checkRateLimitIp(ip)).toBe(true);
@@ -229,5 +228,57 @@ describe('rateLimit', () => {
       // Cleanup
       resetRateLimitForIp(ip);
     });
+
+    it('RL16 — treats user+tag@example.com and user@example.com as the same rate-limit key', () => {
+      resetRateLimitForEmail('user@example.com');
+      recordRateLimitAttemptEmail('user+tag1@example.com');
+      recordRateLimitAttemptEmail('user+tag2@example.com');
+      recordRateLimitAttemptEmail('user+tag3@example.com');
+      expect(checkRateLimitEmail('user@example.com')).toBe(true);
+      resetRateLimitForEmail('user@example.com');
+    });
+  });
+
+  describe('IPv6 normalization', () => {
+    it('RL17 — normalizes IPv6 to /64 prefix', () => {
+      const headers = new Headers({
+        'x-real-ip': '2001:db8:abcd:1234:5678:dead:beef:cafe',
+      });
+      const ip = getClientIp(headers);
+      expect(ip).toBe('2001:db8:abcd:1234::');
+    });
+
+    it('RL17b — normalizes IPv6 to lowercase /64 prefix', () => {
+      const headers = new Headers({
+        'x-real-ip': '2001:DB8:ABCD:1234:5678:DEAD:BEEF:CAFE',
+      });
+      const ip = getClientIp(headers);
+      expect(ip).toBe('2001:db8:abcd:1234::');
+    });
+
+    it('RL18 — IPv4 addresses are not altered by normalization', () => {
+      const headers = new Headers({ 'x-real-ip': '192.168.1.100' });
+      const ip = getClientIp(headers);
+      expect(ip).toBe('192.168.1.100');
+    });
+  });
+});
+
+describe('getRawClientIp', () => {
+  it('RL19 — returns x-real-ip unchanged without /64 normalization for IPv6', () => {
+    const headers = new Headers({ 'x-real-ip': '2001:db8:1:2:3:4:5:6' });
+    expect(getRawClientIp(headers)).toBe('2001:db8:1:2:3:4:5:6');
+  });
+
+  it('RL20 — respects CLOUDFLARE_PROXY=true for cf-connecting-ip', () => {
+    const prev = process.env.CLOUDFLARE_PROXY;
+    process.env.CLOUDFLARE_PROXY = 'true';
+    const headers = new Headers({ 'cf-connecting-ip': '203.0.113.10', 'x-real-ip': '10.0.0.1' });
+    expect(getRawClientIp(headers)).toBe('203.0.113.10');
+    process.env.CLOUDFLARE_PROXY = prev;
+  });
+
+  it('RL21 — returns "unknown" when no IP header present', () => {
+    expect(getRawClientIp(new Headers())).toBe('unknown');
   });
 });
